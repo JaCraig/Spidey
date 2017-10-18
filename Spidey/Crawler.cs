@@ -186,7 +186,7 @@ namespace Spidey
             link = link.Split('#')[0];
             if (link.EndsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = link.Remove(link.LastIndexOf('/'), 1);
-            return link;
+            return System.Uri.EscapeUriString(link);
         }
 
         /// <summary>
