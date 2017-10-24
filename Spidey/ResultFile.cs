@@ -36,6 +36,18 @@ namespace Spidey
         public IGenericFile FileContent { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the file if this is something downloaded.
+        /// </summary>
+        /// <value>The name of the file if this is something downloaded.</value>
+        public string FileName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the final location (if page is redirected, this will be different than location).
+        /// </summary>
+        /// <value>The final location.</value>
+        public string FinalLocation { get; set; }
+
+        /// <summary>
         /// Gets the file location.
         /// </summary>
         /// <value>The file location.</value>

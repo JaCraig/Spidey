@@ -59,6 +59,8 @@ namespace Spidey
             ErrorURLs = new ConcurrentBag<ErrorItem>();
         }
 
+        private static Regex FileNameRegex = new Regex("filename=\"(?<FileName>[^\\\"]*)\"", RegexOptions.Compiled);
+
         /// <summary>
         /// Gets a value indicating whether this <see cref="Crawler"/> is done.
         /// </summary>
@@ -121,7 +123,7 @@ namespace Spidey
 
             byte[] Content = new byte[0];
             var Client = WebRequest.Create(url);
-            Client.UseDefaultCredentials = true;
+            //Client.UseDefaultCredentials = true;
             if (Options.Credentials == null && Options.UseDefaultCredentials)
                 Client.UseDefaultCredentials = true;
             else
@@ -131,7 +133,13 @@ namespace Spidey
             var Response = await Client.GetResponseAsync();
             Content = Response.GetResponseStream().ReadAllBinary();
             string ContentType = Response.ContentType;
-            AddDocument(Parse(url, Content, ContentType));
+            string FinalLocation = Response.ResponseUri.ToString();
+            string FileName = Response.Headers.AllKeys.Contains("content-disposition") ? Response.Headers["content-disposition"] : "";
+            if (!string.IsNullOrEmpty(FileName))
+            {
+                FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
+            }
+            AddDocument(Parse(url, Content, ContentType, FinalLocation, FileName));
             AddUrls(url, Content, ContentType);
             return true;
         }
@@ -289,8 +297,10 @@ namespace Spidey
         /// <param name="url">The URL.</param>
         /// <param name="content">The content.</param>
         /// <param name="contentType">Type of the content.</param>
-        /// <returns></returns>
-        private ResultFile Parse(string url, byte[] content, string contentType)
+        /// <param name="finalLocation">The final location.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns>The resulting file.</returns>
+        private ResultFile Parse(string url, byte[] content, string contentType, string finalLocation, string fileName)
         {
             if (!CanParse(url))
                 return null;
@@ -300,7 +310,9 @@ namespace Spidey
                 {
                     FileContent = Stream.Parse(contentType),
                     Location = url,
-                    ContentType = contentType
+                    ContentType = contentType,
+                    FileName = fileName,
+                    FinalLocation = finalLocation
                 };
             }
         }
