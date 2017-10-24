@@ -123,7 +123,6 @@ namespace Spidey
 
             byte[] Content = new byte[0];
             var Client = WebRequest.Create(url);
-            //Client.UseDefaultCredentials = true;
             if (Options.Credentials == null && Options.UseDefaultCredentials)
                 Client.UseDefaultCredentials = true;
             else
@@ -304,6 +303,7 @@ namespace Spidey
         {
             if (!CanParse(url))
                 return null;
+            string CurrentDomain = GetDomain(url);
             using (System.IO.MemoryStream Stream = new System.IO.MemoryStream(content))
             {
                 return new ResultFile
@@ -312,7 +312,7 @@ namespace Spidey
                     Location = url,
                     ContentType = contentType,
                     FileName = fileName,
-                    FinalLocation = finalLocation
+                    FinalLocation = FixUrl(CurrentDomain, finalLocation)
                 };
             }
         }
