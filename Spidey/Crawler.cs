@@ -59,7 +59,7 @@ namespace Spidey
             ErrorURLs = new ConcurrentBag<ErrorItem>();
         }
 
-        private static Regex FileNameRegex = new Regex("filename=\"(?<FileName>[^\\\"]*)\"", RegexOptions.Compiled);
+        private static Regex FileNameRegex = new Regex(@"filename=[\""']?(?<FileName>[^\""\n\r']*)['\""\n\r]?$", RegexOptions.Compiled);
 
         /// <summary>
         /// Gets a value indicating whether this <see cref="Crawler"/> is done.
