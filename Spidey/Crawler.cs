@@ -133,7 +133,7 @@ namespace Spidey
             Content = Response.GetResponseStream().ReadAllBinary();
             string ContentType = Response.ContentType;
             string FinalLocation = Response.ResponseUri.ToString();
-            string FileName = Response.Headers.AllKeys.Contains("content-disposition") ? Response.Headers["content-disposition"] : "";
+            string FileName = Response.Headers["content-disposition"];
             if (!string.IsNullOrEmpty(FileName))
             {
                 FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
