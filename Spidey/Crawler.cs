@@ -190,7 +190,7 @@ namespace Spidey
 
         private static string FixUrl(string currentDomain, string link, Dictionary<string, string> replacements)
         {
-            link = link.Replace("\\", "/");
+            link = link.Replace("\\", "/").Trim();
             if (link.StartsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = currentDomain + link;
             else if (!link.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
@@ -198,7 +198,7 @@ namespace Spidey
             link = link.Split('#')[0];
             if (link.EndsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = link.Remove(link.LastIndexOf('/'), 1);
-            link = System.Uri.UnescapeDataString(link);
+            link = System.Uri.UnescapeDataString(link).Trim();
             foreach (var Key in replacements.Keys)
             {
                 link = new Regex(Key).Replace(link, replacements[Key]);
