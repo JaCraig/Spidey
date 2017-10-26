@@ -19,6 +19,7 @@ using FileCurator;
 using Serilog;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -52,8 +53,10 @@ namespace Spidey
                 100,
                 (x, y) =>
                 {
+                    var TempException = x as WebException;
+                    var TempResponse = TempException?.Response as System.Net.HttpWebResponse;
                     Logger.Error(x, "An error has occurred");
-                    ErrorURLs.Add(new ErrorItem { Error = x, Url = y });
+                    ErrorURLs.Add(new ErrorItem { Error = x, Url = y, StatusCode = ((int?)TempResponse?.StatusCode) ?? 0 });
                 });
             CompletedURLs = new ConcurrentBag<string>();
             ErrorURLs = new ConcurrentBag<ErrorItem>();
@@ -129,7 +132,8 @@ namespace Spidey
                 Client.Credentials = Options.Credentials;
             Client.Proxy = Options.Proxy;
 
-            var Response = await Client.GetResponseAsync();
+            var Response = (await Client.GetResponseAsync()) as HttpWebResponse;
+
             Content = Response.GetResponseStream().ReadAllBinary();
             string ContentType = Response.ContentType;
             string FinalLocation = Response.ResponseUri.ToString();
@@ -138,7 +142,7 @@ namespace Spidey
             {
                 FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
             }
-            AddDocument(Parse(url, Content, ContentType, FinalLocation, FileName));
+            AddDocument(Parse(url, Content, ContentType, FinalLocation, FileName, (int)Response.StatusCode));
             AddUrls(url, Content, ContentType);
             return true;
         }
@@ -184,7 +188,7 @@ namespace Spidey
             }
         }
 
-        private static string FixUrl(string currentDomain, string link)
+        private static string FixUrl(string currentDomain, string link, Dictionary<string, string> replacements)
         {
             link = link.Replace("\\", "/");
             if (link.StartsWith("/", StringComparison.OrdinalIgnoreCase))
@@ -194,7 +198,12 @@ namespace Spidey
             link = link.Split('#')[0];
             if (link.EndsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = link.Remove(link.LastIndexOf('/'), 1);
-            return System.Uri.EscapeUriString(System.Uri.UnescapeDataString(link));
+            link = System.Uri.UnescapeDataString(link);
+            foreach (var Key in replacements.Keys)
+            {
+                link = new Regex(Key).Replace(link, replacements[Key]);
+            }
+            return System.Uri.EscapeUriString(link);
         }
 
         /// <summary>
@@ -245,7 +254,7 @@ namespace Spidey
                     var TempLink = Link;
                     if (string.IsNullOrEmpty(TempLink))
                         continue;
-                    TempLink = FixUrl(CurrentDomain, TempLink);
+                    TempLink = FixUrl(CurrentDomain, TempLink, Options.UrlReplacements);
                     URLs.Enqueue(TempLink);
                     if (CanCrawl(TempLink))
                         WhereFound.Add(TempLink, url);
@@ -298,8 +307,9 @@ namespace Spidey
         /// <param name="contentType">Type of the content.</param>
         /// <param name="finalLocation">The final location.</param>
         /// <param name="fileName">Name of the file.</param>
+        /// <param name="statusCode">The status code.</param>
         /// <returns>The resulting file.</returns>
-        private ResultFile Parse(string url, byte[] content, string contentType, string finalLocation, string fileName)
+        private ResultFile Parse(string url, byte[] content, string contentType, string finalLocation, string fileName, int statusCode)
         {
             if (!CanParse(url))
                 return null;
@@ -312,7 +322,8 @@ namespace Spidey
                     Location = url,
                     ContentType = contentType,
                     FileName = fileName,
-                    FinalLocation = FixUrl(CurrentDomain, finalLocation)
+                    FinalLocation = FixUrl(CurrentDomain, finalLocation, Options.UrlReplacements),
+                    StatusCode = statusCode
                 };
             }
         }

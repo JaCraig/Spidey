@@ -33,6 +33,7 @@ namespace Spidey
             Ignore = new List<string>();
             Allow = new List<string>();
             FollowOnly = new List<string>();
+            UrlReplacements = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -76,6 +77,13 @@ namespace Spidey
         /// </summary>
         /// <value>The start locations.</value>
         public List<string> StartLocations { get; set; }
+
+        /// <summary>
+        /// Gets or sets a list of replacements for URL parts. Key is the url part that you may find,
+        /// value is the replacement for it.
+        /// </summary>
+        /// <value>The domain replacements.</value>
+        public Dictionary<string, string> UrlReplacements { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [use default credentials].

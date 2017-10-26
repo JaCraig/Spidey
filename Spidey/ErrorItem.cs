@@ -30,6 +30,12 @@ namespace Spidey
         public Exception Error { get; set; }
 
         /// <summary>
+        /// Gets or sets the status code.
+        /// </summary>
+        /// <value>The status code.</value>
+        public int StatusCode { get; set; }
+
+        /// <summary>
         /// Gets or sets the URL.
         /// </summary>
         /// <value>The URL.</value>

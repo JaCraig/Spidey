@@ -52,5 +52,11 @@ namespace Spidey
         /// </summary>
         /// <value>The file location.</value>
         public string Location { get; set; }
+
+        /// <summary>
+        /// Gets or sets the status code.
+        /// </summary>
+        /// <value>The status code.</value>
+        public int StatusCode { get; set; }
     }
 }
