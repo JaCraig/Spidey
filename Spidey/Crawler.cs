@@ -17,6 +17,8 @@ limitations under the License.
 using BigBook;
 using FileCurator;
 using Serilog;
+using Spidey.Engines;
+using Spidey.Engines.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -40,10 +42,12 @@ namespace Spidey
         /// </summary>
         /// <param name="itemFound">The item found.</param>
         /// <param name="options">The options.</param>
+        /// <param name="engine">The engine.</param>
         /// <param name="logger">The logger.</param>
-        /// <exception cref="System.ArgumentNullException">logger</exception>
-        public Crawler(Action<ResultFile> itemFound, Options options, ILogger logger)
+        /// <exception cref="ArgumentNullException">logger</exception>
+        public Crawler(Action<ResultFile> itemFound, Options options, IEngine engine, ILogger logger)
         {
+            Engine = engine ?? new DefaultEngine();
             ItemFound = itemFound;
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             Options = options ?? Options.Default;
@@ -62,13 +66,17 @@ namespace Spidey
             ErrorURLs = new ConcurrentBag<ErrorItem>();
         }
 
-        private static Regex FileNameRegex = new Regex(@"filename=[\""']?(?<FileName>[^\""\n\r']*)['\""\n\r]?$", RegexOptions.Compiled);
-
         /// <summary>
         /// Gets a value indicating whether this <see cref="Crawler"/> is done.
         /// </summary>
         /// <value><c>true</c> if done; otherwise, <c>false</c>.</value>
         public bool Done => URLs.IsComplete;
+
+        /// <summary>
+        /// Gets the engine.
+        /// </summary>
+        /// <value>The engine.</value>
+        public IEngine Engine { get; }
 
         /// <summary>
         /// Gets or sets the error ur ls.
@@ -124,26 +132,10 @@ namespace Spidey
             Logger.Debug("Crawling " + url);
             CompletedURLs.Add(url);
 
-            byte[] Content = new byte[0];
-            var Client = WebRequest.Create(url);
-            if (Options.Credentials == null && Options.UseDefaultCredentials)
-                Client.UseDefaultCredentials = true;
-            else
-                Client.Credentials = Options.Credentials;
-            Client.Proxy = Options.Proxy;
+            var Result = await Engine.CrawlAsync(url, Options);
 
-            var Response = (await Client.GetResponseAsync()) as HttpWebResponse;
-
-            Content = Response.GetResponseStream().ReadAllBinary();
-            string ContentType = Response.ContentType;
-            string FinalLocation = Response.ResponseUri.ToString();
-            string FileName = Response.Headers["content-disposition"];
-            if (!string.IsNullOrEmpty(FileName))
-            {
-                FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
-            }
-            AddDocument(Parse(url, Content, ContentType, FinalLocation, FileName, (int)Response.StatusCode));
-            AddUrls(url, Content, ContentType);
+            AddDocument(Parse(Result));
+            AddUrls(url, Result.Content, Result.ContentType);
             return true;
         }
 
@@ -302,28 +294,23 @@ namespace Spidey
         /// <summary>
         /// Parses the specified URL.
         /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="content">The content.</param>
-        /// <param name="contentType">Type of the content.</param>
-        /// <param name="finalLocation">The final location.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="statusCode">The status code.</param>
+        /// <param name="result">The result.</param>
         /// <returns>The resulting file.</returns>
-        private ResultFile Parse(string url, byte[] content, string contentType, string finalLocation, string fileName, int statusCode)
+        private ResultFile Parse(UrlData result)
         {
-            if (!CanParse(url))
+            if (!CanParse(result.URL))
                 return null;
-            string CurrentDomain = GetDomain(url);
-            using (System.IO.MemoryStream Stream = new System.IO.MemoryStream(content))
+            string CurrentDomain = GetDomain(result.URL);
+            using (System.IO.MemoryStream Stream = new System.IO.MemoryStream(result.Content))
             {
                 return new ResultFile
                 {
-                    FileContent = Stream.Parse(contentType),
-                    Location = url,
-                    ContentType = contentType,
-                    FileName = fileName,
-                    FinalLocation = FixUrl(CurrentDomain, finalLocation, Options.UrlReplacements),
-                    StatusCode = statusCode
+                    FileContent = Stream.Parse(result.ContentType),
+                    Location = result.URL,
+                    ContentType = result.ContentType,
+                    FileName = result.FileName,
+                    FinalLocation = FixUrl(CurrentDomain, result.FinalLocation, Options.UrlReplacements),
+                    StatusCode = result.StatusCode
                 };
             }
         }
