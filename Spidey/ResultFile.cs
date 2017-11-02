@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using FileCurator.Formats.Data.Interfaces;
+using Spidey.Engines;
 
 namespace Spidey
 {
@@ -28,6 +29,12 @@ namespace Spidey
         /// </summary>
         /// <value>The type of the content.</value>
         public string ContentType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the data.
+        /// </summary>
+        /// <value>The data.</value>
+        public UrlData Data { get; set; }
 
         /// <summary>
         /// Gets or sets the file.

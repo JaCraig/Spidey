@@ -310,7 +310,8 @@ namespace Spidey
                     ContentType = result.ContentType,
                     FileName = result.FileName,
                     FinalLocation = FixUrl(CurrentDomain, result.FinalLocation, Options.UrlReplacements),
-                    StatusCode = result.StatusCode
+                    StatusCode = result.StatusCode,
+                    Data = result
                 };
             }
         }
