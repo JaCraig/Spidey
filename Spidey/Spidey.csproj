@@ -7,7 +7,7 @@
     <!-- for Team City -->
     <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
     <!-- if not set -->
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>James Craig</Authors>
@@ -16,15 +16,15 @@
     <PackageLicenseUrl>https://github.com/JaCraig/Spidey/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/JaCraig/Spidey</PackageProjectUrl>
     <PackageTags>web crawler;web;crawler</PackageTags>
-    <Version>1.0.$(BuildNumber)</Version>
+    <Version>2.0.$(BuildNumber)</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard1.6\Spidey.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\Spidey.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard1.6\Spidey.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\Spidey.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
