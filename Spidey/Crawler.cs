@@ -100,7 +100,7 @@ namespace Spidey
         /// Gets or sets the completed urls.
         /// </summary>
         /// <value>The completed urls.</value>
-        private ConcurrentBag<string> CompletedURLs { get; set; }
+        private ConcurrentBag<string> CompletedURLs { get; }
 
         /// <summary>
         /// Gets the logger.
@@ -118,7 +118,7 @@ namespace Spidey
         /// Gets or sets the where found.
         /// </summary>
         /// <value>The where found.</value>
-        private ListMapping<string, string> WhereFound { get; set; }
+        private ListMapping<string, string> WhereFound { get; }
 
         /// <summary>
         /// Crawls the specified URL.
@@ -132,7 +132,7 @@ namespace Spidey
             Logger.Debug("Crawling " + url);
             CompletedURLs.Add(url);
 
-            var Result = await Engine.CrawlAsync(url, Options);
+            var Result = await Engine.CrawlAsync(url, Options).ConfigureAwait(false);
 
             AddDocument(Parse(Result));
             AddUrls(url, Result.Content, Result.ContentType);
@@ -154,12 +154,9 @@ namespace Spidey
         /// <returns>The listing of each URL and where it was found.</returns>
         public ListMapping<string, string> StartCrawl()
         {
-            if (!Options.StartLocations.Any())
+            if (Options.StartLocations.Count == 0)
                 return WhereFound;
-            Options.StartLocations.ForEach(x =>
-            {
-                URLs.Enqueue(x);
-            });
+            Options.StartLocations.ForEach(x => URLs.Enqueue(x));
             while (!Done) Thread.Sleep(100);
             return WhereFound;
         }
@@ -228,7 +225,7 @@ namespace Spidey
         /// <param name="contentType">Type of the content.</param>
         private void AddUrls(string url, byte[] content, string contentType)
         {
-            if (contentType.ToUpperInvariant().Contains("TEXT/HTML"))
+            if (contentType.IndexOf("TEXT/HTML", StringComparison.InvariantCultureIgnoreCase) >= 0)
             {
                 if (!CanFollow(url))
                     return;

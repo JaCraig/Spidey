@@ -49,7 +49,7 @@ namespace Spidey.Engines
                 Client.Credentials = options.Credentials;
             Client.Proxy = options.Proxy;
 
-            var Response = (await Client.GetResponseAsync()) as HttpWebResponse;
+            var Response = (await Client.GetResponseAsync().ConfigureAwait(false)) as HttpWebResponse;
             string FileName = Response.Headers["content-disposition"];
             if (!string.IsNullOrEmpty(FileName))
             {
