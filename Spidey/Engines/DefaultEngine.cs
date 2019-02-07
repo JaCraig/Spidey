@@ -49,22 +49,44 @@ namespace Spidey.Engines
                 Client.Credentials = options.Credentials;
             Client.Proxy = options.Proxy;
 
-            var Response = (await Client.GetResponseAsync().ConfigureAwait(false)) as HttpWebResponse;
-            string FileName = Response.Headers["content-disposition"];
-            if (!string.IsNullOrEmpty(FileName))
+            try
             {
-                FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
-            }
+                var Response = (await Client.GetResponseAsync().ConfigureAwait(false)) as HttpWebResponse;
+                string FileName = Response.Headers["content-disposition"];
+                if (!string.IsNullOrEmpty(FileName))
+                {
+                    FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
+                }
 
-            return new UrlData
+                return new UrlData
+                {
+                    Content = Response.GetResponseStream().ReadAllBinary(),
+                    ContentType = Response.ContentType,
+                    FileName = FileName,
+                    FinalLocation = Response.ResponseUri.ToString(),
+                    StatusCode = (int)Response.StatusCode,
+                    URL = url
+                };
+            }
+            catch (WebException e)
             {
-                Content = Response.GetResponseStream().ReadAllBinary(),
-                ContentType = Response.ContentType,
-                FileName = FileName,
-                FinalLocation = Response.ResponseUri.ToString(),
-                StatusCode = (int)Response.StatusCode,
-                URL = url
-            };
+                var Response = e.Response;
+                string FileName = Response.Headers["content-disposition"];
+                if (!string.IsNullOrEmpty(FileName))
+                {
+                    FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
+                }
+
+                return new UrlData
+                {
+                    Content = Response.GetResponseStream().ReadAllBinary(),
+                    ContentType = Response.ContentType,
+                    FileName = FileName,
+                    FinalLocation = Response.ResponseUri.ToString(),
+                    StatusCode = (int)((HttpWebResponse)e.Response).StatusCode,
+                    URL = url
+                };
+            }
         }
     }
 }
