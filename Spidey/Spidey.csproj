@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <BuildNumber Condition=" '$(APPVEYOR_BUILD_NUMBER)' != '' ">$(APPVEYOR_BUILD_NUMBER)</BuildNumber>
@@ -13,7 +13,7 @@
     <Authors>James Craig</Authors>
     <Company />
     <Description>Spidey is a library designed to help with crawling and parsing web content.</Description>
-    <PackageLicenseUrl>https://github.com/JaCraig/Spidey/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/JaCraig/Spidey</PackageProjectUrl>
     <PackageTags>web crawler;web;crawler</PackageTags>
     <Version>2.0.$(BuildNumber)</Version>
