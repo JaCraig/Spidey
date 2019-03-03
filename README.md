@@ -34,7 +34,9 @@ Starting at the bottom, Serilog is not required to be set up. Passing in null he
 
     private static void CallbackMethod(ResultFile obj) { ... }
 	
-The library will handle parsing of links found within the page, downloading the content, etc. for the most part.
+The library will handle parsing of links found within the page, downloading the content, etc. for the most part. At this point all you have to do is call the StartCrawl method:
+
+    MyCrawler.StartCrawl();
 
 ## Installation
 
