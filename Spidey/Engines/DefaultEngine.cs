@@ -16,6 +16,8 @@ limitations under the License.
 
 using BigBook;
 using Spidey.Engines.Interfaces;
+using System;
+using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -41,7 +43,7 @@ namespace Spidey.Engines
         /// <returns>The data from the URL.</returns>
         public async Task<UrlData> CrawlAsync(string url, Options options)
         {
-            byte[] Content = new byte[0];
+            var Content = Array.Empty<byte>();
             var Client = WebRequest.Create(url);
             if (options.Credentials == null && options.UseDefaultCredentials)
                 Client.UseDefaultCredentials = true;
@@ -52,7 +54,11 @@ namespace Spidey.Engines
             try
             {
                 var Response = (await Client.GetResponseAsync().ConfigureAwait(false)) as HttpWebResponse;
-                string FileName = Response.Headers["content-disposition"];
+                string FileName = "";
+                if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", System.StringComparison.OrdinalIgnoreCase)))
+                {
+                    FileName = Response.Headers["content-disposition"];
+                }
                 if (!string.IsNullOrEmpty(FileName))
                 {
                     FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
@@ -71,7 +77,11 @@ namespace Spidey.Engines
             catch (WebException e)
             {
                 var Response = e.Response;
-                string FileName = Response.Headers["content-disposition"];
+                string FileName = "";
+                if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", System.StringComparison.OrdinalIgnoreCase)))
+                {
+                    FileName = Response.Headers["content-disposition"];
+                }
                 if (!string.IsNullOrEmpty(FileName))
                 {
                     FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;

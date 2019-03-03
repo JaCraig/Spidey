@@ -34,7 +34,7 @@ namespace Spidey
     /// <summary>
     /// Crawler class
     /// </summary>
-    /// <seealso cref="System.IDisposable"/>
+    /// <seealso cref="IDisposable"/>
     public class Crawler : IDisposable
     {
         /// <summary>
@@ -58,7 +58,7 @@ namespace Spidey
                 (x, y) =>
                 {
                     var TempException = x as WebException;
-                    var TempResponse = TempException?.Response as System.Net.HttpWebResponse;
+                    var TempResponse = TempException?.Response as HttpWebResponse;
                     Logger.Error(x, "An error has occurred");
                     ErrorURLs.Add(new ErrorItem { Error = x, Url = y, StatusCode = ((int?)TempResponse?.StatusCode) ?? 0 });
                 });
@@ -95,6 +95,12 @@ namespace Spidey
         /// </summary>
         /// <value>The options.</value>
         public Options Options { get; }
+
+        /// <summary>
+        /// Gets the scheme regex.
+        /// </summary>
+        /// <value>The scheme regex.</value>
+        private static Regex SchemeRegex { get; } = new Regex("^(?<scheme>[^:]*://)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// Gets or sets the completed urls.
@@ -177,22 +183,29 @@ namespace Spidey
             }
         }
 
+        /// <summary>
+        /// Fixes the URL.
+        /// </summary>
+        /// <param name="currentDomain">The current domain.</param>
+        /// <param name="link">The link.</param>
+        /// <param name="replacements">The replacements.</param>
+        /// <returns>The resulting URL</returns>
         private static string FixUrl(string currentDomain, string link, Dictionary<string, string> replacements)
         {
             link = link.Replace("\\", "/").Trim();
             if (link.StartsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = currentDomain + link;
-            else if (!link.StartsWith("http://", StringComparison.OrdinalIgnoreCase))
+            else if (!SchemeRegex.IsMatch(link))
                 link = "http://" + link;
             link = link.Split('#')[0];
             if (link.EndsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = link.Remove(link.LastIndexOf('/'), 1);
-            link = System.Uri.UnescapeDataString(link).Trim();
+            link = Uri.UnescapeDataString(link).Trim();
             foreach (var Key in replacements.Keys)
             {
                 link = new Regex(Key).Replace(link, replacements[Key]);
             }
-            return System.Uri.EscapeUriString(link);
+            return Uri.EscapeUriString(link);
         }
 
         /// <summary>
@@ -203,7 +216,7 @@ namespace Spidey
         private static string GetDomain(string url)
         {
             var TempUri = new Uri(url);
-            return "http://" + TempUri.Host + (TempUri.Port == 80 ? "" : (":" + TempUri.Port));
+            return TempUri.Scheme + "://" + TempUri.Host + (TempUri.Port == 80 ? "" : (":" + TempUri.Port));
         }
 
         /// <summary>
@@ -237,8 +250,7 @@ namespace Spidey
                 if (Nodes == null)
                     return;
 
-                var Links = Nodes.SelectMany(x => x.Attributes).Select(x => x.Value);
-                foreach (var Link in Links)
+                foreach (var Link in Nodes.SelectMany(x => x.Attributes).Select(x => x.Value))
                 {
                     var TempLink = Link;
                     if (string.IsNullOrEmpty(TempLink))
