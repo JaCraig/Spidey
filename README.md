@@ -18,19 +18,18 @@ The RegisterSpidey function is an extension method that registers it with the Io
 
 Spidey really boils down to using one class called Crawler:
 
-    var MyCrawler = new Crawler(CallbackMethod,
-	                        new Options
+    var MyCrawler = new Crawler(new Options
 				{
+				    CallbackMethod = FoundFile={}                                            //The callback method used when a new page is discovered.
 				    Allow = new List<string> { "http://mywebsite", "http://mywebsite2" },    //Regexes of what sites/pages are allowed to be crawled.
 				    FollowOnly = new List<string> { "..." },                                 //Regexes of pages to only follow links that are found on them.
 				    Ignore = new List<string> { "..." },                                     //Regexes that the system will ignore when they are encountered.
 				    StartLocations = new List<string> { "http://mywebsite", "http://mywebsite2" },    //Starting URLs for the crawler.
 				    UrlReplacements = new Dictionary<string,string> {...}                    //When the system hits one of the keys in the dictionary, it will replace it with the value.
 				},
-				new DefaultEngine(),
 				Serilog.Log.Logger);
 								
-Starting at the bottom, Serilog is not required to be set up. Passing in null here will just mean that the crawler will eat any logging info. The DefaultEngine is the IEngine class that is built into the system. This is the class that the system uses to download the content. You can specify your own engine here as needed. The Options class has a number of properties, some of which are not displayed above such as NetworkCredentials, UseDefaultCredentials, and Proxy. These can be used to specify network credentials and proxy settings.  The CallbackMethod is what will be called by the system once a links info has been received and looks like this:
+Starting at the bottom, Serilog is not required to be set up. Passing in null here will just mean that the crawler will eat any logging info. The Options class has a number of properties, some of which are not displayed above such as NetworkCredentials, UseDefaultCredentials, Proxy, and Engine. The various engine parts used for the crawl are defined here along with specifying network credentials and proxy settings.  The CallbackMethod is what will be called by the system once a links info has been received and looks like this:
 
     private static void CallbackMethod(ResultFile obj) { ... }
 	
