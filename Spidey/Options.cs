@@ -15,7 +15,9 @@ limitations under the License.
 */
 
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace Spidey
 {
@@ -40,7 +42,7 @@ namespace Spidey
         /// Gets the default.
         /// </summary>
         /// <value>The default.</value>
-        public static Options Default => new Options();
+        public static Options Default { get; } = new Options();
 
         /// <summary>
         /// Gets or sets the allowed items.
@@ -67,6 +69,18 @@ namespace Spidey
         public List<string> Ignore { get; set; }
 
         /// <summary>
+        /// Gets or sets the maximum delay.
+        /// </summary>
+        /// <value>The maximum delay.</value>
+        public int MaxDelay { get; set; }
+
+        /// <summary>
+        /// Gets or sets the minimum delay.
+        /// </summary>
+        /// <value>The minimum delay.</value>
+        public int MinDelay { get; set; }
+
+        /// <summary>
         /// Gets the proxy.
         /// </summary>
         /// <value>The proxy.</value>
@@ -79,8 +93,8 @@ namespace Spidey
         public List<string> StartLocations { get; set; }
 
         /// <summary>
-        /// Gets or sets a list of replacements for URL parts. Key is the url part that you may find,
-        /// value is the replacement for it.
+        /// Gets or sets a list of replacements for URL parts. Key is the url part that you may
+        /// find, value is the replacement for it.
         /// </summary>
         /// <value>The domain replacements.</value>
         public Dictionary<string, string> UrlReplacements { get; set; }
@@ -90,5 +104,44 @@ namespace Spidey
         /// </summary>
         /// <value><c>true</c> if [use default credentials]; otherwise, <c>false</c>.</value>
         public bool UseDefaultCredentials { get; set; }
+
+        /// <summary>
+        /// Gets the allow compiled.
+        /// </summary>
+        /// <value>The allow compiled.</value>
+        internal List<Regex> AllowCompiled { get; private set; }
+
+        /// <summary>
+        /// Gets the follow only compiled.
+        /// </summary>
+        /// <value>The follow only compiled.</value>
+        internal List<Regex> FollowOnlyCompiled { get; private set; }
+
+        /// <summary>
+        /// Gets the ignore compiled.
+        /// </summary>
+        /// <value>The ignore compiled.</value>
+        internal List<Regex> IgnoreCompiled { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the URL replacements compiled.
+        /// </summary>
+        /// <value>The URL replacements compiled.</value>
+        internal Dictionary<Regex, string> UrlReplacementsCompiled { get; private set; }
+
+        /// <summary>
+        /// Setups this instance.
+        /// </summary>
+        internal void Setup()
+        {
+            UrlReplacementsCompiled = new Dictionary<Regex, string>();
+            IgnoreCompiled = Ignore.Select(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase)).ToList();
+            FollowOnlyCompiled = FollowOnly.Select(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase)).ToList();
+            AllowCompiled = Allow.Select(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase)).ToList();
+            foreach (var Key in UrlReplacements.Keys)
+            {
+                UrlReplacementsCompiled.Add(new Regex(Key), UrlReplacements[Key]);
+            }
+        }
     }
 }

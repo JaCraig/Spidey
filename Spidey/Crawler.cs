@@ -21,11 +21,8 @@ using Spidey.Engines;
 using Spidey.Engines.Interfaces;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -43,14 +40,16 @@ namespace Spidey
         /// <param name="itemFound">The item found.</param>
         /// <param name="options">The options.</param>
         /// <param name="engine">The engine.</param>
+        /// <param name="linkEngine">The link engine.</param>
         /// <param name="logger">The logger.</param>
         /// <exception cref="ArgumentNullException">logger</exception>
-        public Crawler(Action<ResultFile> itemFound, Options options, IEngine engine, ILogger logger)
+        public Crawler(Action<ResultFile> itemFound, Options options, IEngine engine, ILinkDiscoverer linkEngine, ILogger logger)
         {
             Engine = engine ?? new DefaultEngine();
             ItemFound = itemFound;
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             Options = options ?? Options.Default;
+            Options.Setup();
             WhereFound = new ListMapping<string, string>();
             URLs = new TaskQueue<string>(Environment.ProcessorCount,
                 x => Crawl(x).GetAwaiter().GetResult(),
@@ -64,6 +63,7 @@ namespace Spidey
                 });
             CompletedURLs = new ConcurrentBag<string>();
             ErrorURLs = new ConcurrentBag<ErrorItem>();
+            LinkEngine = linkEngine ?? new DefaultLinkDiscoverer();
         }
 
         /// <summary>
@@ -91,16 +91,16 @@ namespace Spidey
         public Action<ResultFile> ItemFound { get; }
 
         /// <summary>
+        /// Gets the link engine.
+        /// </summary>
+        /// <value>The link engine.</value>
+        public ILinkDiscoverer LinkEngine { get; }
+
+        /// <summary>
         /// Gets the options.
         /// </summary>
         /// <value>The options.</value>
         public Options Options { get; }
-
-        /// <summary>
-        /// Gets the scheme regex.
-        /// </summary>
-        /// <value>The scheme regex.</value>
-        private static Regex SchemeRegex { get; } = new Regex("^(?<scheme>[^:]*://)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
         /// <summary>
         /// Gets or sets the completed urls.
@@ -140,6 +140,8 @@ namespace Spidey
 
             var Result = await Engine.CrawlAsync(url, Options).ConfigureAwait(false);
 
+            Thread.Sleep(new Random().Next(Options.MinDelay, Options.MaxDelay));
+
             AddDocument(Parse(Result));
             AddUrls(url, Result.Content, Result.ContentType);
             return true;
@@ -173,39 +175,11 @@ namespace Spidey
         /// <param name="Value"></param>
         protected virtual void Dispose(bool Value)
         {
-            if (true)
+            if (URLs != null)
             {
-                if (URLs != null)
-                {
-                    URLs.Dispose();
-                    URLs = null;
-                }
+                URLs.Dispose();
+                URLs = null;
             }
-        }
-
-        /// <summary>
-        /// Fixes the URL.
-        /// </summary>
-        /// <param name="currentDomain">The current domain.</param>
-        /// <param name="link">The link.</param>
-        /// <param name="replacements">The replacements.</param>
-        /// <returns>The resulting URL</returns>
-        private static string FixUrl(string currentDomain, string link, Dictionary<string, string> replacements)
-        {
-            link = link.Replace("\\", "/").Trim();
-            if (link.StartsWith("/", StringComparison.OrdinalIgnoreCase))
-                link = currentDomain + link;
-            else if (!SchemeRegex.IsMatch(link))
-                link = "http://" + link;
-            link = link.Split('#')[0];
-            if (link.EndsWith("/", StringComparison.OrdinalIgnoreCase))
-                link = link.Remove(link.LastIndexOf('/'), 1);
-            link = Uri.UnescapeDataString(link).Trim();
-            foreach (var Key in replacements.Keys)
-            {
-                link = new Regex(Key).Replace(link, replacements[Key]);
-            }
-            return Uri.EscapeUriString(link);
         }
 
         /// <summary>
@@ -238,28 +212,14 @@ namespace Spidey
         /// <param name="contentType">Type of the content.</param>
         private void AddUrls(string url, byte[] content, string contentType)
         {
-            if (contentType.IndexOf("TEXT/HTML", StringComparison.InvariantCultureIgnoreCase) >= 0)
+            if (!CanFollow(url))
+                return;
+            var CurrentDomain = GetDomain(url);
+            foreach (var Link in LinkEngine.DiscoverUrls(CurrentDomain, url, content, contentType, Options))
             {
-                if (!CanFollow(url))
-                    return;
-                string CurrentDomain = GetDomain(url);
-
-                var doc = new HtmlAgilityPack.HtmlDocument();
-                doc.LoadHtml(Encoding.UTF8.GetString(content));
-                var Nodes = doc.DocumentNode.SelectNodes("//a[@href]");
-                if (Nodes == null)
-                    return;
-
-                foreach (var Link in Nodes.SelectMany(x => x.Attributes).Select(x => x.Value))
-                {
-                    var TempLink = Link;
-                    if (string.IsNullOrEmpty(TempLink))
-                        continue;
-                    TempLink = FixUrl(CurrentDomain, TempLink, Options.UrlReplacements);
-                    URLs.Enqueue(TempLink);
-                    if (CanCrawl(TempLink))
-                        WhereFound.Add(TempLink, url);
-                }
+                URLs.Enqueue(Link);
+                if (CanCrawl(Link))
+                    WhereFound.Add(Link, url);
             }
         }
 
@@ -282,9 +242,9 @@ namespace Spidey
         /// </returns>
         private bool CanFollow(string link)
         {
-            return (Options.Allow.Any(x => new Regex(x, RegexOptions.IgnoreCase).IsMatch(link))
-                || Options.FollowOnly.Any(x => new Regex(x, RegexOptions.IgnoreCase).IsMatch(link)))
-                && !Options.Ignore.Any(x => new Regex(x, RegexOptions.IgnoreCase).IsMatch(link));
+            return (Options.AllowCompiled.Any(x => x.IsMatch(link))
+                || Options.FollowOnlyCompiled.Any(x => x.IsMatch(link)))
+                && !Options.IgnoreCompiled.Any(x => x.IsMatch(link));
         }
 
         /// <summary>
@@ -296,8 +256,8 @@ namespace Spidey
         /// </returns>
         private bool CanParse(string link)
         {
-            return Options.Allow.Any(x => new Regex(x, RegexOptions.IgnoreCase).IsMatch(link))
-                && !Options.Ignore.Any(x => new Regex(x, RegexOptions.IgnoreCase).IsMatch(link));
+            return Options.AllowCompiled.Any(x => x.IsMatch(link))
+                && !Options.IgnoreCompiled.Any(x => x.IsMatch(link));
         }
 
         /// <summary>
@@ -309,8 +269,8 @@ namespace Spidey
         {
             if (!CanParse(result.URL))
                 return null;
-            string CurrentDomain = GetDomain(result.URL);
-            using (System.IO.MemoryStream Stream = new System.IO.MemoryStream(result.Content))
+            var CurrentDomain = GetDomain(result.URL);
+            using (var Stream = new System.IO.MemoryStream(result.Content))
             {
                 return new ResultFile
                 {
@@ -318,7 +278,7 @@ namespace Spidey
                     Location = result.URL,
                     ContentType = result.ContentType,
                     FileName = result.FileName,
-                    FinalLocation = FixUrl(CurrentDomain, result.FinalLocation, Options.UrlReplacements),
+                    FinalLocation = LinkEngine.FixUrl(CurrentDomain, result.FinalLocation, Options.UrlReplacementsCompiled),
                     StatusCode = result.StatusCode,
                     Data = result
                 };

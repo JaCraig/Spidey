@@ -54,7 +54,7 @@ namespace Spidey.Engines
             try
             {
                 var Response = (await Client.GetResponseAsync().ConfigureAwait(false)) as HttpWebResponse;
-                string FileName = "";
+                var FileName = "";
                 if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", System.StringComparison.OrdinalIgnoreCase)))
                 {
                     FileName = Response.Headers["content-disposition"];
@@ -77,7 +77,7 @@ namespace Spidey.Engines
             catch (WebException e)
             {
                 var Response = e.Response;
-                string FileName = "";
+                var FileName = "";
                 if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", System.StringComparison.OrdinalIgnoreCase)))
                 {
                     FileName = Response.Headers["content-disposition"];
