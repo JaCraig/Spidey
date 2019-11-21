@@ -27,5 +27,12 @@ namespace Spidey.Engines.Interfaces
         /// <param name="replacements">The replacements.</param>
         /// <returns>Fixed URL</returns>
         string FixUrl(string currentDomain, string link, Dictionary<Regex, string> replacements);
+
+        /// <summary>
+        /// Gets the domain.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>The domain of the url.</returns>
+        string GetDomain(string url);
     }
 }

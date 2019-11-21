@@ -1,12 +1,13 @@
 ﻿using BigBook;
 using Spidey.Engines;
+using Spidey.Tests.BaseClasses;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Xunit;
 
 namespace Spidey.Tests.Engines
 {
-    public class DefaultLinkEngineTests
+    public class DefaultLinkEngineTests : TestBaseClass
     {
         [Fact]
         public void DiscoverUrls()
@@ -25,6 +26,13 @@ namespace Spidey.Tests.Engines
                 [new Regex("something")] = "blah"
             });
             Assert.Equal("http://google.com/blah-blah/dark-side", Result);
+        }
+
+        [Fact]
+        public void GetDomain()
+        {
+            var Result = new DefaultLinkDiscoverer().GetDomain("http://google.com/blah-blah/dark-side");
+            Assert.Equal("http://google.com", Result);
         }
     }
 }

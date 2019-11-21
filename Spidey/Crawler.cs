@@ -15,10 +15,8 @@ limitations under the License.
 */
 
 using BigBook;
-using FileCurator;
 using Serilog;
 using Spidey.Engines;
-using Spidey.Engines.Interfaces;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -37,18 +35,15 @@ namespace Spidey
         /// <summary>
         /// Initializes a new instance of the <see cref="Crawler"/> class.
         /// </summary>
-        /// <param name="itemFound">The item found.</param>
         /// <param name="options">The options.</param>
-        /// <param name="engine">The engine.</param>
-        /// <param name="linkEngine">The link engine.</param>
         /// <param name="logger">The logger.</param>
         /// <exception cref="ArgumentNullException">logger</exception>
-        public Crawler(Action<ResultFile> itemFound, Options options, IEngine engine, ILinkDiscoverer linkEngine, ILogger logger)
+        public Crawler(Options options, ILogger logger)
         {
-            Engine = engine ?? new DefaultEngine();
-            ItemFound = itemFound;
-            Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             Options = options ?? Options.Default;
+            Options.Engine = Options.Engine ?? new DefaultEngine();
+            Options.ItemFound = Options.ItemFound ?? new Action<ResultFile>(_ => { });
+            Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             Options.Setup();
             WhereFound = new ListMapping<string, string>();
             URLs = new TaskQueue<string>(Environment.ProcessorCount,
@@ -63,7 +58,7 @@ namespace Spidey
                 });
             CompletedURLs = new ConcurrentBag<string>();
             ErrorURLs = new ConcurrentBag<ErrorItem>();
-            LinkEngine = linkEngine ?? new DefaultLinkDiscoverer();
+            Options.LinkDiscoverer = Options.LinkDiscoverer ?? new DefaultLinkDiscoverer();
         }
 
         /// <summary>
@@ -73,28 +68,10 @@ namespace Spidey
         public bool Done => URLs.IsComplete;
 
         /// <summary>
-        /// Gets the engine.
-        /// </summary>
-        /// <value>The engine.</value>
-        public IEngine Engine { get; }
-
-        /// <summary>
         /// Gets or sets the error ur ls.
         /// </summary>
         /// <value>The error ur ls.</value>
         public ConcurrentBag<ErrorItem> ErrorURLs { get; }
-
-        /// <summary>
-        /// Gets the item found.
-        /// </summary>
-        /// <value>The item found.</value>
-        public Action<ResultFile> ItemFound { get; }
-
-        /// <summary>
-        /// Gets the link engine.
-        /// </summary>
-        /// <value>The link engine.</value>
-        public ILinkDiscoverer LinkEngine { get; }
 
         /// <summary>
         /// Gets the options.
@@ -133,16 +110,16 @@ namespace Spidey
         /// <returns>The task.</returns>
         public async Task<bool> Crawl(string url)
         {
-            if (CompletedURLs.Contains(url) || !CanCrawl(url))
+            if (CompletedURLs.Contains(url) || !Options.CanCrawl(url))
                 return true;
             Logger.Debug("Crawling " + url);
             CompletedURLs.Add(url);
 
-            var Result = await Engine.CrawlAsync(url, Options).ConfigureAwait(false);
+            var Result = await Options.Engine.CrawlAsync(url, Options).ConfigureAwait(false);
 
             Thread.Sleep(new Random().Next(Options.MinDelay, Options.MaxDelay));
 
-            AddDocument(Parse(Result));
+            AddDocument(Options.Parser.Parse(Options, Result));
             AddUrls(url, Result.Content, Result.ContentType);
             return true;
         }
@@ -183,17 +160,6 @@ namespace Spidey
         }
 
         /// <summary>
-        /// Gets the domain.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>The domain associated with the URL</returns>
-        private static string GetDomain(string url)
-        {
-            var TempUri = new Uri(url);
-            return TempUri.Scheme + "://" + TempUri.Host + (TempUri.Port == 80 ? "" : (":" + TempUri.Port));
-        }
-
-        /// <summary>
         /// Adds the document.
         /// </summary>
         /// <param name="file">The file.</param>
@@ -201,7 +167,7 @@ namespace Spidey
         {
             if (file == null)
                 return;
-            ItemFound(file);
+            Options.ItemFound(file);
         }
 
         /// <summary>
@@ -212,76 +178,14 @@ namespace Spidey
         /// <param name="contentType">Type of the content.</param>
         private void AddUrls(string url, byte[] content, string contentType)
         {
-            if (!CanFollow(url))
+            if (!Options.CanFollow(url))
                 return;
-            var CurrentDomain = GetDomain(url);
-            foreach (var Link in LinkEngine.DiscoverUrls(CurrentDomain, url, content, contentType, Options))
+            var CurrentDomain = Options.LinkDiscoverer.GetDomain(url);
+            foreach (var Link in Options.LinkDiscoverer.DiscoverUrls(CurrentDomain, url, content, contentType, Options))
             {
                 URLs.Enqueue(Link);
-                if (CanCrawl(Link))
+                if (Options.CanCrawl(Link))
                     WhereFound.Add(Link, url);
-            }
-        }
-
-        /// <summary>
-        /// Determines whether this instance can crawl the specified link.
-        /// </summary>
-        /// <param name="link">The link.</param>
-        /// <returns><c>true</c> if this instance can crawl the specified link; otherwise, <c>false</c>.</returns>
-        private bool CanCrawl(string link)
-        {
-            return CanParse(link) || CanFollow(link);
-        }
-
-        /// <summary>
-        /// Determines whether this instance can follow the specified temporary link.
-        /// </summary>
-        /// <param name="link">The temporary link.</param>
-        /// <returns>
-        /// <c>true</c> if this instance can follow the specified temporary link; otherwise, <c>false</c>.
-        /// </returns>
-        private bool CanFollow(string link)
-        {
-            return (Options.AllowCompiled.Any(x => x.IsMatch(link))
-                || Options.FollowOnlyCompiled.Any(x => x.IsMatch(link)))
-                && !Options.IgnoreCompiled.Any(x => x.IsMatch(link));
-        }
-
-        /// <summary>
-        /// Determines whether this instance can parse the specified temporary link.
-        /// </summary>
-        /// <param name="link">The temporary link.</param>
-        /// <returns>
-        /// <c>true</c> if this instance can parse the specified temporary link; otherwise, <c>false</c>.
-        /// </returns>
-        private bool CanParse(string link)
-        {
-            return Options.AllowCompiled.Any(x => x.IsMatch(link))
-                && !Options.IgnoreCompiled.Any(x => x.IsMatch(link));
-        }
-
-        /// <summary>
-        /// Parses the specified URL.
-        /// </summary>
-        /// <param name="result">The result.</param>
-        /// <returns>The resulting file.</returns>
-        private ResultFile Parse(UrlData result)
-        {
-            if (!CanParse(result.URL))
-                return null;
-            var CurrentDomain = GetDomain(result.URL);
-            using (var Stream = new System.IO.MemoryStream(result.Content))
-            {
-                return new ResultFile
-                {
-                    FileContent = Stream.Parse(result.ContentType),
-                    Location = result.URL,
-                    ContentType = result.ContentType,
-                    FileName = result.FileName,
-                    FinalLocation = LinkEngine.FixUrl(CurrentDomain, result.FinalLocation, Options.UrlReplacementsCompiled),
-                    StatusCode = result.StatusCode,
-                    Data = result
-                };
             }
         }
     }

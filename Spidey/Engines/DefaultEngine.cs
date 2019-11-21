@@ -63,6 +63,11 @@ namespace Spidey.Engines
                 {
                     FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
                 }
+                if (string.IsNullOrEmpty(FileName))
+                {
+                    var ResultURI = Response.ResponseUri.ToString();
+                    FileName = ResultURI.Right(ResultURI.Length - ResultURI.LastIndexOf("/", StringComparison.Ordinal) - 1);
+                }
 
                 return new UrlData
                 {

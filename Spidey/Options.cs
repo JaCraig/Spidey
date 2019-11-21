@@ -14,6 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using Spidey.Engines;
+using Spidey.Engines.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -36,13 +39,16 @@ namespace Spidey
             Allow = new List<string>();
             FollowOnly = new List<string>();
             UrlReplacements = new Dictionary<string, string>();
+            LinkDiscoverer = new DefaultLinkDiscoverer();
+            Engine = new DefaultEngine();
+            Parser = new DefaultContentParser();
         }
 
         /// <summary>
         /// Gets the default.
         /// </summary>
         /// <value>The default.</value>
-        public static Options Default { get; } = new Options();
+        public static Options Default => new Options();
 
         /// <summary>
         /// Gets or sets the allowed items.
@@ -57,6 +63,12 @@ namespace Spidey
         public NetworkCredential Credentials { get; set; }
 
         /// <summary>
+        /// Gets or sets the engine.
+        /// </summary>
+        /// <value>The engine.</value>
+        public IEngine Engine { get; set; }
+
+        /// <summary>
         /// Gets or sets the follow only list.
         /// </summary>
         /// <value>The follow only list.</value>
@@ -69,6 +81,18 @@ namespace Spidey
         public List<string> Ignore { get; set; }
 
         /// <summary>
+        /// Gets or sets the item found.
+        /// </summary>
+        /// <value>The item found.</value>
+        public Action<ResultFile> ItemFound { get; set; }
+
+        /// <summary>
+        /// Gets or sets the link discoverer.
+        /// </summary>
+        /// <value>The link discoverer.</value>
+        public ILinkDiscoverer LinkDiscoverer { get; set; }
+
+        /// <summary>
         /// Gets or sets the maximum delay.
         /// </summary>
         /// <value>The maximum delay.</value>
@@ -79,6 +103,12 @@ namespace Spidey
         /// </summary>
         /// <value>The minimum delay.</value>
         public int MinDelay { get; set; }
+
+        /// <summary>
+        /// Gets or sets the parser.
+        /// </summary>
+        /// <value>The parser.</value>
+        public IContentParser Parser { get; set; }
 
         /// <summary>
         /// Gets the proxy.
@@ -128,6 +158,45 @@ namespace Spidey
         /// </summary>
         /// <value>The URL replacements compiled.</value>
         internal Dictionary<Regex, string> UrlReplacementsCompiled { get; private set; }
+
+        /// <summary>
+        /// Determines whether this instance can crawl the specified link.
+        /// </summary>
+        /// <param name="link">The link.</param>
+        /// <returns><c>true</c> if this instance can crawl the specified link; otherwise, <c>false</c>.</returns>
+        internal bool CanCrawl(string link)
+        {
+            return CanParse(link) || CanFollow(link);
+        }
+
+        /// <summary>
+        /// Determines whether this instance can follow the specified link.
+        /// </summary>
+        /// <param name="link">The link.</param>
+        /// <returns><c>true</c> if this instance can follow the specified link; otherwise, <c>false</c>.</returns>
+        internal bool CanFollow(string link)
+        {
+            if (AllowCompiled == null)
+                Setup();
+            return (AllowCompiled.Any(x => x.IsMatch(link))
+                || FollowOnlyCompiled.Any(x => x.IsMatch(link)))
+                && !IgnoreCompiled.Any(x => x.IsMatch(link));
+        }
+
+        /// <summary>
+        /// Determines whether this instance can parse the specified temporary link.
+        /// </summary>
+        /// <param name="link">The temporary link.</param>
+        /// <returns>
+        /// <c>true</c> if this instance can parse the specified temporary link; otherwise, <c>false</c>.
+        /// </returns>
+        internal bool CanParse(string link)
+        {
+            if (AllowCompiled == null)
+                Setup();
+            return AllowCompiled.Any(x => x.IsMatch(link))
+                && !IgnoreCompiled.Any(x => x.IsMatch(link));
+        }
 
         /// <summary>
         /// Setups this instance.

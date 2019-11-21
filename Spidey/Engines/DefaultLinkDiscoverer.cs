@@ -85,5 +85,16 @@ namespace Spidey.Engines
             }
             return Uri.EscapeUriString(link);
         }
+
+        /// <summary>
+        /// Gets the domain.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>The domain of the url.</returns>
+        public string GetDomain(string url)
+        {
+            var TempUri = new Uri(url);
+            return TempUri.Scheme + "://" + TempUri.Host + (TempUri.Port == 80 ? "" : (":" + TempUri.Port));
+        }
     }
 }
