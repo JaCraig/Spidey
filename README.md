@@ -20,7 +20,7 @@ Spidey really boils down to using one class called Crawler:
 
     var MyCrawler = new Crawler(new Options
 				{
-				    CallbackMethod = FoundFile={}                                            //The callback method used when a new page is discovered.
+				    CallbackMethod = FoundFile=>{}                                            //The callback method used when a new page is discovered.
 				    Allow = new List<string> { "http://mywebsite", "http://mywebsite2" },    //Regexes of what sites/pages are allowed to be crawled.
 				    FollowOnly = new List<string> { "..." },                                 //Regexes of pages to only follow links that are found on them.
 				    Ignore = new List<string> { "..." },                                     //Regexes that the system will ignore when they are encountered.
