@@ -67,6 +67,8 @@ namespace Spidey.Engines
                 {
                     var ResultURI = Response.ResponseUri.ToString();
                     FileName = ResultURI.Right(ResultURI.Length - ResultURI.LastIndexOf("/", StringComparison.Ordinal) - 1);
+                    if (FileName.Contains("?"))
+                        FileName = FileName.Left(FileName.IndexOf("?", StringComparison.Ordinal));
                 }
 
                 return new UrlData
