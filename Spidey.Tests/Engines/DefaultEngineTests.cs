@@ -1,4 +1,5 @@
 ﻿using Spidey.Engines;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Spidey.Tests.Engines
@@ -6,7 +7,7 @@ namespace Spidey.Tests.Engines
     public class DefaultEngineTests
     {
         [Fact]
-        public async void Crawl()
+        public async Task Crawl()
         {
             var TestObject = new DefaultEngine();
             var TempOptions = new Options
@@ -23,7 +24,7 @@ namespace Spidey.Tests.Engines
         }
 
         [Fact]
-        public async void CrawlWithQueryString()
+        public async Task CrawlWithQueryString()
         {
             var TestObject = new DefaultEngine();
             var TempOptions = new Options
