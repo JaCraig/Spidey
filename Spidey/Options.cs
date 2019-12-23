@@ -42,6 +42,7 @@ namespace Spidey
             LinkDiscoverer = new DefaultLinkDiscoverer();
             Engine = new DefaultEngine();
             Parser = new DefaultContentParser();
+            ItemFound = _ => { };
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Spidey
         /// Gets the credentials.
         /// </summary>
         /// <value>The credentials.</value>
-        public NetworkCredential Credentials { get; set; }
+        public NetworkCredential? Credentials { get; set; }
 
         /// <summary>
         /// Gets or sets the engine.
@@ -114,7 +115,7 @@ namespace Spidey
         /// Gets the proxy.
         /// </summary>
         /// <value>The proxy.</value>
-        public IWebProxy Proxy { get; set; }
+        public IWebProxy? Proxy { get; set; }
 
         /// <summary>
         /// Gets or sets the start locations.
@@ -139,25 +140,25 @@ namespace Spidey
         /// Gets the allow compiled.
         /// </summary>
         /// <value>The allow compiled.</value>
-        internal List<Regex> AllowCompiled { get; private set; }
+        internal List<Regex>? AllowCompiled { get; private set; }
 
         /// <summary>
         /// Gets the follow only compiled.
         /// </summary>
         /// <value>The follow only compiled.</value>
-        internal List<Regex> FollowOnlyCompiled { get; private set; }
+        internal List<Regex>? FollowOnlyCompiled { get; private set; }
 
         /// <summary>
         /// Gets the ignore compiled.
         /// </summary>
         /// <value>The ignore compiled.</value>
-        internal List<Regex> IgnoreCompiled { get; private set; }
+        internal List<Regex>? IgnoreCompiled { get; private set; }
 
         /// <summary>
         /// Gets or sets the URL replacements compiled.
         /// </summary>
         /// <value>The URL replacements compiled.</value>
-        internal Dictionary<Regex, string> UrlReplacementsCompiled { get; private set; }
+        internal Dictionary<Regex, string>? UrlReplacementsCompiled { get; private set; }
 
         /// <summary>
         /// Determines whether this instance can crawl the specified link.

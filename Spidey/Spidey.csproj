@@ -7,7 +7,7 @@
     <!-- for Team City -->
     <BuildNumber Condition=" '$(BuildNumber)' == '' ">0</BuildNumber>
     <!-- if not set -->
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Authors>James Craig</Authors>
@@ -16,7 +16,8 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/JaCraig/Spidey</PackageProjectUrl>
     <PackageTags>web crawler;web;crawler</PackageTags>
-    <Version>2.0.$(BuildNumber)</Version>
+    <Version>3.0.$(BuildNumber)</Version>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -28,8 +29,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BigBook" Version="2.1.14" />
-    <PackageReference Include="FileCurator" Version="2.0.17" />
+    <PackageReference Include="BigBook" Version="3.0.0" />
+    <PackageReference Include="FileCurator" Version="3.0.0" />
     <PackageReference Include="Serilog" Version="2.9.0" />
   </ItemGroup>
 

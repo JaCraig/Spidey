@@ -55,15 +55,15 @@ namespace Spidey.Engines
             {
                 var Response = (await Client.GetResponseAsync().ConfigureAwait(false)) as HttpWebResponse;
                 var FileName = "";
-                if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", System.StringComparison.OrdinalIgnoreCase)))
+                if (Response?.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", StringComparison.OrdinalIgnoreCase)) == true)
                 {
-                    FileName = Response.Headers["content-disposition"];
+                    FileName = Response.Headers["content-disposition"] ?? "";
                 }
                 if (!string.IsNullOrEmpty(FileName))
                 {
                     FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
                 }
-                if (string.IsNullOrEmpty(FileName))
+                if (string.IsNullOrEmpty(FileName) && Response != null)
                 {
                     var ResultURI = Response.ResponseUri.ToString();
                     FileName = ResultURI.Right(ResultURI.Length - ResultURI.LastIndexOf("/", StringComparison.Ordinal) - 1);
@@ -71,21 +71,20 @@ namespace Spidey.Engines
                         FileName = FileName.Left(FileName.IndexOf("?", StringComparison.Ordinal));
                 }
 
-                return new UrlData
-                {
-                    Content = Response.GetResponseStream().ReadAllBinary(),
-                    ContentType = Response.ContentType,
-                    FileName = FileName,
-                    FinalLocation = Response.ResponseUri.ToString(),
-                    StatusCode = (int)Response.StatusCode,
-                    URL = url
-                };
+                return new UrlData(
+                    Response?.GetResponseStream().ReadAllBinary() ?? Array.Empty<byte>(),
+                    Response?.ContentType ?? "",
+                    FileName,
+                    Response?.ResponseUri.ToString() ?? "",
+                    (int)(Response?.StatusCode ?? 0),
+                    url
+                );
             }
             catch (WebException e)
             {
                 var Response = e.Response;
                 var FileName = "";
-                if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", System.StringComparison.OrdinalIgnoreCase)))
+                if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", StringComparison.OrdinalIgnoreCase)))
                 {
                     FileName = Response.Headers["content-disposition"];
                 }
@@ -94,15 +93,14 @@ namespace Spidey.Engines
                     FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
                 }
 
-                return new UrlData
-                {
-                    Content = Response.GetResponseStream().ReadAllBinary(),
-                    ContentType = Response.ContentType,
-                    FileName = FileName,
-                    FinalLocation = Response.ResponseUri.ToString(),
-                    StatusCode = (int)((HttpWebResponse)e.Response).StatusCode,
-                    URL = url
-                };
+                return new UrlData(
+                    Response.GetResponseStream().ReadAllBinary(),
+                    Response.ContentType,
+                    FileName,
+                    Response.ResponseUri.ToString(),
+                    (int)((HttpWebResponse)e.Response).StatusCode,
+                    url
+                );
             }
         }
     }

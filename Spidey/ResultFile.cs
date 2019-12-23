@@ -25,6 +25,27 @@ namespace Spidey
     public class ResultFile
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="ResultFile"/> class.
+        /// </summary>
+        /// <param name="contentType">Type of the content.</param>
+        /// <param name="data">The data.</param>
+        /// <param name="fileContent">Content of the file.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="finalLocation">The final location.</param>
+        /// <param name="location">The location.</param>
+        /// <param name="statusCode">The status code.</param>
+        public ResultFile(string contentType, UrlData data, IGenericFile fileContent, string fileName, string finalLocation, string location, int statusCode)
+        {
+            ContentType = contentType;
+            Data = data;
+            FileContent = fileContent;
+            FileName = fileName;
+            FinalLocation = finalLocation;
+            Location = location;
+            StatusCode = statusCode;
+        }
+
+        /// <summary>
         /// Gets or sets the type of the content.
         /// </summary>
         /// <value>The type of the content.</value>

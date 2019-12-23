@@ -10,15 +10,13 @@ namespace Spidey.Tests.Engines
         [Fact]
         public void Parse()
         {
-            var TempData = new UrlData
-            {
-                Content = "<html><body>This is a test</body></html>".ToByteArray(),
-                ContentType = "TEXT/HTML",
-                FileName = "http://google.com/ASDF.html",
-                FinalLocation = "http://google.com/test.html",
-                StatusCode = 333,
-                URL = "http://google.com/test.html"
-            };
+            var TempData = new UrlData("<html><body>This is a test</body></html>".ToByteArray(),
+                "TEXT/HTML",
+                "http://google.com/ASDF.html",
+                "http://google.com/test.html",
+                 333,
+                "http://google.com/test.html"
+            );
             var TempOptions = new Options
             {
                 Allow = { "http://google.com/test.html" },

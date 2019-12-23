@@ -54,7 +54,7 @@ namespace Spidey
                     var TempException = x as WebException;
                     var TempResponse = TempException?.Response as HttpWebResponse;
                     Logger.Error(x, "An error has occurred");
-                    ErrorURLs.Add(new ErrorItem { Error = x, Url = y, StatusCode = ((int?)TempResponse?.StatusCode) ?? 0 });
+                    ErrorURLs.Add(new ErrorItem(x, y, ((int?)TempResponse?.StatusCode) ?? 0));
                 });
             CompletedURLs = new ConcurrentBag<string>();
             ErrorURLs = new ConcurrentBag<ErrorItem>();
@@ -65,7 +65,7 @@ namespace Spidey
         /// Gets a value indicating whether this <see cref="Crawler"/> is done.
         /// </summary>
         /// <value><c>true</c> if done; otherwise, <c>false</c>.</value>
-        public bool Done => URLs.IsComplete;
+        public bool Done => URLs?.IsComplete == true;
 
         /// <summary>
         /// Gets or sets the error ur ls.
@@ -95,7 +95,7 @@ namespace Spidey
         /// Gets or sets the urls.
         /// </summary>
         /// <value>The urls.</value>
-        private TaskQueue<string> URLs { get; set; }
+        private TaskQueue<string>? URLs { get; set; }
 
         /// <summary>
         /// Gets or sets the where found.
@@ -117,7 +117,7 @@ namespace Spidey
 
             var Result = await Options.Engine.CrawlAsync(url, Options).ConfigureAwait(false);
 
-            Thread.Sleep(new Random().Next(Options.MinDelay, Options.MaxDelay));
+            Thread.Sleep(new Random()?.Next(Options.MinDelay, Options.MaxDelay) ?? 0);
 
             AddDocument(Options.Parser.Parse(Options, Result));
             AddUrls(url, Result.Content, Result.ContentType);
@@ -141,7 +141,10 @@ namespace Spidey
         {
             if (Options.StartLocations.Count == 0)
                 return WhereFound;
-            Options.StartLocations.ForEach(x => URLs.Enqueue(x));
+            for (var i = 0; i < Options.StartLocations.Count; i++)
+            {
+                URLs?.Enqueue(Options.StartLocations[i]);
+            }
             while (!Done) Thread.Sleep(100);
             return WhereFound;
         }
@@ -163,7 +166,7 @@ namespace Spidey
         /// Adds the document.
         /// </summary>
         /// <param name="file">The file.</param>
-        private void AddDocument(ResultFile file)
+        private void AddDocument(ResultFile? file)
         {
             if (file == null)
                 return;
@@ -183,7 +186,7 @@ namespace Spidey
             var CurrentDomain = Options.LinkDiscoverer.GetDomain(url);
             foreach (var Link in Options.LinkDiscoverer.DiscoverUrls(CurrentDomain, url, content, contentType, Options))
             {
-                URLs.Enqueue(Link);
+                URLs?.Enqueue(Link);
                 if (Options.CanCrawl(Link))
                     WhereFound.Add(Link, url);
             }

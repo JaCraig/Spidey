@@ -16,6 +16,8 @@ limitations under the License.
 
 using FileCurator;
 using Spidey.Engines.Interfaces;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Spidey.Engines
 {
@@ -31,24 +33,20 @@ namespace Spidey.Engines
         /// <param name="options">The options.</param>
         /// <param name="data">The data.</param>
         /// <returns>Result file</returns>
-        public ResultFile Parse(Options options, UrlData data)
+        public ResultFile? Parse(Options options, UrlData data)
         {
             if (!options.CanParse(data.URL))
                 return null;
             var CurrentDomain = options.LinkDiscoverer.GetDomain(data.URL);
-            using (var Stream = new System.IO.MemoryStream(data.Content))
-            {
-                return new ResultFile
-                {
-                    FileContent = Stream.Parse(data.ContentType),
-                    Location = data.URL,
-                    ContentType = data.ContentType,
-                    FileName = data.FileName,
-                    FinalLocation = options.LinkDiscoverer.FixUrl(CurrentDomain, data.FinalLocation, options.UrlReplacementsCompiled),
-                    StatusCode = data.StatusCode,
-                    Data = data
-                };
-            }
+            using var Stream = new System.IO.MemoryStream(data.Content);
+            return new ResultFile(
+                data.ContentType,
+                data,
+                Stream.Parse(data.ContentType),
+                data.FileName,
+                options.LinkDiscoverer.FixUrl(CurrentDomain, data.FinalLocation, options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()),
+                data.URL,
+                data.StatusCode);
         }
     }
 }

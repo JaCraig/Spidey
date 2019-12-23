@@ -27,6 +27,6 @@ namespace Spidey.Engines.Interfaces
         /// <param name="options">The options.</param>
         /// <param name="data">The data.</param>
         /// <returns>Result file</returns>
-        ResultFile Parse(Options options, UrlData data);
+        ResultFile? Parse(Options options, UrlData data);
     }
 }

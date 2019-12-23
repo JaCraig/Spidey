@@ -24,6 +24,19 @@ namespace Spidey
     public class ErrorItem
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorItem"/> class.
+        /// </summary>
+        /// <param name="error">The error.</param>
+        /// <param name="url">The URL.</param>
+        /// <param name="statusCode">The status code.</param>
+        public ErrorItem(Exception error, string url, int statusCode)
+        {
+            Error = error;
+            Url = url;
+            StatusCode = statusCode;
+        }
+
+        /// <summary>
         /// Gets or sets the error.
         /// </summary>
         /// <value>The error.</value>

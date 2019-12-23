@@ -22,6 +22,25 @@ namespace Spidey.Engines
     public class UrlData
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="UrlData"/> class.
+        /// </summary>
+        /// <param name="content">The content.</param>
+        /// <param name="contentType">Type of the content.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="finalLocation">The final location.</param>
+        /// <param name="statusCode">The status code.</param>
+        /// <param name="uRL">The u rl.</param>
+        public UrlData(byte[] content, string contentType, string fileName, string finalLocation, int statusCode, string uRL)
+        {
+            Content = content;
+            ContentType = contentType;
+            FileName = fileName;
+            FinalLocation = finalLocation;
+            StatusCode = statusCode;
+            URL = uRL;
+        }
+
+        /// <summary>
         /// Gets or sets the content.
         /// </summary>
         /// <value>The content.</value>
