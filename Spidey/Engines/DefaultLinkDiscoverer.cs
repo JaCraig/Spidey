@@ -56,7 +56,7 @@ namespace Spidey.Engines
                 .SelectMany(x => x.Attributes)
                 .Select(x => x.Value)
                 .Where(x => !string.IsNullOrEmpty(x))
-                .Select(x => FixUrl(currentDomain, x, options.UrlReplacementsCompiled))
+                .Select(x => FixUrl(currentDomain, x, options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()))
                 .ToArray();
         }
 
@@ -69,7 +69,7 @@ namespace Spidey.Engines
         /// <returns>The fixed URL</returns>
         public string FixUrl(string currentDomain, string link, Dictionary<Regex, string> replacements)
         {
-            replacements = replacements ?? new Dictionary<Regex, string>();
+            replacements ??= new Dictionary<Regex, string>();
             link = link.Replace("\\", "/").Trim();
             if (link.StartsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = currentDomain + link;

@@ -41,8 +41,8 @@ namespace Spidey
         public Crawler(Options options, ILogger logger)
         {
             Options = options ?? Options.Default;
-            Options.Engine = Options.Engine ?? new DefaultEngine();
-            Options.ItemFound = Options.ItemFound ?? new Action<ResultFile>(_ => { });
+            Options.Engine ??= new DefaultEngine();
+            Options.ItemFound ??= new Action<ResultFile>(_ => { });
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             Options.Setup();
             WhereFound = new ListMapping<string, string>();
@@ -58,7 +58,7 @@ namespace Spidey
                 });
             CompletedURLs = new ConcurrentBag<string>();
             ErrorURLs = new ConcurrentBag<ErrorItem>();
-            Options.LinkDiscoverer = Options.LinkDiscoverer ?? new DefaultLinkDiscoverer();
+            Options.LinkDiscoverer ??= new DefaultLinkDiscoverer();
         }
 
         /// <summary>
