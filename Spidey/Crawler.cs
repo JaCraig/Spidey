@@ -42,7 +42,7 @@ namespace Spidey
         {
             Options = options ?? Options.Default;
             Options.Engine ??= new DefaultEngine();
-            Options.ItemFound ??= new Action<ResultFile>(_ => { });
+            Options.ItemFound ??= DefaultItemFound;
             Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
             Options.Setup();
             WhereFound = new ListMapping<string, string>();
@@ -155,12 +155,15 @@ namespace Spidey
         /// <param name="Value"></param>
         protected virtual void Dispose(bool Value)
         {
-            if (URLs != null)
-            {
-                URLs.Dispose();
-                URLs = null;
-            }
+            URLs?.Dispose();
+            URLs = null;
         }
+
+        /// <summary>
+        /// Defaults the item found.
+        /// </summary>
+        /// <param name="_">The .</param>
+        private static void DefaultItemFound(ResultFile _) { }
 
         /// <summary>
         /// Adds the document.

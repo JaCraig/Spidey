@@ -31,9 +31,9 @@ namespace Spidey.Registration
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper RegisterSpidey(this IBootstrapper bootstrapper)
+        public static IBootstrapper? RegisterSpidey(this IBootstrapper? bootstrapper)
         {
-            return bootstrapper.AddAssembly(typeof(Registration).GetTypeInfo().Assembly)
+            return bootstrapper?.AddAssembly(typeof(Registration).GetTypeInfo().Assembly)
                                .RegisterFileCurator()
                                .RegisterBigBookOfDataTypes();
         }

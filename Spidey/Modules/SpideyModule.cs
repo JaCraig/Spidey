@@ -22,9 +22,7 @@ namespace Spidey.Modules
         /// <param name="bootstrapper">The bootstrapper.</param>
         public void Load(IBootstrapper bootstrapper)
         {
-            if (bootstrapper == null)
-                return;
-            bootstrapper.Register<Crawler>()
+            bootstrapper?.Register<Crawler>()
                 .Register(Options.Default);
         }
     }
