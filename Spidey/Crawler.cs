@@ -47,7 +47,7 @@ namespace Spidey
             Options.Setup();
             WhereFound = new ListMapping<string, string>();
             URLs = new TaskQueue<string>(Environment.ProcessorCount,
-                x => Crawl(x).GetAwaiter().GetResult(),
+                x => AsyncHelper.RunSync(() => Crawl(x)),
                 100,
                 (x, y) =>
                 {
