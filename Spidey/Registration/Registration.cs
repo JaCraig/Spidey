@@ -14,12 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook.Registration;
 using Canister.Interfaces;
-using FileCurator.Registration;
-using System.Reflection;
 
-namespace Spidey.Registration
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Registration extension methods
@@ -31,9 +28,9 @@ namespace Spidey.Registration
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper? RegisterSpidey(this IBootstrapper? bootstrapper)
+        public static ICanisterConfiguration? RegisterSpidey(this ICanisterConfiguration? bootstrapper)
         {
-            return bootstrapper?.AddAssembly(typeof(Registration).GetTypeInfo().Assembly)
+            return bootstrapper?.AddAssembly(typeof(Registration).Assembly)
                                .RegisterFileCurator()
                                .RegisterBigBookOfDataTypes();
         }

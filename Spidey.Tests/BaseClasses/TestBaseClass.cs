@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Spidey.Registration;
-using System.Reflection;
 using Xunit;
 
 namespace Spidey.Tests.BaseClasses
@@ -19,10 +17,8 @@ namespace Spidey.Tests.BaseClasses
         {
             if (Canister.Builder.Bootstrapper == null)
             {
-                Canister.Builder.CreateContainer(new ServiceCollection())
-                    .AddAssembly(typeof(TestBaseClass).GetTypeInfo().Assembly)
-                    .RegisterSpidey()
-                    .Build();
+                new ServiceCollection().AddCanisterModules(x => x.AddAssembly(typeof(TestBaseClass).Assembly)
+                    .RegisterSpidey());
             }
         }
     }
