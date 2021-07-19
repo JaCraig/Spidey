@@ -1,12 +1,19 @@
 ﻿using BigBook;
+using NSubstitute;
 using Spidey.Engines;
+using Spidey.Engines.Interfaces;
 using Spidey.Tests.BaseClasses;
 using Xunit;
 
 namespace Spidey.Tests.Engines
 {
-    public class DefaultContentParserTests : TestBaseClass
+    public class DefaultContentParserTests : TestBaseClass<DefaultContentParser>
     {
+        public DefaultContentParserTests()
+        {
+            TestObject = new DefaultContentParser(Options.Default, new[] { Substitute.For<ILinkDiscoverer>() }, new Microsoft.IO.RecyclableMemoryStreamManager());
+        }
+
         [Fact]
         public void Parse()
         {
@@ -21,7 +28,7 @@ namespace Spidey.Tests.Engines
             {
                 Allow = { "http://google.com/test.html" },
             };
-            var Result = new DefaultContentParser().Parse(TempOptions, TempData);
+            var Result = new DefaultContentParser(TempOptions, new[] { new DefaultLinkDiscoverer(TempOptions) }, new Microsoft.IO.RecyclableMemoryStreamManager()).Parse(TempData);
 
             Assert.Equal("TEXT/HTML", Result.ContentType);
             Assert.Equal(TempData, Result.Data);

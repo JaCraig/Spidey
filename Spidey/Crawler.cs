@@ -14,14 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
-using Serilog;
 using Spidey.Engines;
+using Spidey.Engines.Interfaces;
 using System;
-using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Spidey
@@ -35,94 +32,32 @@ namespace Spidey
         /// <summary>
         /// Initializes a new instance of the <see cref="Crawler"/> class.
         /// </summary>
+        /// <param name="pipelines">The pipelines.</param>
         /// <param name="options">The options.</param>
-        /// <param name="logger">The logger.</param>
-        /// <exception cref="ArgumentNullException">logger</exception>
-        public Crawler(Options options, ILogger logger)
+        public Crawler(IEnumerable<IPipeline> pipelines, Options? options = null)
         {
-            Options = options ?? Options.Default;
-            Options.Engine ??= new DefaultEngine();
-            Options.ItemFound ??= DefaultItemFound;
-            Logger = logger ?? Log.Logger ?? new LoggerConfiguration().CreateLogger() ?? throw new ArgumentNullException(nameof(logger));
-            Options.Setup();
-            WhereFound = new ListMapping<string, string>();
-            URLs = new TaskQueue<string>(Environment.ProcessorCount,
-                x => AsyncHelper.RunSync(() => Crawl(x)),
-                100,
-                (x, y) =>
-                {
-                    var TempException = x as WebException;
-                    var TempResponse = TempException?.Response as HttpWebResponse;
-                    Logger.Error(x, "An error has occurred");
-                    ErrorURLs.Add(new ErrorItem(x, y, ((int?)TempResponse?.StatusCode) ?? 0));
-                });
-            CompletedURLs = new ConcurrentBag<string>();
-            ErrorURLs = new ConcurrentBag<ErrorItem>();
-            Options.LinkDiscoverer ??= new DefaultLinkDiscoverer();
+            Pipeline = pipelines.FirstOrDefault(x => !(x is DefaultPipeline)) ?? pipelines.FirstOrDefault(x => x is DefaultPipeline);
         }
 
         /// <summary>
-        /// Gets a value indicating whether this <see cref="Crawler"/> is done.
+        /// Initializes a new instance of the <see cref="Crawler"/> class.
         /// </summary>
-        /// <value><c>true</c> if done; otherwise, <c>false</c>.</value>
-        public bool Done => URLs?.IsComplete == true;
-
-        /// <summary>
-        /// Gets or sets the error ur ls.
-        /// </summary>
-        /// <value>The error ur ls.</value>
-        public ConcurrentBag<ErrorItem> ErrorURLs { get; }
-
-        /// <summary>
-        /// Gets the options.
-        /// </summary>
-        /// <value>The options.</value>
-        public Options Options { get; }
-
-        /// <summary>
-        /// Gets or sets the completed urls.
-        /// </summary>
-        /// <value>The completed urls.</value>
-        private ConcurrentBag<string> CompletedURLs { get; }
-
-        /// <summary>
-        /// Gets the logger.
-        /// </summary>
-        /// <value>The logger.</value>
-        private ILogger Logger { get; }
-
-        /// <summary>
-        /// Gets or sets the urls.
-        /// </summary>
-        /// <value>The urls.</value>
-        private TaskQueue<string>? URLs { get; set; }
-
-        /// <summary>
-        /// Gets or sets the where found.
-        /// </summary>
-        /// <value>The where found.</value>
-        private ListMapping<string, string> WhereFound { get; }
-
-        /// <summary>
-        /// Crawls the specified URL.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <returns>The task.</returns>
-        public async Task<bool> Crawl(string url)
+        /// <param name="options">The options.</param>
+        public Crawler(Options? options = null)
+            : this(new[]{new DefaultPipeline(
+                new[] { new DefaultScheduler(options, new[] { new DefaultEngine(options) }) },
+                new[] { new DefaultProcessor(options) },
+                new[] { new DefaultContentParser(options, new[] { new DefaultLinkDiscoverer(options) }, new Microsoft.IO.RecyclableMemoryStreamManager()) },
+                new[] { new DefaultLinkDiscoverer(options) },
+                options) })
         {
-            if (CompletedURLs.Contains(url) || !Options.CanCrawl(url))
-                return true;
-            Logger.Debug("Crawling " + url);
-            CompletedURLs.Add(url);
-
-            var Result = await Options.Engine.CrawlAsync(url, Options).ConfigureAwait(false);
-
-            Thread.Sleep(new Random()?.Next(Options.MinDelay, Options.MaxDelay) ?? 0);
-
-            AddDocument(Options.Parser.Parse(Options, Result));
-            AddUrls(url, Result.Content, Result.ContentType);
-            return true;
         }
+
+        /// <summary>
+        /// Gets the pipeline.
+        /// </summary>
+        /// <value>The pipeline.</value>
+        private IPipeline? Pipeline { get; set; }
 
         /// <summary>
         /// Disposes of the internal objects
@@ -137,16 +72,9 @@ namespace Spidey
         /// Starts crawling.
         /// </summary>
         /// <returns>The listing of each URL and where it was found.</returns>
-        public ListMapping<string, string> StartCrawl()
+        public Task<Results?> StartCrawlAsync()
         {
-            if (Options.StartLocations.Count == 0)
-                return WhereFound;
-            for (var i = 0; i < Options.StartLocations.Count; i++)
-            {
-                URLs?.Enqueue(Options.StartLocations[i]);
-            }
-            while (!Done) Thread.Sleep(100);
-            return WhereFound;
+            return Pipeline?.StartCrawlAsync() ?? Task.FromResult<Results?>(null);
         }
 
         /// <summary>
@@ -155,44 +83,8 @@ namespace Spidey
         /// <param name="Value"></param>
         protected virtual void Dispose(bool Value)
         {
-            URLs?.Dispose();
-            URLs = null;
-        }
-
-        /// <summary>
-        /// Defaults the item found.
-        /// </summary>
-        /// <param name="_">The .</param>
-        private static void DefaultItemFound(ResultFile _) { }
-
-        /// <summary>
-        /// Adds the document.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        private void AddDocument(ResultFile? file)
-        {
-            if (file == null)
-                return;
-            Options.ItemFound(file);
-        }
-
-        /// <summary>
-        /// Adds the urls.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="content">The content.</param>
-        /// <param name="contentType">Type of the content.</param>
-        private void AddUrls(string url, byte[] content, string contentType)
-        {
-            if (!Options.CanFollow(url))
-                return;
-            var CurrentDomain = Options.LinkDiscoverer.GetDomain(url);
-            foreach (var Link in Options.LinkDiscoverer.DiscoverUrls(CurrentDomain, url, content, contentType, Options))
-            {
-                URLs?.Enqueue(Link);
-                if (Options.CanCrawl(Link))
-                    WhereFound.Add(Link, url);
-            }
+            Pipeline?.Dispose();
+            Pipeline = null;
         }
     }
 }

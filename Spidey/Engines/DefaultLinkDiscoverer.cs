@@ -30,10 +30,25 @@ namespace Spidey.Engines
     public class DefaultLinkDiscoverer : ILinkDiscoverer
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultLinkDiscoverer"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        public DefaultLinkDiscoverer(Options? options)
+        {
+            Options = (options ?? Options.Default).Setup();
+        }
+
+        /// <summary>
         /// Gets the scheme regex.
         /// </summary>
         /// <value>The scheme regex.</value>
         private static Regex SchemeRegex { get; } = new Regex("^(?<scheme>[^:]*://)", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        /// <summary>
+        /// Gets the options.
+        /// </summary>
+        /// <value>The options.</value>
+        private Options Options { get; }
 
         /// <summary>
         /// Discovers the urls.
@@ -42,22 +57,22 @@ namespace Spidey.Engines
         /// <param name="url">The URL.</param>
         /// <param name="content">The content.</param>
         /// <param name="contentType">Type of the content.</param>
-        /// <param name="options">The options.</param>
         /// <returns>The links within the document.</returns>
-        public string[] DiscoverUrls(string currentDomain, string url, byte[] content, string contentType, Options options)
+        public string[] DiscoverUrls(string currentDomain, string url, byte[] content, string contentType)
         {
-            if (contentType.IndexOf("TEXT/HTML", StringComparison.InvariantCultureIgnoreCase) < 0)
+            if (string.IsNullOrEmpty(contentType) || contentType.IndexOf("TEXT/HTML", StringComparison.InvariantCultureIgnoreCase) < 0)
                 return Array.Empty<string>();
             var doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(Encoding.UTF8.GetString(content));
             return doc
                 .DocumentNode
                 .SelectNodes("//a[@href]")
-                .SelectMany(x => x.Attributes)
-                .Select(x => x.Value)
+                ?.SelectMany(x => (x?.Attributes))
+                .Select(x => (x?.Value))
                 .Where(x => !string.IsNullOrEmpty(x))
-                .Select(x => FixUrl(currentDomain, x, options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()))
-                .ToArray();
+                .Select(x => FixUrl(currentDomain, x, Options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()))
+                .ToArray()
+                ?? Array.Empty<string>();
         }
 
         /// <summary>
@@ -67,8 +82,10 @@ namespace Spidey.Engines
         /// <param name="link">The link.</param>
         /// <param name="replacements">The replacements.</param>
         /// <returns>The fixed URL</returns>
-        public string FixUrl(string currentDomain, string link, Dictionary<Regex, string> replacements)
+        public string FixUrl(string currentDomain, string? link, Dictionary<Regex, string> replacements)
         {
+            if (string.IsNullOrEmpty(link))
+                return "";
             replacements ??= new Dictionary<Regex, string>();
             link = link.Replace("\\", "/").Trim();
             if (link.StartsWith("/", StringComparison.OrdinalIgnoreCase))
@@ -93,7 +110,8 @@ namespace Spidey.Engines
         /// <returns>The domain of the url.</returns>
         public string GetDomain(string url)
         {
-            var TempUri = new Uri(url);
+            if (string.IsNullOrEmpty(url) || !Uri.TryCreate(url, UriKind.Absolute, out var TempUri))
+                return "";
             return TempUri.Scheme + "://" + TempUri.Host + (TempUri.Port == 80 ? "" : (":" + TempUri.Port));
         }
     }

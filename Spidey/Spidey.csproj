@@ -16,7 +16,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/JaCraig/Spidey</PackageProjectUrl>
     <PackageTags>web crawler;web;crawler</PackageTags>
-    <Version>3.0.$(BuildNumber)</Version>
+    <Version>4.0.$(BuildNumber)</Version>
     <Nullable>enable</Nullable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
@@ -24,9 +24,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.IO.RecyclableMemoryStream" Version="2.1.2" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
-
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netstandard2.0\Spidey.xml</DocumentationFile>
@@ -37,9 +37,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BigBook" Version="3.0.56" />
-    <PackageReference Include="FileCurator" Version="3.1.25" />
-    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="BigBook" Version="4.0.12" />
+    <PackageReference Include="FileCurator" Version="3.1.36" />
   </ItemGroup>
-
 </Project>

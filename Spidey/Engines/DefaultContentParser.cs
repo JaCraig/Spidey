@@ -15,8 +15,11 @@ limitations under the License.
 */
 
 using FileCurator;
+using Microsoft.Extensions.Logging;
+using Microsoft.IO;
 using Spidey.Engines.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Spidey.Engines
@@ -28,23 +31,62 @@ namespace Spidey.Engines
     public class DefaultContentParser : IContentParser
     {
         /// <summary>
-        /// Parses the specified options.
+        /// Initializes a new instance of the <see cref="DefaultContentParser"/> class.
         /// </summary>
         /// <param name="options">The options.</param>
+        /// <param name="linkDiscoverers">The link discoverers.</param>
+        /// <param name="recyclableMemoryStreamManager">The recyclable memory stream manager.</param>
+        /// <param name="logger">The logger.</param>
+        public DefaultContentParser(Options? options, IEnumerable<ILinkDiscoverer> linkDiscoverers, RecyclableMemoryStreamManager recyclableMemoryStreamManager, ILogger<DefaultContentParser>? logger = null)
+        {
+            Options = (options ?? Options.Default).Setup();
+            LinkDiscoverer = linkDiscoverers.FirstOrDefault(x => !(x is DefaultLinkDiscoverer)) ?? linkDiscoverers.FirstOrDefault(x => x is DefaultLinkDiscoverer);
+            Logger = logger;
+            RecyclableMemoryStreamManager = recyclableMemoryStreamManager;
+        }
+
+        /// <summary>
+        /// Gets the link discoverer.
+        /// </summary>
+        /// <value>The link discoverer.</value>
+        private ILinkDiscoverer LinkDiscoverer { get; }
+
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <value>The logger.</value>
+        private ILogger<DefaultContentParser>? Logger { get; }
+
+        /// <summary>
+        /// Gets the options.
+        /// </summary>
+        /// <value>The options.</value>
+        private Options Options { get; }
+
+        /// <summary>
+        /// Gets the recyclable memory stream manager.
+        /// </summary>
+        /// <value>The recyclable memory stream manager.</value>
+        private RecyclableMemoryStreamManager RecyclableMemoryStreamManager { get; }
+
+        /// <summary>
+        /// Parses the specified options.
+        /// </summary>
         /// <param name="data">The data.</param>
         /// <returns>Result file</returns>
-        public ResultFile? Parse(Options options, UrlData data)
+        public ResultFile? Parse(UrlData? data)
         {
-            if (!options.CanParse(data.URL))
+            if (data is null || !Options.CanParse(data.URL))
                 return null;
-            var CurrentDomain = options.LinkDiscoverer.GetDomain(data.URL);
-            using var Stream = new System.IO.MemoryStream(data.Content);
+            Logger?.LogDebug($"Parsing {data.URL}");
+            var CurrentDomain = LinkDiscoverer.GetDomain(data.URL);
+            using var Stream = RecyclableMemoryStreamManager.GetStream(data.Content);
             return new ResultFile(
                 data.ContentType,
                 data,
                 Stream.Parse(data.ContentType),
                 data.FileName,
-                options.LinkDiscoverer.FixUrl(CurrentDomain, data.FinalLocation, options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()),
+                LinkDiscoverer.FixUrl(CurrentDomain, data.FinalLocation, Options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()),
                 data.URL,
                 data.StatusCode);
         }

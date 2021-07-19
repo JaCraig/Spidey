@@ -21,7 +21,7 @@ namespace Microsoft.Extensions.DependencyInjection
     /// <summary>
     /// Registration extension methods
     /// </summary>
-    public static class Registration
+    public static class RegistrationExtension
     {
         /// <summary>
         /// Registers the library with the bootstrapper.
@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>The bootstrapper</returns>
         public static ICanisterConfiguration? RegisterSpidey(this ICanisterConfiguration? bootstrapper)
         {
-            return bootstrapper?.AddAssembly(typeof(Registration).Assembly)
+            return bootstrapper?.AddAssembly(typeof(RegistrationExtension).Assembly)
                                .RegisterFileCurator()
                                .RegisterBigBookOfDataTypes();
         }

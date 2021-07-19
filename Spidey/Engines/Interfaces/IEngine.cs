@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System;
 using System.Threading.Tasks;
 
 namespace Spidey.Engines.Interfaces
@@ -21,14 +22,14 @@ namespace Spidey.Engines.Interfaces
     /// <summary>
     /// Engine interface
     /// </summary>
-    public interface IEngine
+    /// <seealso cref="System.IDisposable"/>
+    public interface IEngine : IDisposable
     {
         /// <summary>
         /// Crawls the specified URL.
         /// </summary>
         /// <param name="url">The URL.</param>
-        /// <param name="options">The options.</param>
         /// <returns>The data from the url.</returns>
-        Task<UrlData> CrawlAsync(string url, Options options);
+        Task<UrlData?> CrawlAsync(string url);
     }
 }

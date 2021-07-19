@@ -15,9 +15,8 @@ namespace Spidey.Engines.Interfaces
         /// <param name="url">The URL.</param>
         /// <param name="content">The content.</param>
         /// <param name="contentType">Type of the content.</param>
-        /// <param name="options">The options.</param>
         /// <returns>The links within the document.</returns>
-        string[] DiscoverUrls(string currentDomain, string url, byte[] content, string contentType, Options options);
+        string[] DiscoverUrls(string currentDomain, string url, byte[] content, string contentType);
 
         /// <summary>
         /// Fixes the URL.

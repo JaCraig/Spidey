@@ -15,10 +15,11 @@ limitations under the License.
 */
 
 using BigBook;
+using Microsoft.Extensions.Logging;
 using Spidey.Engines.Interfaces;
 using System;
-using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -31,6 +32,52 @@ namespace Spidey.Engines
     public class DefaultEngine : IEngine
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultEngine"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="logger">The logger.</param>
+        public DefaultEngine(Options? options, ILogger<DefaultEngine>? logger = null)
+        {
+            Options = (options ?? Options.Default).Setup();
+            Logger = logger;
+            var Handler = new HttpClientHandler()
+            {
+                Proxy = Options.Proxy,
+                AllowAutoRedirect = true
+            };
+            if (!string.IsNullOrEmpty(Options.Credentials?.UserName) && !string.IsNullOrEmpty(Options.Credentials?.Password))
+            {
+                if (!string.IsNullOrEmpty(Options.Credentials?.Domain))
+                    Handler.Credentials = new NetworkCredential(Options.Credentials?.UserName, Options.Credentials?.Password, Options.Credentials?.Domain);
+                else
+                    Handler.Credentials = new NetworkCredential(Options.Credentials?.UserName, Options.Credentials?.Password);
+            }
+            else
+            {
+                Handler.UseDefaultCredentials = Options.UseDefaultCredentials;
+            }
+            Client = new HttpClient(Handler);
+        }
+
+        /// <summary>
+        /// Gets the client.
+        /// </summary>
+        /// <value>The client.</value>
+        private HttpClient? Client { get; set; }
+
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <value>The logger.</value>
+        private ILogger<DefaultEngine>? Logger { get; }
+
+        /// <summary>
+        /// Gets the options.
+        /// </summary>
+        /// <value>The options.</value>
+        private Options Options { get; }
+
+        /// <summary>
         /// The file name regex
         /// </summary>
         private static readonly Regex FileNameRegex = new Regex(@"filename=[\""']?(?<FileName>[^\""\n\r']*)['\""\n\r]?$", RegexOptions.Compiled);
@@ -39,69 +86,80 @@ namespace Spidey.Engines
         /// Crawls the url.
         /// </summary>
         /// <param name="url">The URL.</param>
-        /// <param name="options">The options.</param>
         /// <returns>The data from the URL.</returns>
-        public async Task<UrlData> CrawlAsync(string url, Options options)
+        public async Task<UrlData?> CrawlAsync(string url)
         {
-            var Content = Array.Empty<byte>();
-            var Client = WebRequest.Create(url);
-            if (options.Credentials == null && options.UseDefaultCredentials)
-                Client.UseDefaultCredentials = true;
-            else
-                Client.Credentials = options.Credentials;
-            Client.Proxy = options.Proxy;
+            if (Client is null || string.IsNullOrEmpty(url) || !Uri.TryCreate(url, UriKind.Absolute, out var TempUrl))
+                return null;
+            Logger?.LogDebug($"Crawling {TempUrl}");
 
             try
             {
-                var Response = (await Client.GetResponseAsync().ConfigureAwait(false)) as HttpWebResponse;
-                var FileName = "";
-                if (Response?.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", StringComparison.OrdinalIgnoreCase)) == true)
-                {
-                    FileName = Response.Headers["content-disposition"] ?? "";
-                }
-                if (!string.IsNullOrEmpty(FileName))
-                {
-                    FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
-                }
-                if (string.IsNullOrEmpty(FileName) && Response != null)
-                {
-                    var ResultURI = Response.ResponseUri.ToString();
-                    FileName = ResultURI.Right(ResultURI.Length - ResultURI.LastIndexOf("/", StringComparison.Ordinal) - 1);
-                    if (FileName.Contains("?"))
-                        FileName = FileName.Left(FileName.IndexOf("?", StringComparison.Ordinal));
-                }
-
+                var Response = await Client.GetAsync(TempUrl).ConfigureAwait(false);
+                if (Response is null)
+                    return null;
+                string FileName = GetFileName(Response);
                 return new UrlData(
-                    Response?.GetResponseStream().ReadAllBinary() ?? Array.Empty<byte>(),
-                    Response?.ContentType ?? "",
+                    await Response.Content.ReadAsByteArrayAsync().ConfigureAwait(false) ?? Array.Empty<byte>(),
+                    Response.Content.Headers.ContentType.ToString(),
                     FileName,
-                    Response?.ResponseUri.ToString() ?? "",
-                    (int)(Response?.StatusCode ?? 0),
+                    Response.Headers.Location?.ToString() ?? Response.RequestMessage.RequestUri?.ToString() ?? "",
+                    (int)Response.StatusCode,
                     url
                 );
             }
-            catch (WebException e)
+            catch (HttpRequestException e)
             {
-                var Response = e.Response;
-                var FileName = "";
-                if (Response.Headers.AllKeys.Any(x => string.Equals(x, "content-disposition", StringComparison.OrdinalIgnoreCase)))
-                {
-                    FileName = Response.Headers["content-disposition"];
-                }
-                if (!string.IsNullOrEmpty(FileName))
-                {
-                    FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
-                }
-
+                Logger?.LogError(e, $"Error crawling {TempUrl}");
+                string FileName = url;
                 return new UrlData(
-                    Response.GetResponseStream().ReadAllBinary(),
-                    Response.ContentType,
+                    Array.Empty<byte>(),
+                    "",
                     FileName,
-                    Response.ResponseUri.ToString(),
-                    (int)((HttpWebResponse)e.Response).StatusCode,
+                    url,
+                    (int)HttpStatusCode.ServiceUnavailable,
                     url
                 );
             }
+        }
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting
+        /// unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            Client?.Dispose();
+            Client = null;
+        }
+
+        /// <summary>
+        /// Gets the name of the file.
+        /// </summary>
+        /// <param name="Response">The response.</param>
+        /// <returns>The file name.</returns>
+        private static string GetFileName(HttpResponseMessage? Response)
+        {
+            if (Response is null)
+                return "";
+            var FileName = "";
+            if (!string.IsNullOrEmpty(Response.Content.Headers.ContentDisposition?.FileName))
+            {
+                FileName = Response.Content.Headers.ContentDisposition?.FileName ?? "";
+            }
+            if (!string.IsNullOrEmpty(FileName))
+            {
+                FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
+            }
+            if (string.IsNullOrEmpty(FileName))
+            {
+                var ResultURI = Response.Headers.Location?.ToString() ?? Response.RequestMessage.RequestUri?.ToString() ?? "";
+                FileName = ResultURI.Right(ResultURI.Length - ResultURI.LastIndexOf("/", StringComparison.Ordinal) - 1);
+                if (FileName.Contains("?"))
+                    FileName = FileName.Left(FileName.IndexOf("?", StringComparison.Ordinal));
+            }
+
+            return FileName;
         }
     }
 }

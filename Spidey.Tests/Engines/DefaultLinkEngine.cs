@@ -7,12 +7,17 @@ using Xunit;
 
 namespace Spidey.Tests.Engines
 {
-    public class DefaultLinkEngineTests : TestBaseClass
+    public class DefaultLinkEngineTests : TestBaseClass<DefaultLinkDiscoverer>
     {
+        public DefaultLinkEngineTests()
+        {
+            TestObject = new DefaultLinkDiscoverer(Options.Default);
+        }
+
         [Fact]
         public void DiscoverUrls()
         {
-            var Result = new DefaultLinkDiscoverer().DiscoverUrls("http://google.com", "http://google.com", "<a href=\"/Temp.html\">ASDF</a><a href=\"/Temp2.html\"></a>".ToByteArray(), "TEXT/HTML", Options.Default);
+            var Result = new DefaultLinkDiscoverer(Options.Default).DiscoverUrls("http://google.com", "http://google.com", "<a href=\"/Temp.html\">ASDF</a><a href=\"/Temp2.html\"></a>".ToByteArray(), "TEXT/HTML");
             Assert.Equal(2, Result.Length);
             Assert.Equal("http://google.com/Temp.html", Result[0]);
             Assert.Equal("http://google.com/Temp2.html", Result[1]);
@@ -21,7 +26,7 @@ namespace Spidey.Tests.Engines
         [Fact]
         public void FixUrl()
         {
-            var Result = new DefaultLinkDiscoverer().FixUrl("http://google.com", "/something-something/dark-side/", new Dictionary<Regex, string>
+            var Result = new DefaultLinkDiscoverer(Options.Default).FixUrl("http://google.com", "/something-something/dark-side/", new Dictionary<Regex, string>
             {
                 [new Regex("something")] = "blah"
             });
@@ -31,7 +36,7 @@ namespace Spidey.Tests.Engines
         [Fact]
         public void GetDomain()
         {
-            var Result = new DefaultLinkDiscoverer().GetDomain("http://google.com/blah-blah/dark-side");
+            var Result = new DefaultLinkDiscoverer(Options.Default).GetDomain("http://google.com/blah-blah/dark-side");
             Assert.Equal("http://google.com", Result);
         }
     }

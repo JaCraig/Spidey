@@ -14,8 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Spidey.Engines;
-using Spidey.Engines.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,22 +28,6 @@ namespace Spidey
     public class Options
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Options"/> class.
-        /// </summary>
-        public Options()
-        {
-            StartLocations = new List<string>();
-            Ignore = new List<string>();
-            Allow = new List<string>();
-            FollowOnly = new List<string>();
-            UrlReplacements = new Dictionary<string, string>();
-            LinkDiscoverer = new DefaultLinkDiscoverer();
-            Engine = new DefaultEngine();
-            Parser = new DefaultContentParser();
-            ItemFound = _ => { };
-        }
-
-        /// <summary>
         /// Gets the default.
         /// </summary>
         /// <value>The default.</value>
@@ -55,7 +37,7 @@ namespace Spidey
         /// Gets or sets the allowed items.
         /// </summary>
         /// <value>The allowed items.</value>
-        public List<string> Allow { get; set; }
+        public List<string> Allow { get; set; } = new List<string>();
 
         /// <summary>
         /// Gets the credentials.
@@ -64,34 +46,22 @@ namespace Spidey
         public NetworkCredential? Credentials { get; set; }
 
         /// <summary>
-        /// Gets or sets the engine.
-        /// </summary>
-        /// <value>The engine.</value>
-        public IEngine Engine { get; set; }
-
-        /// <summary>
         /// Gets or sets the follow only list.
         /// </summary>
         /// <value>The follow only list.</value>
-        public List<string> FollowOnly { get; set; }
+        public List<string> FollowOnly { get; set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets the ignore list.
         /// </summary>
         /// <value>The ignore list.</value>
-        public List<string> Ignore { get; set; }
+        public List<string> Ignore { get; set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets the item found.
         /// </summary>
         /// <value>The item found.</value>
-        public Action<ResultFile> ItemFound { get; set; }
-
-        /// <summary>
-        /// Gets or sets the link discoverer.
-        /// </summary>
-        /// <value>The link discoverer.</value>
-        public ILinkDiscoverer LinkDiscoverer { get; set; }
+        public Action<ResultFile> ItemFound { get; set; } = _ => { };
 
         /// <summary>
         /// Gets or sets the maximum delay.
@@ -106,10 +76,10 @@ namespace Spidey
         public int MinDelay { get; set; }
 
         /// <summary>
-        /// Gets or sets the parser.
+        /// Gets or sets the number workers.
         /// </summary>
-        /// <value>The parser.</value>
-        public IContentParser Parser { get; set; }
+        /// <value>The number workers.</value>
+        public int NumberWorkers { get; set; } = Environment.ProcessorCount;
 
         /// <summary>
         /// Gets the proxy.
@@ -121,14 +91,14 @@ namespace Spidey
         /// Gets or sets the start locations.
         /// </summary>
         /// <value>The start locations.</value>
-        public List<string> StartLocations { get; set; }
+        public List<string> StartLocations { get; set; } = new List<string>();
 
         /// <summary>
         /// Gets or sets a list of replacements for URL parts. Key is the url part that you may
         /// find, value is the replacement for it.
         /// </summary>
         /// <value>The domain replacements.</value>
-        public Dictionary<string, string> UrlReplacements { get; set; }
+        public Dictionary<string, string> UrlReplacements { get; set; } = new Dictionary<string, string>();
 
         /// <summary>
         /// Gets or sets a value indicating whether [use default credentials].
@@ -140,25 +110,31 @@ namespace Spidey
         /// Gets the allow compiled.
         /// </summary>
         /// <value>The allow compiled.</value>
-        internal List<Regex>? AllowCompiled { get; private set; }
+        internal List<Regex> AllowCompiled { get; private set; } = new List<Regex>();
 
         /// <summary>
         /// Gets the follow only compiled.
         /// </summary>
         /// <value>The follow only compiled.</value>
-        internal List<Regex>? FollowOnlyCompiled { get; private set; }
+        internal List<Regex> FollowOnlyCompiled { get; private set; } = new List<Regex>();
 
         /// <summary>
         /// Gets the ignore compiled.
         /// </summary>
         /// <value>The ignore compiled.</value>
-        internal List<Regex>? IgnoreCompiled { get; private set; }
+        internal List<Regex> IgnoreCompiled { get; private set; } = new List<Regex>();
 
         /// <summary>
         /// Gets or sets the URL replacements compiled.
         /// </summary>
         /// <value>The URL replacements compiled.</value>
-        internal Dictionary<Regex, string>? UrlReplacementsCompiled { get; private set; }
+        internal Dictionary<Regex, string> UrlReplacementsCompiled { get; } = new Dictionary<Regex, string>();
+
+        /// <summary>
+        /// Gets the lock object.
+        /// </summary>
+        /// <value>The lock object.</value>
+        private static object LockObject { get; } = new object();
 
         /// <summary>
         /// Determines whether this instance can crawl the specified link.
@@ -202,16 +178,44 @@ namespace Spidey
         /// <summary>
         /// Setups this instance.
         /// </summary>
-        internal void Setup()
+        internal Options Setup()
         {
-            UrlReplacementsCompiled = new Dictionary<Regex, string>();
-            IgnoreCompiled = Ignore.Select(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase)).ToList();
-            FollowOnlyCompiled = FollowOnly.Select(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase)).ToList();
-            AllowCompiled = Allow.Select(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase)).ToList();
-            foreach (var Key in UrlReplacements.Keys)
+            if (IgnoreCompiled.Count > 0 || FollowOnlyCompiled.Count > 0 || AllowCompiled.Count > 0 || UrlReplacementsCompiled.Count > 0)
+                return this;
+            lock (LockObject)
             {
-                UrlReplacementsCompiled.Add(new Regex(Key), UrlReplacements[Key]);
+                if (IgnoreCompiled.Count > 0 || FollowOnlyCompiled.Count > 0 || AllowCompiled.Count > 0 || UrlReplacementsCompiled.Count > 0)
+                    return this;
+                IgnoreCompiled = Ignore.ConvertAll(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase));
+                FollowOnlyCompiled = FollowOnly.ConvertAll(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase));
+                AllowCompiled = Allow.ConvertAll(x => new Regex(x, RegexOptions.Compiled | RegexOptions.IgnoreCase));
+                foreach (var Key in UrlReplacements.Keys)
+                {
+                    UrlReplacementsCompiled.Add(new Regex(Key), UrlReplacements[Key]);
+                }
+                ItemFound ??= DefaultItemFound;
+                if (MinDelay < 0)
+                    MinDelay = 0;
+                if (MaxDelay < 0)
+                    MaxDelay = 0;
+                if (NumberWorkers <= 0)
+                    NumberWorkers = 1;
+                if (MinDelay > MaxDelay)
+                {
+                    var Holder = MinDelay;
+                    MinDelay = MaxDelay;
+                    MaxDelay = Holder;
+                }
             }
+            return this;
+        }
+
+        /// <summary>
+        /// Defaults the item found.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        private void DefaultItemFound(ResultFile obj)
+        {
         }
     }
 }
