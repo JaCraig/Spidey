@@ -1,4 +1,5 @@
 ﻿using Canister.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Spidey.Tests
 {
@@ -16,10 +17,10 @@ namespace Spidey.Tests
         /// Loads the module
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IBootstrapper bootstrapper)
+        public void Load(IServiceCollection bootstrapper)
         {
             bootstrapper
-                ?.Register(new Options
+                ?.AddTransient(_ => new Options
                 {
                     Allow = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },
                     StartLocations = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },

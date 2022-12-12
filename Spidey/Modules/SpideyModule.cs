@@ -20,17 +20,17 @@ namespace Spidey.Modules
         /// Loads the module
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IBootstrapper? bootstrapper)
+        public void Load(IServiceCollection? bootstrapper)
         {
-            bootstrapper?.Register<Crawler>()
-                .RegisterAll<ILinkDiscoverer>()
-                .RegisterAll<IEngine>()
-                .RegisterAll<IContentParser>()
-                .RegisterAll<IProcessor>()
-                .RegisterAll<IPipeline>()
-                .RegisterAll<IScheduler>()
-                .Register(Options.Default)
-                .Register<RecyclableMemoryStreamManager>(ServiceLifetime.Singleton);
+            bootstrapper?.AddTransient<Crawler>()
+                .AddAllTransient<ILinkDiscoverer>()
+                .AddAllTransient<IEngine>()
+                .AddAllTransient<IContentParser>()
+                .AddAllTransient<IProcessor>()
+                .AddAllTransient<IPipeline>()
+                .AddAllTransient<IScheduler>()
+                .AddTransient(_ => Options.Default)
+                .AddSingleton<RecyclableMemoryStreamManager>();
         }
     }
 }
