@@ -1,0 +1,371 @@
+{
+  "homepages": [],
+  "source_base_path": "/home/runner/work/Spidey/Spidey/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Crawler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Crawler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.DefaultContentParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.DefaultContentParser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.DefaultEngine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.DefaultEngine.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.DefaultLinkDiscoverer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.DefaultLinkDiscoverer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.DefaultPipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.DefaultPipeline.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.DefaultProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.DefaultProcessor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.DefaultScheduler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.DefaultScheduler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Interfaces.IContentParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Interfaces.IContentParser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Interfaces.IEngine.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Interfaces.IEngine.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Interfaces.ILinkDiscoverer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Interfaces.ILinkDiscoverer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Interfaces.IPipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Interfaces.IPipeline.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Interfaces.IProcessor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Interfaces.IProcessor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Interfaces.IScheduler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Interfaces.IScheduler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Interfaces.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Scheduler.Worker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Scheduler.Worker.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Scheduler.WorkerPool.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Scheduler.WorkerPool.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.Scheduler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.Scheduler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.UrlData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.UrlData.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Engines.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Engines.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.ErrorItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.ErrorItem.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Modules.SpideyModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Modules.SpideyModule.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Modules.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Modules.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Options.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Options.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.ResultFile.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.ResultFile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.Results.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.Results.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Spidey.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Spidey.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
