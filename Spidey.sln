@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spidey", "Spidey\Spidey.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spidey.Tests", "Spidey.Tests\Spidey.Tests.csproj", "{A07D04F4-A2C4-4D8B-8A72-1BCF4F85319E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spidey.Example", "Spidey.Example\Spidey.Example.csproj", "{E5DDC726-EA1D-4038-9F45-5141585F1783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spidey.Example", "Spidey.Example\Spidey.Example.csproj", "{E5DDC726-EA1D-4038-9F45-5141585F1783}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D3A23A04-FE28-4F24-8B81-302065D1C16D}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
