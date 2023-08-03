@@ -1,18 +1,13 @@
 {
-  "api/index.html": {
-    "href": "api/index.html",
-    "title": "Welcome | Spidey API Reference",
-    "keywords": "Welcome Welcome to the API browser."
+  "api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html": {
+    "href": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html",
+    "title": "Class RegistrationExtension | Spidey API Reference",
+    "keywords": "Class RegistrationExtension Registration extension methods Inheritance object RegistrationExtension Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Microsoft.Extensions.DependencyInjection Assembly: Spidey.dll Syntax public static class RegistrationExtension Methods | Improve this Doc View Source RegisterSpidey(ICanisterConfiguration?) Registers the library with the bootstrapper. Declaration public static ICanisterConfiguration? RegisterSpidey(this ICanisterConfiguration? bootstrapper) Parameters Type Name Description ICanisterConfiguration bootstrapper The bootstrapper. Returns Type Description ICanisterConfiguration The bootstrapper"
   },
   "api/Microsoft.Extensions.DependencyInjection.html": {
     "href": "api/Microsoft.Extensions.DependencyInjection.html",
     "title": "Namespace Microsoft.Extensions.DependencyInjection | Spidey API Reference",
     "keywords": "Namespace Microsoft.Extensions.DependencyInjection Classes RegistrationExtension Registration extension methods"
-  },
-  "api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html": {
-    "href": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html",
-    "title": "Class RegistrationExtension | Spidey API Reference",
-    "keywords": "Class RegistrationExtension Registration extension methods Inheritance object RegistrationExtension Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Microsoft.Extensions.DependencyInjection Assembly: Spidey.dll Syntax public static class RegistrationExtension Methods | Improve this Doc View Source RegisterSpidey(ICanisterConfiguration?) Registers the library with the bootstrapper. Declaration public static ICanisterConfiguration? RegisterSpidey(this ICanisterConfiguration? bootstrapper) Parameters Type Name Description ICanisterConfiguration bootstrapper The bootstrapper. Returns Type Description ICanisterConfiguration The bootstrapper"
   },
   "api/Spidey.Crawler.html": {
     "href": "api/Spidey.Crawler.html",
@@ -49,16 +44,6 @@
     "title": "Class DefaultScheduler | Spidey API Reference",
     "keywords": "Class DefaultScheduler Default scheduler Inheritance object DefaultScheduler Implements IScheduler IDisposable Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Spidey.Engines Assembly: Spidey.dll Syntax public class DefaultScheduler : IScheduler, IDisposable Constructors | Improve this Doc View Source DefaultScheduler(Options?, IEnumerable<IEngine>, ILogger<DefaultScheduler>?) Initializes a new instance of the DefaultScheduler class. Declaration public DefaultScheduler(Options? options, IEnumerable<IEngine> engines, ILogger<DefaultScheduler>? logger = null) Parameters Type Name Description Options options The options. IEnumerable<IEngine> engines The engines. ILogger<DefaultScheduler> logger The logger. See Also IScheduler Methods | Improve this Doc View Source CrawlAsync(string) Schedules the specified URL for crawling. Declaration public Task<UrlData?> CrawlAsync(string url) Parameters Type Name Description string url The URL. Returns Type Description Task<UrlData> This. See Also IScheduler | Improve this Doc View Source Dispose() Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. Declaration public void Dispose() See Also IScheduler Implements IScheduler IDisposable See Also IScheduler"
   },
-  "api/Spidey.Engines.html": {
-    "href": "api/Spidey.Engines.html",
-    "title": "Namespace Spidey.Engines | Spidey API Reference",
-    "keywords": "Namespace Spidey.Engines Classes DefaultContentParser Default content parser DefaultEngine Default engine DefaultLinkDiscoverer Default link engine DefaultPipeline Default pipeline DefaultProcessor Default processor DefaultScheduler Default scheduler UrlData URL data passed back from the engine."
-  },
-  "api/Spidey.Engines.Interfaces.html": {
-    "href": "api/Spidey.Engines.Interfaces.html",
-    "title": "Namespace Spidey.Engines.Interfaces | Spidey API Reference",
-    "keywords": "Namespace Spidey.Engines.Interfaces Interfaces IContentParser Content parser interface IEngine Engine interface ILinkDiscoverer Link engine interface IPipeline Pipeline interface IProcessor Processor interface IScheduler Schedules the individual URLs to the workers."
-  },
   "api/Spidey.Engines.Interfaces.IContentParser.html": {
     "href": "api/Spidey.Engines.Interfaces.IContentParser.html",
     "title": "Interface IContentParser | Spidey API Reference",
@@ -89,10 +74,10 @@
     "title": "Interface IScheduler | Spidey API Reference",
     "keywords": "Interface IScheduler Schedules the individual URLs to the workers. Inherited Members IDisposable.Dispose() Namespace: Spidey.Engines.Interfaces Assembly: Spidey.dll Syntax public interface IScheduler : IDisposable Methods | Improve this Doc View Source CrawlAsync(string) Schedules the specified URL for crawling. Declaration Task<UrlData?> CrawlAsync(string url) Parameters Type Name Description string url The URL. Returns Type Description Task<UrlData> See Also IDisposable See Also IDisposable"
   },
-  "api/Spidey.Engines.Scheduler.html": {
-    "href": "api/Spidey.Engines.Scheduler.html",
-    "title": "Namespace Spidey.Engines.Scheduler | Spidey API Reference",
-    "keywords": "Namespace Spidey.Engines.Scheduler Classes Worker Worker class WorkerPool Worker pool"
+  "api/Spidey.Engines.Interfaces.html": {
+    "href": "api/Spidey.Engines.Interfaces.html",
+    "title": "Namespace Spidey.Engines.Interfaces | Spidey API Reference",
+    "keywords": "Namespace Spidey.Engines.Interfaces Interfaces IContentParser Content parser interface IEngine Engine interface ILinkDiscoverer Link engine interface IPipeline Pipeline interface IProcessor Processor interface IScheduler Schedules the individual URLs to the workers."
   },
   "api/Spidey.Engines.Scheduler.Worker.html": {
     "href": "api/Spidey.Engines.Scheduler.Worker.html",
@@ -104,30 +89,35 @@
     "title": "Class WorkerPool | Spidey API Reference",
     "keywords": "Class WorkerPool Worker pool Inheritance object WorkerPool Implements IDisposable Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Spidey.Engines.Scheduler Assembly: Spidey.dll Syntax public class WorkerPool : IDisposable Constructors | Improve this Doc View Source WorkerPool(int, IEngine, CancellationToken) Initializes a new instance of the WorkerPool class. Declaration public WorkerPool(int workerCount, IEngine engine, CancellationToken cancellationToken) Parameters Type Name Description int workerCount The worker count. IEngine engine The engine. CancellationToken cancellationToken The cancellation token. See Also IDisposable Properties | Improve this Doc View Source Done Gets a value indicating whether this WorkerPool is done. Declaration public bool Done { get; } Property Value Type Description bool true if done; otherwise, false. See Also IDisposable | Improve this Doc View Source IsCanceled Gets a value indicating whether this instance is canceled. Declaration public bool IsCanceled { get; } Property Value Type Description bool true if this instance is canceled; otherwise, false. See Also IDisposable Methods | Improve this Doc View Source CrawlAsync(string) Processes the request. Declaration public Task<UrlData?> CrawlAsync(string url) Parameters Type Name Description string url The URL. Returns Type Description Task<UrlData> Task. See Also IDisposable | Improve this Doc View Source Dispose() Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources. Declaration public void Dispose() See Also IDisposable Implements IDisposable See Also IDisposable"
   },
+  "api/Spidey.Engines.Scheduler.html": {
+    "href": "api/Spidey.Engines.Scheduler.html",
+    "title": "Namespace Spidey.Engines.Scheduler | Spidey API Reference",
+    "keywords": "Namespace Spidey.Engines.Scheduler Classes Worker Worker class WorkerPool Worker pool"
+  },
   "api/Spidey.Engines.UrlData.html": {
     "href": "api/Spidey.Engines.UrlData.html",
     "title": "Class UrlData | Spidey API Reference",
     "keywords": "Class UrlData URL data passed back from the engine. Inheritance object UrlData Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Spidey.Engines Assembly: Spidey.dll Syntax public class UrlData Constructors | Improve this Doc View Source UrlData(byte[], string, string, string, int, string) Initializes a new instance of the UrlData class. Declaration public UrlData(byte[] content, string contentType, string fileName, string finalLocation, int statusCode, string uRL) Parameters Type Name Description byte[] content The content. string contentType Type of the content. string fileName Name of the file. string finalLocation The final location. int statusCode The status code. string uRL The u rl. Properties | Improve this Doc View Source Content Gets or sets the content. Declaration public byte[] Content { get; set; } Property Value Type Description byte[] The content. | Improve this Doc View Source ContentType Gets or sets the type of the content. Declaration public string ContentType { get; set; } Property Value Type Description string The type of the content. | Improve this Doc View Source FileName Gets or sets the name of the file. Declaration public string FileName { get; set; } Property Value Type Description string The name of the file. | Improve this Doc View Source FinalLocation Gets or sets the final location. Declaration public string FinalLocation { get; set; } Property Value Type Description string The final location. | Improve this Doc View Source StatusCode Gets or sets the status code. Declaration public int StatusCode { get; set; } Property Value Type Description int The status code. | Improve this Doc View Source URL Gets or sets the URL. Declaration public string URL { get; set; } Property Value Type Description string The URL."
+  },
+  "api/Spidey.Engines.html": {
+    "href": "api/Spidey.Engines.html",
+    "title": "Namespace Spidey.Engines | Spidey API Reference",
+    "keywords": "Namespace Spidey.Engines Classes DefaultContentParser Default content parser DefaultEngine Default engine DefaultLinkDiscoverer Default link engine DefaultPipeline Default pipeline DefaultProcessor Default processor DefaultScheduler Default scheduler UrlData URL data passed back from the engine."
   },
   "api/Spidey.ErrorItem.html": {
     "href": "api/Spidey.ErrorItem.html",
     "title": "Class ErrorItem | Spidey API Reference",
     "keywords": "Class ErrorItem Error item data holder. Inheritance object ErrorItem Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Spidey Assembly: Spidey.dll Syntax public class ErrorItem Constructors | Improve this Doc View Source ErrorItem(Exception, string, int) Initializes a new instance of the ErrorItem class. Declaration public ErrorItem(Exception error, string url, int statusCode) Parameters Type Name Description Exception error The error. string url The URL. int statusCode The status code. Properties | Improve this Doc View Source Error Gets or sets the error. Declaration public Exception Error { get; set; } Property Value Type Description Exception The error. | Improve this Doc View Source StatusCode Gets or sets the status code. Declaration public int StatusCode { get; set; } Property Value Type Description int The status code. | Improve this Doc View Source Url Gets or sets the URL. Declaration public string Url { get; set; } Property Value Type Description string The URL."
   },
-  "api/Spidey.html": {
-    "href": "api/Spidey.html",
-    "title": "Namespace Spidey | Spidey API Reference",
-    "keywords": "Namespace Spidey Classes Crawler Crawler class ErrorItem Error item data holder. Options Basic options class ResultFile Result file Results Results from the crawl"
+  "api/Spidey.Modules.SpideyModule.html": {
+    "href": "api/Spidey.Modules.SpideyModule.html",
+    "title": "Class SpideyModule | Spidey API Reference",
+    "keywords": "Class SpideyModule Spidey module Inheritance object SpideyModule Implements IModule Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Spidey.Modules Assembly: Spidey.dll Syntax public class SpideyModule : IModule Properties | Improve this Doc View Source Order Order to run it in Declaration public int Order { get; } Property Value Type Description int See Also IModule Methods | Improve this Doc View Source Load(IServiceCollection?) Loads the module Declaration public void Load(IServiceCollection? bootstrapper) Parameters Type Name Description IServiceCollection bootstrapper The bootstrapper. See Also IModule Implements IModule See Also IModule"
   },
   "api/Spidey.Modules.html": {
     "href": "api/Spidey.Modules.html",
     "title": "Namespace Spidey.Modules | Spidey API Reference",
     "keywords": "Namespace Spidey.Modules Classes SpideyModule Spidey module"
-  },
-  "api/Spidey.Modules.SpideyModule.html": {
-    "href": "api/Spidey.Modules.SpideyModule.html",
-    "title": "Class SpideyModule | Spidey API Reference",
-    "keywords": "Class SpideyModule Spidey module Inheritance object SpideyModule Implements IModule Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Spidey.Modules Assembly: Spidey.dll Syntax public class SpideyModule : IModule Properties | Improve this Doc View Source Order Order to run it in Declaration public int Order { get; } Property Value Type Description int See Also IModule Methods | Improve this Doc View Source Load(IServiceCollection?) Loads the module Declaration public void Load(IServiceCollection? bootstrapper) Parameters Type Name Description IServiceCollection bootstrapper The bootstrapper. See Also IModule Implements IModule See Also IModule"
   },
   "api/Spidey.Options.html": {
     "href": "api/Spidey.Options.html",
@@ -143,6 +133,16 @@
     "href": "api/Spidey.Results.html",
     "title": "Class Results | Spidey API Reference",
     "keywords": "Class Results Results from the crawl Inheritance object Results Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Namespace: Spidey Assembly: Spidey.dll Syntax public class Results Properties | Improve this Doc View Source CompletedURLs Gets or sets the completed urls. Declaration public ConcurrentBag<string> CompletedURLs { get; } Property Value Type Description ConcurrentBag<string> The completed urls. | Improve this Doc View Source ErrorURLs Gets or sets the error ur ls. Declaration public ConcurrentBag<ErrorItem> ErrorURLs { get; } Property Value Type Description ConcurrentBag<ErrorItem> The error ur ls. | Improve this Doc View Source WhereFound Gets or sets the where found. Declaration public ListMapping<string, string> WhereFound { get; } Property Value Type Description ListMapping<string, string> The where found."
+  },
+  "api/Spidey.html": {
+    "href": "api/Spidey.html",
+    "title": "Namespace Spidey | Spidey API Reference",
+    "keywords": "Namespace Spidey Classes Crawler Crawler class ErrorItem Error item data holder. Options Basic options class ResultFile Result file Results Results from the crawl"
+  },
+  "api/index.html": {
+    "href": "api/index.html",
+    "title": "Welcome | Spidey API Reference",
+    "keywords": "Welcome Welcome to the API browser."
   },
   "articles/intro.html": {
     "href": "articles/intro.html",
