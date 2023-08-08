@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.7"></a>
+## [5.0.7](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.7) (2023-8-8)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([8b9599b](https://www.github.com/JaCraig/Spidey/commit/8b9599bb9fe0f6d2a70e39e498af17494a93a91b))
+
+### Other
+
+* Merge pull request #10 from JaCraig/dependabot/nuget/dependencies-2d19597362 ([798127d](https://www.github.com/JaCraig/Spidey/commit/798127d42664b20143abd50eb9ac8124c201791b))
+* Merge pull request #9 from JaCraig/dependabot/nuget/dependencies-416c6046e2 ([ae9a605](https://www.github.com/JaCraig/Spidey/commit/ae9a605dae63e65a331f0cba87b30daadb09e694))
+* bump the dependencies group with 1 update ([e2f4c14](https://www.github.com/JaCraig/Spidey/commit/e2f4c141d4e253744621ef5d07507ada5761e740))
+* Update dependabot.yml ([8860a20](https://www.github.com/JaCraig/Spidey/commit/8860a204495e33574bd091182ff80ae0775703b6))
+
 <a name="5.0.6"></a>
 ## [5.0.6](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.6) (2023-8-8)
 
