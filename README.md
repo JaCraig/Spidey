@@ -1,6 +1,6 @@
 # Spidey
 
-[![Build status](https://ci.appveyor.com/api/projects/status/0derh6adccmnc8py?svg=true)](https://ci.appveyor.com/project/JaCraig/spidey)
+[![.NET Publish](https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml/badge.svg)](https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml)
 
 Library to help with crawling web content. Compatible with .Net Core and .Net Framework.
 
