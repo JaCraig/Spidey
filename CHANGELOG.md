@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.30"></a>
+## [5.0.30](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.30) (2023-10-30)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([2bd239a](https://www.github.com/JaCraig/Spidey/commit/2bd239a61450c301175045148b1b3bc54586f95c))
+
+### Other
+
+* Merge pull request #71 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-57f8e5cd27 ([9ae3ab2](https://www.github.com/JaCraig/Spidey/commit/9ae3ab2d187ae3821cb94bb2baf0e1897e66a25e))
+* Merge pull request #72 from JaCraig/dependabot/nuget/dependencies-8a9d3d7377 ([1e4f23e](https://www.github.com/JaCraig/Spidey/commit/1e4f23e4b65266b8968ff0303a60295959867a3f))
+* bump the dependencies group in /Spidey.Tests with 1 update ([3a6b030](https://www.github.com/JaCraig/Spidey/commit/3a6b03061081530750b4cfea7fed7176528b7385))
+
 <a name="5.0.29"></a>
 ## [5.0.29](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.29) (2023-10-26)
 
