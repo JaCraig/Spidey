@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.42"></a>
+## [5.0.42](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.42) (2023-12-12)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([fed58ce](https://www.github.com/JaCraig/Spidey/commit/fed58ce1722bb2def20646f1aebe81a0b24bb396))
+
+### Other
+
+* Merge pull request #102 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-1725126a36 ([f181e9e](https://www.github.com/JaCraig/Spidey/commit/f181e9efbfbb837e52f74e9a9871d1644d4d2bb9))
+* Merge pull request #103 from JaCraig/dependabot/github_actions/dependencies-9d15ffb50c ([b110610](https://www.github.com/JaCraig/Spidey/commit/b110610247149c9c598f40b95f8262a98f5a48f3))
+* Merge pull request #104 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-6095d6a029 ([ec9e729](https://www.github.com/JaCraig/Spidey/commit/ec9e729f7b02b8e9171405b35928a54a4f385691))
+* Merge pull request #105 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-9380cae661 ([3ffdd8b](https://www.github.com/JaCraig/Spidey/commit/3ffdd8b6783edb682338e80a655be04019dce4c5))
+* Merge pull request #106 from JaCraig/dependabot/nuget/dependencies-7d1c62f171 ([8d6ed30](https://www.github.com/JaCraig/Spidey/commit/8d6ed30635533df81a0867b8f39c151cd00d2d2a))
+* bump the dependencies group in /Spidey.Tests with 1 update ([549961e](https://www.github.com/JaCraig/Spidey/commit/549961eac0b9ed0a461e752bc386fd2b3f830f73))
+* bump the dependencies group in /Spidey.Tests with 1 update ([de1878f](https://www.github.com/JaCraig/Spidey/commit/de1878f151445497377a41eba65014dd18cac3ff))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([2d4e748](https://www.github.com/JaCraig/Spidey/commit/2d4e74807f98c069500320d9687225943f4c32bd))
+* bump the dependencies group with 1 update ([85d2fd5](https://www.github.com/JaCraig/Spidey/commit/85d2fd514cabb5ae6d6d2fbcc5e572e9e31914ab))
+* Fixing doc gen ([70ae53f](https://www.github.com/JaCraig/Spidey/commit/70ae53f4af601ab967b3ce955c7d675408b8904f))
+
 <a name="5.0.41"></a>
 ## [5.0.41](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.41) (2023-11-24)
 
