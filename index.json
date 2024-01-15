@@ -72,7 +72,7 @@
   "api/Spidey.Engines.Interfaces.IScheduler.html": {
     "href": "api/Spidey.Engines.Interfaces.IScheduler.html",
     "title": "Interface IScheduler | Spidey API Reference",
-    "keywords": "Interface IScheduler Namespace Spidey.Engines.Interfaces Assembly Spidey.dll Schedules the individual URLs to the workers. public interface IScheduler : IDisposable Inherited Members IDisposable.Dispose() Methods CrawlAsync(string) Schedules the specified URL for crawling. Task<UrlData?> CrawlAsync(string url) Parameters url string The URL. Returns Task<UrlData> See Also IDisposable"
+    "keywords": "Interface IScheduler Namespace Spidey.Engines.Interfaces Assembly Spidey.dll Schedules the individual URLs to the workers. public interface IScheduler : IDisposable Inherited Members IDisposable.Dispose() Methods CrawlAsync(string) Schedules the specified URL for crawling. Task<UrlData?> CrawlAsync(string url) Parameters url string The URL. Returns Task<UrlData> Schedules the individual URLs to the workers. See Also IDisposable"
   },
   "api/Spidey.Engines.Interfaces.html": {
     "href": "api/Spidey.Engines.Interfaces.html",
@@ -112,7 +112,7 @@
   "api/Spidey.Modules.SpideyModule.html": {
     "href": "api/Spidey.Modules.SpideyModule.html",
     "title": "Class SpideyModule | Spidey API Reference",
-    "keywords": "Class SpideyModule Namespace Spidey.Modules Assembly Spidey.dll Spidey module public class SpideyModule : IModule Inheritance object SpideyModule Implements IModule Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Properties Order Order to run it in public int Order { get; } Property Value int Methods Load(IServiceCollection?) Loads the module public void Load(IServiceCollection? bootstrapper) Parameters bootstrapper IServiceCollection The bootstrapper. See Also IModule"
+    "keywords": "Class SpideyModule Namespace Spidey.Modules Assembly Spidey.dll Spidey module public class SpideyModule : IModule Inheritance object SpideyModule Implements IModule Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Properties Order Order to run it in public int Order { get; } Property Value int Spidey module Methods Load(IServiceCollection?) Loads the module public void Load(IServiceCollection? bootstrapper) Parameters bootstrapper IServiceCollection The bootstrapper. See Also IModule"
   },
   "api/Spidey.Modules.html": {
     "href": "api/Spidey.Modules.html",
