@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.62"></a>
+## [5.0.62](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.62) (2024-02-21)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([66a34a7](https://www.github.com/JaCraig/Spidey/commit/66a34a7bc3db961b6752808819f3b5c1246a4cfa))
+
+### Other
+
+* Merge pull request #163 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-15684e3672 ([69c0d6d](https://www.github.com/JaCraig/Spidey/commit/69c0d6dcb7c00d06723457ad533561387f88601c))
+* Merge pull request #164 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-eb414308e7 ([bf7bca2](https://www.github.com/JaCraig/Spidey/commit/bf7bca250c0aa1fce344333df05c97266cd688ce))
+* Merge pull request #165 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-af90ca8990 ([bbe5550](https://www.github.com/JaCraig/Spidey/commit/bbe5550cae30499292fc18bad026c5e8d8015616))
+* Merge pull request #166 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-69d41b035d ([c03f267](https://www.github.com/JaCraig/Spidey/commit/c03f267c46e787d37377491b96732d1bbad4e164))
+* Merge pull request #167 from JaCraig/dependabot/nuget/dependencies-e3b34518b9 ([46216f3](https://www.github.com/JaCraig/Spidey/commit/46216f32ffa6020700960af84ede26274cdb8e6f))
+* bump the dependencies group in /Spidey.Tests with 1 update ([84a8fbd](https://www.github.com/JaCraig/Spidey/commit/84a8fbdaa1dfd23d3deef5a7ab3fcdf777949651))
+* bump the dependencies group in /Spidey.Tests with 1 update ([510a9da](https://www.github.com/JaCraig/Spidey/commit/510a9dac85524d3a632cc6e236d89346bcb13551))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([06d3493](https://www.github.com/JaCraig/Spidey/commit/06d34939ddb50a422dd49d897a00572aeeebe804))
+* bump the dependencies group in /Spidey.Tests with 3 updates ([e86954b](https://www.github.com/JaCraig/Spidey/commit/e86954b3949b0e09ee302b64f8919b501d380fa0))
+
 <a name="5.0.61"></a>
 ## [5.0.61](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.61) (2024-02-16)
 
