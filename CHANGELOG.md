@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.67"></a>
+## [5.0.67](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.67) (2024-02-29)
+
+### Bug Fixes
+
+* bump the dependencies group with 1 update ([241ee15](https://www.github.com/JaCraig/Spidey/commit/241ee15558febd633ed3675f77b407bc7b7a799a))
+
+### Other
+
+* Merge pull request #175 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-551d1549c2 ([33c0ba5](https://www.github.com/JaCraig/Spidey/commit/33c0ba5dbc0f4a77c9853a867f02b53e283311d7))
+* Merge pull request #176 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-8d99adac79 ([7cfe31c](https://www.github.com/JaCraig/Spidey/commit/7cfe31c935c2c44903f7ff2d2cc3869b47fcaaac))
+* Merge pull request #177 from JaCraig/dependabot/nuget/dependencies-1140ac4e28 ([573cb9c](https://www.github.com/JaCraig/Spidey/commit/573cb9cf9def90c8b2918ffe9601699846700232))
+* bump the dependencies group in /Spidey.Tests with 1 update ([aeae993](https://www.github.com/JaCraig/Spidey/commit/aeae99308b69a975a60947e2def938ca75b1ad9e))
+* bump the dependencies group in /Spidey.Tests with 1 update ([9252568](https://www.github.com/JaCraig/Spidey/commit/9252568f19e920bd326c966790fb42891f587d2d))
+
 <a name="5.0.66"></a>
 ## [5.0.66](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.66) (2024-02-28)
 
