@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.83"></a>
+## [5.0.83](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.83) (2024-05-01)
+
+### Bug Fixes
+
+* bump the dependencies group with 2 updates ([0dc3e9b](https://www.github.com/JaCraig/Spidey/commit/0dc3e9b75fda88d74b2917e906cc4d1a208666af))
+
+### Other
+
+* Merge pull request #217 from JaCraig/dependabot/nuget/dependencies-eebbdb52e6 ([33e08b4](https://www.github.com/JaCraig/Spidey/commit/33e08b415c515cecef4f86d389441cc644eb8202))
+
 <a name="5.0.82"></a>
 ## [5.0.82](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.82) (2024-04-30)
 
