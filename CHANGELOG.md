@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.89"></a>
+## [5.0.89](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.89) (2024-05-16)
+
+### Bug Fixes
+
+* bump FileCurator from 4.0.82 to 4.0.83 in the dependencies group ([81acb42](https://www.github.com/JaCraig/Spidey/commit/81acb428a1182041a0ae6dda7c2e220077294254))
+
+### Other
+
+* Merge pull request #228 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-1a26926a81 ([d587880](https://www.github.com/JaCraig/Spidey/commit/d58788087ce84c5078fb399e4118400f61d40198))
+* Merge pull request #229 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-ef690fe79b ([84ad139](https://www.github.com/JaCraig/Spidey/commit/84ad139cd36134ce632b5afc6e0dd040f1a48da9))
+* Merge pull request #230 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-0e57b7119a ([8745809](https://www.github.com/JaCraig/Spidey/commit/87458096e870170b9b8504d5b54be10f29868513))
+* Merge pull request #231 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-eb0187e5bd ([6392175](https://www.github.com/JaCraig/Spidey/commit/63921751a322d703f0f6addafd1c94f4055ddc1b))
+* Merge pull request #232 from JaCraig/dependabot/nuget/dependencies-5647a33b70 ([6f700e6](https://www.github.com/JaCraig/Spidey/commit/6f700e6c46d459d0a5a6275dec7995391dbe5d1b))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([7c5d8de](https://www.github.com/JaCraig/Spidey/commit/7c5d8decb8398750ecfe457caf58274d61bf9819))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([268f510](https://www.github.com/JaCraig/Spidey/commit/268f5105caa78b56d72f8248457047e2f6940cc4))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([12e033c](https://www.github.com/JaCraig/Spidey/commit/12e033c807e297684f1d467479d706ad0afb98bd))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([8b0f5a4](https://www.github.com/JaCraig/Spidey/commit/8b0f5a43ce02800ac7c86e212c623dacaee43247))
+
 <a name="5.0.88"></a>
 ## [5.0.88](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.88) (2024-05-08)
 
