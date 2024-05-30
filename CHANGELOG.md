@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.91"></a>
+## [5.0.91](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.91) (2024-05-30)
+
+### Bug Fixes
+
+* bump FileCurator from 4.0.85 to 4.0.86 in the dependencies group ([5f18998](https://www.github.com/JaCraig/Spidey/commit/5f189980647b1b82d33c214d17a778c0726d0a76))
+
+### Other
+
+* --- ([779f38e](https://www.github.com/JaCraig/Spidey/commit/779f38e1f7a4b0358230531fde640d3127c03264))
+* --- ([c599e3b](https://www.github.com/JaCraig/Spidey/commit/c599e3ba3e7830a3888daab1664d5e0b794a19df))
+* Merge pull request #235 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-b7224192ad ([ecb39fb](https://www.github.com/JaCraig/Spidey/commit/ecb39fb2c6bac38ee62a3728a9abb591400c3369))
+* Merge pull request #236 from JaCraig/dependabot/nuget/dependencies-79776c15e3 ([ad9adaf](https://www.github.com/JaCraig/Spidey/commit/ad9adaf20a2ffd11e5e28f49460e9c30dac571a6))
+* Merge pull request #237 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-17bfdebd43 ([791dc68](https://www.github.com/JaCraig/Spidey/commit/791dc6809c07b9075d977562e39d249d0ff89770))
+* Merge pull request #238 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-d10d8338a5 ([e5745a8](https://www.github.com/JaCraig/Spidey/commit/e5745a81f49532aaf2ace6005b289ad1cd9775a5))
+* Merge pull request #239 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-63bf006411 ([1dd90d8](https://www.github.com/JaCraig/Spidey/commit/1dd90d8b9222d6e912cb680461557d1984988f08))
+* Merge pull request #240 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-e000669da3 ([0587c51](https://www.github.com/JaCraig/Spidey/commit/0587c519b0e212139dee1855ac6b84dec38b0668))
+* Merge pull request #241 from JaCraig/dependabot/nuget/dependencies-9d71ece656 ([8d089e7](https://www.github.com/JaCraig/Spidey/commit/8d089e75dcd39f8470ddc5fd115c4ece6596766b))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([db8b652](https://www.github.com/JaCraig/Spidey/commit/db8b6529ef9e2ecc66f543f0d475a03d6f7f6cc5))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([67c832d](https://www.github.com/JaCraig/Spidey/commit/67c832dd13b164e5b51c57e4b8bcf50cea0e5f76))
+* bump Microsoft.NET.Test.Sdk ([53f5adf](https://www.github.com/JaCraig/Spidey/commit/53f5adf1c935adb809740cdb9bdcd98414d4c187))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([28858dc](https://www.github.com/JaCraig/Spidey/commit/28858dc0abc0b062c9edf56b3489d310e1d6e87c))
+
 <a name="5.0.90"></a>
 ## [5.0.90](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.90) (2024-05-17)
 
