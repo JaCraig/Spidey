@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.93"></a>
+## [5.0.93](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.93) (2024-06-12)
+
+### Bug Fixes
+
+* bump Microsoft.IO.RecyclableMemoryStream in the dependencies group ([ee2ee6f](https://www.github.com/JaCraig/Spidey/commit/ee2ee6f88b5ece00217a9c7fc10e910d44cac19a))
+
+### Other
+
+* Merge pull request #244 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-715d3c23cd ([50765f1](https://www.github.com/JaCraig/Spidey/commit/50765f1ea38e1f5bcc80f4cb5d0732b51c15dac1))
+* Merge pull request #245 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-bb4a0e2ce6 ([fe1e071](https://www.github.com/JaCraig/Spidey/commit/fe1e07108fc6a37c892198473c468990c00955da))
+* Merge pull request #246 from JaCraig/dependabot/nuget/dependencies-4af8fd04b6 ([d1fb156](https://www.github.com/JaCraig/Spidey/commit/d1fb1567dcfe564d839af0e4cacb5afce80add99))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([04c7461](https://www.github.com/JaCraig/Spidey/commit/04c7461937e43edaed8115de8051da3bbeffd906))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([ee36a1f](https://www.github.com/JaCraig/Spidey/commit/ee36a1f4a775f598f4513edd52f84dda645d2d50))
+
 <a name="5.0.92"></a>
 ## [5.0.92](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.92) (2024-05-31)
 
