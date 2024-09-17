@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.117"></a>
+## [5.0.117](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.117) (2024-09-17)
+
+### Bug Fixes
+
+* bump FileCurator from 4.0.110 to 4.1.0 in the dependencies group ([1924c68](https://www.github.com/JaCraig/Spidey/commit/1924c687ee8ba22019c350263671a324071fc4e8))
+
+### Other
+
+* Merge pull request #305 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-fea68d101d ([8aa7721](https://www.github.com/JaCraig/Spidey/commit/8aa77213b1a2d6133007b9893c8324df80a494a3))
+* Merge pull request #306 from JaCraig/dependabot/nuget/dependencies-48c55af18b ([dc96e22](https://www.github.com/JaCraig/Spidey/commit/dc96e22edb3e7aeece68e39cc5fc1b1db28f02d2))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([951fda4](https://www.github.com/JaCraig/Spidey/commit/951fda4391615cbccff10c92ad783e5ed2b5b89b))
+
 <a name="5.0.116"></a>
 ## [5.0.116](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.116) (2024-09-10)
 
