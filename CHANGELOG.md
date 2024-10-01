@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.119"></a>
+## [5.0.119](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.119) (2024-10-01)
+
+### Bug Fixes
+
+* bump FileCurator from 4.1.1 to 4.1.2 in the dependencies group ([dd81102](https://www.github.com/JaCraig/Spidey/commit/dd81102ae44f6e7c402d33f73ca1759391c6fe14))
+
+### Other
+
+* Merge pull request #311 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-e8514b389a ([c1973f4](https://www.github.com/JaCraig/Spidey/commit/c1973f401975bdea132c89062de643d7aed1d6ab))
+* Merge pull request #312 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-fa09ffb26b ([b595835](https://www.github.com/JaCraig/Spidey/commit/b5958355825176461c3204829856aa13db312482))
+* Merge pull request #313 from JaCraig/dependabot/nuget/dependencies-82322da42a ([be86ec9](https://www.github.com/JaCraig/Spidey/commit/be86ec938ebf401080c255776521b99a0d01a788))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([d41d0ab](https://www.github.com/JaCraig/Spidey/commit/d41d0ab4396f6c78e7f62cb8b9545b418e38b38e))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([0e0f478](https://www.github.com/JaCraig/Spidey/commit/0e0f4784c3fa8771917d8ecc79d817a431d4de3d))
+* update Mecha.xUnit and xunit versions in Spidey.Tests.csproj ([c3d2e45](https://www.github.com/JaCraig/Spidey/commit/c3d2e45d0f6718976215b8b142486b2ac74674df))
+
 <a name="5.0.118"></a>
 ## [5.0.118](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.118) (2024-09-24)
 
