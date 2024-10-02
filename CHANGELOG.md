@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.120"></a>
+## [5.0.120](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.120) (2024-10-02)
+
+### Bug Fixes
+
+* bump FileCurator from 4.1.2 to 4.1.3 in the dependencies group ([ee48082](https://www.github.com/JaCraig/Spidey/commit/ee4808201f5e080b1d307daf207753c5dc79ec81))
+
+### Other
+
+* Merge pull request #314 from JaCraig/dependabot/nuget/dependencies-03ecc9d99b ([eaafd9a](https://www.github.com/JaCraig/Spidey/commit/eaafd9ae4894c1dba13f063418bc0c95793c4a65))
+
 <a name="5.0.119"></a>
 ## [5.0.119](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.119) (2024-10-01)
 
