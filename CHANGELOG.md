@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.124"></a>
+## [5.0.124](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.124) (2024-10-29)
+
+### Bug Fixes
+
+* bump versionize from 1.27.0 to 2.0.0 in the dependencies group ([34ceb0b](https://www.github.com/JaCraig/Spidey/commit/34ceb0bbccb52aecfdfc3067573863991ae3e325))
+* bump versionize from 2.0.0 to 2.1.0 in the dependencies group ([3818483](https://www.github.com/JaCraig/Spidey/commit/38184838b46efedcdde72a5b6fcd9fe1eb1addc8))
+
+### Other
+
+* Merge pull request #322 from JaCraig/dependabot/nuget/dependencies-9c36df7c76 ([69bc169](https://www.github.com/JaCraig/Spidey/commit/69bc169a70d3e6f146f14eb5f4ccc5d92bce339a))
+* Merge pull request #323 from JaCraig/dependabot/nuget/dependencies-3894128c1d ([ee9a890](https://www.github.com/JaCraig/Spidey/commit/ee9a8902dff45a65178fc2e382fd5313e757a944))
+* Merge pull request #324 from JaCraig/dependabot/github_actions/dependencies-18190d55f2 ([910260f](https://www.github.com/JaCraig/Spidey/commit/910260f27b9851c4e4f01c7ef76a045ca18f6f80))
+* bump actions/setup-dotnet in the dependencies group ([cfd45f0](https://www.github.com/JaCraig/Spidey/commit/cfd45f0d739fc31634d0bdb381332dea74f12a9e))
+* Update versionize configuration in dotnet-publish.yml ([cdb4975](https://www.github.com/JaCraig/Spidey/commit/cdb4975aa5fde69457bad6bcb688f6c7cf063cd1))
+
 <a name="5.0.123"></a>
 ## [5.0.123](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.123) (2024-10-11)
 
