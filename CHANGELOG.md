@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.130"></a>
+## [5.0.130](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.130) (2024-11-11)
+
+### Bug Fixes
+
+* bump versionize from 2.2.0 to 2.3.0 in the dependencies group ([6f01770](https://www.github.com/JaCraig/Spidey/commit/6f01770b6ce5252f4c01ad94ea2af86b0451c8c7))
+
+### Other
+
+* Merge pull request #333 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-1c844ea9e8 ([ef45d47](https://www.github.com/JaCraig/Spidey/commit/ef45d4711d7abee3b77cf9abe66d0bd1913fcb19))
+* Merge pull request #334 from JaCraig/dependabot/nuget/dependencies-ca13a1f720 ([11f9f77](https://www.github.com/JaCraig/Spidey/commit/11f9f774ea840b0d5bcbb811a6caa2d13b60db9c))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([1ed7f36](https://www.github.com/JaCraig/Spidey/commit/1ed7f36c89afad044edfb55570c4cfc5847ce080))
+
 <a name="5.0.129"></a>
 ## [5.0.129](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.129) (2024-11-06)
 
