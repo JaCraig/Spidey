@@ -76,10 +76,13 @@
 <p><a href="https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml"><img src="https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml/badge.svg" alt=".NET Publish"></a></p>
 <p>Library to help with crawling web content. Compatible with .Net Core and .Net Framework.</p>
 <h2 id="setting-up-the-library">Setting up the Library</h2>
-<p>Spidey relies on <a href="https://github.com/JaCraig/Canister">Canister</a> in order to hook itself up. In order for this to work, you must do the following at startup:</p>
+<p>Spidey needs to be added to your app's service collection in order to be wired up properly. This is done by calling the RegisterSpidey extension method on the ServiceCollection object. This is done like so:</p>
+<pre><code>new ServiceCollection().RegisterSpidey();
+</code></pre>
+<p>Or if you're using <a href="https://github.com/JaCraig/Canister">Canister</a>:</p>
 <pre><code>new ServiceCollection().AddCanisterModules();
 </code></pre>
-<p>The AddCanisterModules function is an extension method that registers it with the IoC container. When this is done, Spidey is ready to use.</p>
+<p>The RegisterSpidey function is an extension method that registers it with the IoC container. When this is done, Spidey is ready to use.</p>
 <h2 id="basic-usage">Basic Usage</h2>
 <p>Spidey really boils down to using one class called Crawler:</p>
 <pre><code>ServiceCollection.AddSingleton(new Options
@@ -121,7 +124,7 @@
 <h2 id="build-process">Build Process</h2>
 <p>In order to build the library you will require the following:</p>
 <ol>
-<li>Visual Studio 2019</li>
+<li>Visual Studio 2022</li>
 </ol>
 <p>Other than that, just clone the project and you should be able to load the solution and build without too much effort.</p>
 

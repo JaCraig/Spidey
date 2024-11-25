@@ -22,6 +22,15 @@ references:
   fullName.vb: Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey(Canister.Interfaces.ICanisterConfiguration)
   nameWithType: RegistrationExtension.RegisterSpidey(ICanisterConfiguration?)
   nameWithType.vb: RegistrationExtension.RegisterSpidey(ICanisterConfiguration)
+- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: RegisterSpidey(IServiceCollection?)
+  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html#Microsoft_Extensions_DependencyInjection_RegistrationExtension_RegisterSpidey_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: RegisterSpidey(IServiceCollection)
+  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey(Microsoft.Extensions.DependencyInjection.IServiceCollection?)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: RegistrationExtension.RegisterSpidey(IServiceCollection?)
+  nameWithType.vb: RegistrationExtension.RegisterSpidey(IServiceCollection)
 - uid: Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey*
   name: RegisterSpidey
   href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html#Microsoft_Extensions_DependencyInjection_RegistrationExtension_RegisterSpidey_

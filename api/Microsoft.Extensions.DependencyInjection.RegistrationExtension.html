@@ -89,7 +89,7 @@
 
 
   <h1 id="Microsoft_Extensions_DependencyInjection_RegistrationExtension" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtension" class="text-break">
-Class RegistrationExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Registration/Registration.cs/#L24"><i class="bi bi-code-slash"></i></a>
+Class RegistrationExtension  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Registration/Registration.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -157,7 +157,7 @@ Class RegistrationExtension  <a class="header-action link-secondary" title="View
 
   <h3 id="Microsoft_Extensions_DependencyInjection_RegistrationExtension_RegisterSpidey_Canister_Interfaces_ICanisterConfiguration_" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey(Canister.Interfaces.ICanisterConfiguration)">
   RegisterSpidey(ICanisterConfiguration?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Registration/Registration.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Registration/Registration.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Registers the library with the bootstrapper.</p>
@@ -170,15 +170,54 @@ Class RegistrationExtension  <a class="header-action link-secondary" title="View
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>bootstrapper</code> <a class="xref" href="https://github.com/JaCraig/Canister/blob/master/src/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
+    <dt><code>bootstrapper</code> <a class="xref" href="https://github.com/JaCraig/Canister/blob/master/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
     <dd><p>The bootstrapper.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://github.com/JaCraig/Canister/blob/master/src/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
+    <dt><a class="xref" href="https://github.com/JaCraig/Canister/blob/master/Canister.IoC/Interfaces/ICanisterConfiguration.cs">ICanisterConfiguration</a></dt>
     <dd><p>The bootstrapper</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Microsoft_Extensions_DependencyInjection_RegistrationExtension_RegisterSpidey_" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey*"></a>
+
+  <h3 id="Microsoft_Extensions_DependencyInjection_RegistrationExtension_RegisterSpidey_Microsoft_Extensions_DependencyInjection_IServiceCollection_" data-uid="Microsoft.Extensions.DependencyInjection.RegistrationExtension.RegisterSpidey(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+  RegisterSpidey(IServiceCollection?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Registration/Registration.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers the Spidey services with the specified service collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IServiceCollection? RegisterSpidey(this IServiceCollection? services)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>services</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd><p>The service collection to add the services to.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection">IServiceCollection</a></dt>
+    <dd><p>The updated service collection.</p>
 </dd>
   </dl>
 
@@ -196,7 +235,7 @@ Class RegistrationExtension  <a class="header-action link-secondary" title="View
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Registration/Registration.cs/#L24" class="edit-link">Edit this page</a>
+          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Registration/Registration.cs/#L28" class="edit-link">Edit this page</a>
         </div>
 
 
