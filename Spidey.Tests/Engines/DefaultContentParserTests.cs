@@ -1,4 +1,4 @@
-﻿using BigBook;
+﻿using BigBook.ExtensionMethods;
 using NSubstitute;
 using Spidey.Engines;
 using Spidey.Engines.Interfaces;
@@ -28,7 +28,7 @@ namespace Spidey.Tests.Engines
             {
                 Allow = { "http://google.com/test.html" },
             };
-            var Result = new DefaultContentParser(TempOptions, new[] { new DefaultLinkDiscoverer(TempOptions) }, new Microsoft.IO.RecyclableMemoryStreamManager()).Parse(TempData);
+            ResultFile? Result = new DefaultContentParser(TempOptions, new[] { new DefaultLinkDiscoverer(TempOptions) }, new Microsoft.IO.RecyclableMemoryStreamManager()).Parse(TempData);
 
             Assert.Equal("TEXT/HTML", Result.ContentType);
             Assert.Equal(TempData, Result.Data);

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
+using BigBook.ExtensionMethods;
 using Microsoft.Extensions.Logging;
 using Spidey.Engines.Interfaces;
 using System;
@@ -80,7 +80,7 @@ namespace Spidey.Engines
         /// <summary>
         /// The file name regex
         /// </summary>
-        private static readonly Regex FileNameRegex = new Regex(@"filename=[\""']?(?<FileName>[^\""\n\r']*)['\""\n\r]?$", RegexOptions.Compiled);
+        private static readonly Regex FileNameRegex = new(@"filename=[\""']?(?<FileName>[^\""\n\r']*)['\""\n\r]?$", RegexOptions.Compiled);
 
         /// <summary>
         /// Crawls the url.
@@ -89,16 +89,16 @@ namespace Spidey.Engines
         /// <returns>The data from the URL.</returns>
         public async Task<UrlData?> CrawlAsync(string url)
         {
-            if (Client is null || string.IsNullOrEmpty(url) || !Uri.TryCreate(url, UriKind.Absolute, out var TempUrl))
+            if (Client is null || string.IsNullOrEmpty(url) || !Uri.TryCreate(url, UriKind.Absolute, out Uri? TempUrl))
                 return null;
             Logger?.LogDebug($"Crawling {TempUrl}");
 
             try
             {
-                var Response = await Client.GetAsync(TempUrl).ConfigureAwait(false);
+                HttpResponseMessage? Response = await Client.GetAsync(TempUrl).ConfigureAwait(false);
                 if (Response is null)
                     return null;
-                string FileName = GetFileName(Response);
+                var FileName = GetFileName(Response);
                 return new UrlData(
                     await Response.Content.ReadAsByteArrayAsync().ConfigureAwait(false) ?? Array.Empty<byte>(),
                     Response.Content.Headers.ContentType.ToString(),
@@ -111,7 +111,7 @@ namespace Spidey.Engines
             catch (HttpRequestException e)
             {
                 Logger?.LogError(e, $"Error crawling {TempUrl}");
-                string FileName = url;
+                var FileName = url;
                 return new UrlData(
                     Array.Empty<byte>(),
                     "",

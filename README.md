@@ -6,11 +6,15 @@ Library to help with crawling web content. Compatible with .Net Core and .Net Fr
 
 ## Setting up the Library
 
-Spidey relies on [Canister](https://github.com/JaCraig/Canister) in order to hook itself up. In order for this to work, you must do the following at startup:
+Spidey needs to be added to your app's service collection in order to be wired up properly. This is done by calling the RegisterSpidey extension method on the ServiceCollection object. This is done like so:
 
-    new ServiceCollection().AddCanisterModules();
+    new ServiceCollection().RegisterSpidey();
 
-The AddCanisterModules function is an extension method that registers it with the IoC container. When this is done, Spidey is ready to use.
+Or if you're using [Canister](https://github.com/JaCraig/Canister):
+
+	new ServiceCollection().AddCanisterModules();
+
+The RegisterSpidey function is an extension method that registers it with the IoC container. When this is done, Spidey is ready to use.
 
 ## Basic Usage
 
@@ -63,6 +67,6 @@ The default scheduler assumes that you are only running the crawler from one loc
 
 In order to build the library you will require the following:
 
-1. Visual Studio 2019
+1. Visual Studio 2022
 
 Other than that, just clone the project and you should be able to load the solution and build without too much effort.
