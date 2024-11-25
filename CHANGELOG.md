@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.0"></a>
+## [6.0.0](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.0) (2024-11-25)
+
+### Features
+
+* Update configs, workflows, and target .NET versions ([ee1e3c8](https://www.github.com/JaCraig/Spidey/commit/ee1e3c865d45f481151d55f4c2252f2d633ca11f))
+
+### Breaking Changes
+
+* Update configs, workflows, and target .NET versions ([ee1e3c8](https://www.github.com/JaCraig/Spidey/commit/ee1e3c865d45f481151d55f4c2252f2d633ca11f))
+
+### Other
+
+* Merge pull request #338 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-956fc5c724 ([9737a23](https://www.github.com/JaCraig/Spidey/commit/9737a236ef9efb9e86a2597bb584e1df242e57e1))
+* Merge pull request #339 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-617062173c ([4a7083a](https://www.github.com/JaCraig/Spidey/commit/4a7083a166a1ac46aeb15f3db5e01aa66a8b4368))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([8799c5d](https://www.github.com/JaCraig/Spidey/commit/8799c5d4efd8fcdfee857e5e4e5d216c2a21b96f))
+* bump Microsoft.NET.Test.Sdk ([bd6bf71](https://www.github.com/JaCraig/Spidey/commit/bd6bf71f485bfc1a6fdfb8645b94d350b883c467))
+
 <a name="5.0.131"></a>
 ## [5.0.131](https://www.github.com/JaCraig/Spidey/releases/tag/v5.0.131) (2024-11-12)
 
