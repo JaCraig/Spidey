@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.1"></a>
+## [6.0.1](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.1) (2024-12-09)
+
+### Bug Fixes
+
+* bump husky from 0.7.1 to 0.7.2 in /Spidey in the dependencies group ([867ca4e](https://www.github.com/JaCraig/Spidey/commit/867ca4eb90fbd44b8cc11e6bfa860303c05678a1))
+
+### Other
+
+* Merge pull request #340 from JaCraig/dependabot/nuget/Spidey/dependencies-0eb5dce03c ([1d632e2](https://www.github.com/JaCraig/Spidey/commit/1d632e265cbfcecc715722e8650783257478cb56))
+
 <a name="6.0.0"></a>
 ## [6.0.0](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.0) (2024-11-25)
 
