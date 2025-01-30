@@ -58,7 +58,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FileCurator" Version="5.0.2" />
+    <PackageReference Include="FileCurator" Version="5.0.3" />
   </ItemGroup>
 	<Target Name="Husky" BeforeTargets="Restore;CollectPackageReferences" Condition="'$(HUSKY)' != 0">
 		<Exec Command="dotnet tool restore" StandardOutputImportance="Low" StandardErrorImportance="High" />
