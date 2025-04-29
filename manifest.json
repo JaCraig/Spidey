@@ -18,7 +18,11 @@
           "relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Microsoft.Extensions.DependencyInjection.RegistrationExtension",
+      "Summary": "<p sourcefile=\"api/Microsoft.Extensions.DependencyInjection.RegistrationExtension.yml\" sourcestartlinenumber=\"1\">Registration extension methods</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -28,7 +32,11 @@
           "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Microsoft.Extensions.DependencyInjection",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -38,7 +46,11 @@
           "relative_path": "api/Spidey.Crawler.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Crawler",
+      "Summary": "<p sourcefile=\"api/Spidey.Crawler.yml\" sourcestartlinenumber=\"1\">Crawler class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -48,7 +60,11 @@
           "relative_path": "api/Spidey.Engines.DefaultContentParser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.DefaultContentParser",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultContentParser.yml\" sourcestartlinenumber=\"1\">Default content parser</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -58,7 +74,11 @@
           "relative_path": "api/Spidey.Engines.DefaultEngine.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.DefaultEngine",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultEngine.yml\" sourcestartlinenumber=\"1\">Default engine</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -68,7 +88,11 @@
           "relative_path": "api/Spidey.Engines.DefaultLinkDiscoverer.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.DefaultLinkDiscoverer",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultLinkDiscoverer.yml\" sourcestartlinenumber=\"1\">Default link engine</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +102,11 @@
           "relative_path": "api/Spidey.Engines.DefaultPipeline.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.DefaultPipeline",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultPipeline.yml\" sourcestartlinenumber=\"1\">Default pipeline</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -88,7 +116,11 @@
           "relative_path": "api/Spidey.Engines.DefaultProcessor.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.DefaultProcessor",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultProcessor.yml\" sourcestartlinenumber=\"1\">Default processor</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -98,7 +130,11 @@
           "relative_path": "api/Spidey.Engines.DefaultScheduler.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.DefaultScheduler",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultScheduler.yml\" sourcestartlinenumber=\"1\">Default scheduler</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -108,7 +144,11 @@
           "relative_path": "api/Spidey.Engines.Interfaces.IContentParser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Interfaces.IContentParser",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Interfaces.IContentParser.yml\" sourcestartlinenumber=\"1\">Content parser interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -118,7 +158,11 @@
           "relative_path": "api/Spidey.Engines.Interfaces.IEngine.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Interfaces.IEngine",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Interfaces.IEngine.yml\" sourcestartlinenumber=\"1\">Engine interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -128,7 +172,11 @@
           "relative_path": "api/Spidey.Engines.Interfaces.ILinkDiscoverer.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Interfaces.ILinkDiscoverer",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Interfaces.ILinkDiscoverer.yml\" sourcestartlinenumber=\"1\">Link engine interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -138,7 +186,11 @@
           "relative_path": "api/Spidey.Engines.Interfaces.IPipeline.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Interfaces.IPipeline",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Interfaces.IPipeline.yml\" sourcestartlinenumber=\"1\">Pipeline interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -148,7 +200,11 @@
           "relative_path": "api/Spidey.Engines.Interfaces.IProcessor.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Interfaces.IProcessor",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Interfaces.IProcessor.yml\" sourcestartlinenumber=\"1\">Processor interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -158,7 +214,11 @@
           "relative_path": "api/Spidey.Engines.Interfaces.IScheduler.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Interfaces.IScheduler",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Interfaces.IScheduler.yml\" sourcestartlinenumber=\"1\">Schedules the individual URLs to the workers.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -168,7 +228,11 @@
           "relative_path": "api/Spidey.Engines.Interfaces.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Interfaces",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -178,7 +242,11 @@
           "relative_path": "api/Spidey.Engines.Scheduler.Worker.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Scheduler.Worker",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Scheduler.Worker.yml\" sourcestartlinenumber=\"1\">Worker class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -188,7 +256,11 @@
           "relative_path": "api/Spidey.Engines.Scheduler.WorkerPool.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Scheduler.WorkerPool",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.Scheduler.WorkerPool.yml\" sourcestartlinenumber=\"1\">Worker pool</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -198,7 +270,11 @@
           "relative_path": "api/Spidey.Engines.Scheduler.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.Scheduler",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -208,7 +284,11 @@
           "relative_path": "api/Spidey.Engines.UrlData.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines.UrlData",
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.UrlData.yml\" sourcestartlinenumber=\"1\">URL data passed back from the engine.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -218,7 +298,11 @@
           "relative_path": "api/Spidey.Engines.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Engines",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -228,7 +312,11 @@
           "relative_path": "api/Spidey.ErrorItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.ErrorItem",
+      "Summary": "<p sourcefile=\"api/Spidey.ErrorItem.yml\" sourcestartlinenumber=\"1\">Error item data holder.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -238,7 +326,11 @@
           "relative_path": "api/Spidey.Modules.SpideyModule.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Modules.SpideyModule",
+      "Summary": "<p sourcefile=\"api/Spidey.Modules.SpideyModule.yml\" sourcestartlinenumber=\"1\">Spidey module</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -248,7 +340,11 @@
           "relative_path": "api/Spidey.Modules.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Modules",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -258,7 +354,11 @@
           "relative_path": "api/Spidey.Options.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Options",
+      "Summary": "<p sourcefile=\"api/Spidey.Options.yml\" sourcestartlinenumber=\"1\">Basic options class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -268,7 +368,11 @@
           "relative_path": "api/Spidey.ResultFile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.ResultFile",
+      "Summary": "<p sourcefile=\"api/Spidey.ResultFile.yml\" sourcestartlinenumber=\"1\">Result file</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -278,7 +382,11 @@
           "relative_path": "api/Spidey.Results.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey.Results",
+      "Summary": "<p sourcefile=\"api/Spidey.Results.yml\" sourcestartlinenumber=\"1\">Results from the crawl</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -288,7 +396,11 @@
           "relative_path": "api/Spidey.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Spidey",
+      "Summary": null
     },
     {
       "type": "Conceptual",
