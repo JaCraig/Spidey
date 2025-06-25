@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.2"></a>
+## [6.0.2](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.2) (2025-06-25)
+
+### Bug Fixes
+
+* **tests:** enhance tests and add new edge case scenarios ([7c382fa](https://www.github.com/JaCraig/Spidey/commit/7c382fab2200aa2eb4abf49e80fa680bdd3f466e))
+
+### Other
+
+* Merge pull request #342 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-df420cc6ac ([56e2d61](https://www.github.com/JaCraig/Spidey/commit/56e2d6102178ec3e4d4c05a36d61c5a4e9315ee5))
+* Merge pull request #343 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-637ad84d5b ([a3c8d47](https://www.github.com/JaCraig/Spidey/commit/a3c8d47a6715260b5bcad1359df163cfd562812e))
+* Merge pull request #344 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-37a7915f86 ([2ce9c67](https://www.github.com/JaCraig/Spidey/commit/2ce9c6789338b3e618fa94ac6f988ead49316cd7))
+* Merge pull request #345 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-dac939b906 ([091b5ff](https://www.github.com/JaCraig/Spidey/commit/091b5ff657b4d802c1a2d75c40ca8975cb6a0c99))
+* Merge pull request #346 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-ed63622fe2 ([e12d928](https://www.github.com/JaCraig/Spidey/commit/e12d92812a68cf644e479f2aa0a643fe2591c571))
+* Merge pull request #347 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-a3eea154c6 ([b78bdfa](https://www.github.com/JaCraig/Spidey/commit/b78bdfa7d6f04fad7dfa95dd360e544ceb8c15ea))
+* Merge pull request #348 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-293c44675e ([a90160b](https://www.github.com/JaCraig/Spidey/commit/a90160bd2347814855c3ca60b63ecb6e88238023))
+* Merge pull request #349 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-8e84d5e7c4 ([c7bd8fe](https://www.github.com/JaCraig/Spidey/commit/c7bd8fef63d8f30bf24dc339e7ac92742dccf270))
+* Merge pull request #350 from JaCraig/dependabot/nuget/Spidey.Example/dependencies-111a81e667 ([25072d3](https://www.github.com/JaCraig/Spidey/commit/25072d3db8a236decdf98203cd8db2a90fb78a7e))
+* Merge pull request #351 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-cdc5eca79b ([45b887b](https://www.github.com/JaCraig/Spidey/commit/45b887b12042a28a5110c56818a893760a3c7a2b))
+* Merge pull request #352 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-b09a967ee8 ([53bb23f](https://www.github.com/JaCraig/Spidey/commit/53bb23fc453b473440e8328f57c9b6123a8e7c9e))
+* Merge pull request #353 from JaCraig/dependabot/nuget/Spidey.Example/dependencies-b23f8c52ef ([67cb919](https://www.github.com/JaCraig/Spidey/commit/67cb919ce12f355f2a73a783239d9c8021c8fa8c))
+* Merge pull request #354 from JaCraig/dependabot/nuget/Spidey.Example/dependencies-ab59087d95 ([a0280ee](https://www.github.com/JaCraig/Spidey/commit/a0280ee5be9256ef7a6b22f5256c40f0b4824b25))
+* bump FileCurator in /Spidey.Example in the dependencies group ([482c0d5](https://www.github.com/JaCraig/Spidey/commit/482c0d51e2d46736223d4098c35156c337559a4a))
+* bump FileCurator in /Spidey.Example in the dependencies group ([373100e](https://www.github.com/JaCraig/Spidey/commit/373100e672715e7144a59c9f5a8880f40450f6ea))
+* bump FileCurator in /Spidey.Example in the dependencies group ([f874570](https://www.github.com/JaCraig/Spidey/commit/f874570f897a452add6beecccb93eaa84a47dc2b))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([b45eaee](https://www.github.com/JaCraig/Spidey/commit/b45eaee91abc74f29ab0e91d906addffc5f35382))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([12fa1bd](https://www.github.com/JaCraig/Spidey/commit/12fa1bdd66b68c3669acb6defab87e11c24a7795))
+* bump Mecha.xUnit in /Spidey.Tests in the dependencies group ([6486dcd](https://www.github.com/JaCraig/Spidey/commit/6486dcd1f18da18a3db23f8e5cc3a085a204d75f))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([ae5ae9c](https://www.github.com/JaCraig/Spidey/commit/ae5ae9c1421933bdb6ee5549873da37d5c19dfb8))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([daa0036](https://www.github.com/JaCraig/Spidey/commit/daa003626594f47ca466a9df30aa54ab2d22de65))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([6805ac8](https://www.github.com/JaCraig/Spidey/commit/6805ac8e12c96911604bbe42ed442d513bd03452))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([fb8a387](https://www.github.com/JaCraig/Spidey/commit/fb8a38752bb3c8af04e53d3e267093182be5acb2))
+* bump the dependencies group in /Spidey.Tests with 2 updates ([4d2fc8a](https://www.github.com/JaCraig/Spidey/commit/4d2fc8a0ca196957909244a095c5330707257233))
+* bump xunit in /Spidey.Tests in the dependencies group ([369daf4](https://www.github.com/JaCraig/Spidey/commit/369daf46c753ad7acf0d7519254c6a2b3884b0b2))
+* bump xunit.runner.visualstudio ([d68b4d7](https://www.github.com/JaCraig/Spidey/commit/d68b4d740fc553aa0f8e3bcf200a962d7ee03ab7))
+
 <a name="6.0.1"></a>
 ## [6.0.1](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.1) (2024-12-09)
 

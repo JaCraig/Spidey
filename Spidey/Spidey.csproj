@@ -10,7 +10,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/JaCraig/Spidey</PackageProjectUrl>
     <PackageTags>web crawler;web;crawler</PackageTags>
-    <Version>6.0.1</Version>
+    <Version>6.0.2</Version>
     <Nullable>enable</Nullable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
