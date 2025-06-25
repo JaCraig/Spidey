@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Spidey | Spidey API Reference </title>
+      <title> Spidey | Spidey API Reference </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Spidey | Spidey API Reference ">
+      <meta name="title" content=" Spidey | Spidey API Reference ">
       
       
       <link rel="icon" href="favicon.ico">
@@ -71,62 +71,101 @@
         </div>
 
         <article data-uid="">
-<h1 id="spidey">Spidey</h1>
+<h1 id="-spidey"><img src="https://jacraig.github.io/Spidey/images/icon.png" style="height:25px" alt="Spidey Icon"> Spidey</h1>
 
-<p><a href="https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml"><img src="https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml/badge.svg" alt=".NET Publish"></a></p>
-<p>Library to help with crawling web content. Compatible with .Net Core and .Net Framework.</p>
+<p><a href="https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml"><img src="https://github.com/JaCraig/Spidey/actions/workflows/dotnet-publish.yml/badge.svg" alt=".NET Publish"></a> <a href="https://www.nuget.org/packages/Spidey/"><img src="https://img.shields.io/nuget/v/Spidey.svg" alt="NuGet"></a></p>
+<p>Spidey is a flexible and extensible .NET library for crawling web content. It is designed for .NET Core applications and provides a modular architecture, allowing you to customize or extend any part of the crawling pipeline.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Simple API for crawling websites</li>
+<li>Highly configurable via the <code>Options</code> class</li>
+<li>Dependency injection support (IoC/DI)</li>
+<li>Easily replaceable subsystems (engine, parser, scheduler, etc.)</li>
+<li>Callback-based result handling</li>
+<li>NuGet package available</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<p>Install the NuGet package:</p>
+<pre><code class="lang-powershell">dotnet add package Spidey
+</code></pre>
 <h2 id="setting-up-the-library">Setting up the Library</h2>
-<p>Spidey needs to be added to your app's service collection in order to be wired up properly. This is done by calling the RegisterSpidey extension method on the ServiceCollection object. This is done like so:</p>
-<pre><code>new ServiceCollection().RegisterSpidey();
+<p>Register Spidey in your app's service collection using the <code>RegisterSpidey</code> extension method:</p>
+<pre><code class="lang-csharp">using Microsoft.Extensions.DependencyInjection;
+using Spidey;
+
+var services = new ServiceCollection();
+services.RegisterSpidey();
+
+// Optionally, register your Options configuration
+services.AddSingleton(new Options
+{
+    ItemFound = result =&gt; Console.WriteLine($&quot;Found: {result.Url}&quot;),
+    Allow = new List&lt;string&gt; { &quot;http://mywebsite&quot;, &quot;http://mywebsite2&quot; },
+    FollowOnly = new List&lt;string&gt; { /* regex patterns */ },
+    Ignore = new List&lt;string&gt; { /* regex patterns */ },
+    StartLocations = new List&lt;string&gt; { &quot;http://mywebsite&quot;, &quot;http://mywebsite2&quot; },
+    UrlReplacements = new Dictionary&lt;string, string&gt; { /* { &quot;old&quot;, &quot;new&quot; } */ },
+    // Other options as needed
+});
+
+var provider = services.BuildServiceProvider();
+var crawler = provider.GetRequiredService&lt;Crawler&gt;();
 </code></pre>
-<p>Or if you're using <a href="https://github.com/JaCraig/Canister">Canister</a>:</p>
-<pre><code>new ServiceCollection().AddCanisterModules();
+<p>Alternatively, you can instantiate <code>Crawler</code> and <code>Options</code> directly without DI:</p>
+<pre><code class="lang-csharp">var options = new Options
+{
+    ItemFound = result =&gt; Console.WriteLine($&quot;Found: {result.Url}&quot;),
+    // ...other options
+};
+var crawler = new Crawler(options);
 </code></pre>
-<p>The RegisterSpidey function is an extension method that registers it with the IoC container. When this is done, Spidey is ready to use.</p>
+<h2 id="options-configuration">Options Configuration</h2>
+<p>The <code>Options</code> class configures the crawler's behavior. Key properties include:</p>
+<ul>
+<li><code>ItemFound</code> (<code>Action&lt;ResultFile&gt;</code>): Callback invoked when a new page is discovered.</li>
+<li><code>Allow</code> (<code>List&lt;string&gt;</code>): Regex patterns for URLs allowed to be crawled.</li>
+<li><code>FollowOnly</code> (<code>List&lt;string&gt;</code>): Regex patterns for pages whose links should be followed.</li>
+<li><code>Ignore</code> (<code>List&lt;string&gt;</code>): Regex patterns for URLs to ignore.</li>
+<li><code>StartLocations</code> (<code>List&lt;string&gt;</code>): Initial URLs to start crawling from.</li>
+<li><code>UrlReplacements</code> (<code>Dictionary&lt;string, string&gt;</code>): URL replacements during crawling.</li>
+<li><code>NetworkCredentials</code> (<code>NetworkCredential</code>): Optional credentials for authentication.</li>
+<li><code>UseDefaultCredentials</code> (<code>bool</code>): Use default system credentials.</li>
+<li><code>Proxy</code> (<code>IWebProxy</code>): Optional proxy settings.</li>
+</ul>
+<p>Example callback method:</p>
+<pre><code class="lang-csharp">void OnItemFound(ResultFile result)
+{
+    Console.WriteLine($&quot;Discovered: {result.Url} (Status: {result.StatusCode})&quot;);
+    // Additional processing...
+}
+</code></pre>
 <h2 id="basic-usage">Basic Usage</h2>
-<p>Spidey really boils down to using one class called Crawler:</p>
-<pre><code>ServiceCollection.AddSingleton(new Options
-			{
-			    ItemFound = FoundFile=&gt;{}                                            //The callback method used when a new page is discovered.
-			    Allow = new List&lt;string&gt; { &quot;http://mywebsite&quot;, &quot;http://mywebsite2&quot; },    //Regexes of what sites/pages are allowed to be crawled.
-			    FollowOnly = new List&lt;string&gt; { &quot;...&quot; },                                 //Regexes of pages to only follow links that are found on them.
-			    Ignore = new List&lt;string&gt; { &quot;...&quot; },                                     //Regexes that the system will ignore when they are encountered.
-			    StartLocations = new List&lt;string&gt; { &quot;http://mywebsite&quot;, &quot;http://mywebsite2&quot; },    //Starting URLs for the crawler.
-			    UrlReplacements = new Dictionary&lt;string,string&gt; {...}                    //When the system hits one of the keys in the dictionary, it will replace it with the value.
-			});
-			
+<p>Once configured, start the crawl process:</p>
+<pre><code class="lang-csharp">crawler.StartCrawl();
 </code></pre>
-<p>Note that it is recommended that you actually register the Options object in your ServiceCollection and resolve the Crawler object from the service provider but it is not required. You can simply new up an instance of Crawler if you want. Anyway, the Options class has a number of properties, some of which are not displayed above such as NetworkCredentials, UseDefaultCredentials, and Proxy. The callback method is what will be called by the system once a link's info has been received and looks like this:</p>
-<pre><code>void CallbackMethod(ResultFile obj) { ... }
-</code></pre>
-<p>The library will handle parsing of links found within the page, downloading the content, etc. for the most part. At this point all you have to do is call the StartCrawl method:</p>
-<pre><code>MyCrawler.StartCrawl();
-</code></pre>
+<p>The library will handle link discovery, content downloading, and result parsing. Your callback will be invoked for each discovered item.</p>
 <h2 id="customization">Customization</h2>
-<p>Note that it's possible to customize the crawler's various parts. The system is divided into the following sections:</p>
+<p>Spidey is built with extensibility in mind. The system is divided into the following subsystems, each replaceable via DI:</p>
 <ol>
-<li>Content Parser (IContentParser) - This parses the resulting data and converts it to the ResultFile object.</li>
-<li>Engine (IEngine) - This downloads the content from the server.</li>
-<li>Link Discoverer (ILinkDiscoverer) - Takes the content from the engine and looks for links to other resources.</li>
-<li>Processor (IProcessor) - Takes the parsed content and hands it off to your code. The default one simply calls the method provided in the options.</li>
-<li>Scheduler (IScheduler) - Handles handing out work to the various workers.</li>
-<li>Pipeline (IPipeline) - Manages the various parts of the process by feeding the content to the next bit of the process.</li>
+<li><strong>Content Parser (<code>IContentParser</code>)</strong> – Parses downloaded data into <code>ResultFile</code> objects.</li>
+<li><strong>Engine (<code>IEngine</code>)</strong> – Handles HTTP requests and content downloading.</li>
+<li><strong>Link Discoverer (<code>ILinkDiscoverer</code>)</strong> – Extracts links from content.</li>
+<li><strong>Processor (<code>IProcessor</code>)</strong> – Processes parsed content (default: invokes your callback).</li>
+<li><strong>Scheduler (<code>IScheduler</code>)</strong> – Manages work distribution.</li>
+<li><strong>Pipeline (<code>IPipeline</code>)</strong> – Orchestrates the crawling process.</li>
 </ol>
-<p>These subsystems all implement interfaces found in the Spidey.Engines.Interfaces namespace. In order to replace the default in any of these systems all you need to do is create a class that implements the interface that you want to replace. After that the system will automatically pick it up if resolved from the service provider. If you, instead, new up a Crawler object then you will need to compose the Pipeline object.</p>
-<h2 id="installation">Installation</h2>
-<p>The library is available via Nuget with the package name &quot;Spidey&quot;. To install it run the following command in the Package Manager Console:</p>
-<p>Install-Package Spidey</p>
+<p>To customize, implement the relevant interface from <code>Spidey.Engines.Interfaces</code> and register your implementation in the service provider. Note that if you call RegisterSpidey(), the registration is handled for you automatically. If you instantiate <code>Crawler</code> directly, you must compose the pipeline manually.</p>
 <h2 id="faq">FAQ</h2>
-<ol>
-<li>Is it possible to run the crawler using multiple nodes?</li>
-</ol>
-<p>The default scheduler assumes that you are only running the crawler from one location and doesn't talk to other instances of the application. But it is possible to replace the scheduler with one that will talk via some mechanism like a database to coordinate work between instances and is recommended for more complex setups.</p>
+<p><strong>Q: Can I run the crawler on multiple nodes?</strong></p>
+<p>A: The default scheduler is single-node only. For distributed crawling, implement a custom scheduler (e.g., using a database or message queue) to coordinate work between instances.</p>
 <h2 id="build-process">Build Process</h2>
-<p>In order to build the library you will require the following:</p>
-<ol>
+<p>Requirements:</p>
+<ul>
 <li>Visual Studio 2022</li>
-</ol>
-<p>Other than that, just clone the project and you should be able to load the solution and build without too much effort.</p>
+</ul>
+<p>Clone the project and open the solution (<code>Spidey.sln</code>) in Visual Studio to build.</p>
+<h2 id="license">License</h2>
+<p>See <a href="../LICENSE">LICENSE</a> for details.</p>
 
 </article>
 
