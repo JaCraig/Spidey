@@ -607,13 +607,13 @@ references:
   fullName: Spidey.Engines.Scheduler.Worker
   nameWithType: Worker
 - uid: Spidey.Engines.Scheduler.Worker.#ctor(Spidey.Engines.Interfaces.IEngine)
-  name: Worker(IEngine)
+  name: Worker(IEngine?)
   href: api/Spidey.Engines.Scheduler.Worker.html#Spidey_Engines_Scheduler_Worker__ctor_Spidey_Engines_Interfaces_IEngine_
   commentId: M:Spidey.Engines.Scheduler.Worker.#ctor(Spidey.Engines.Interfaces.IEngine)
   name.vb: New(IEngine)
-  fullName: Spidey.Engines.Scheduler.Worker.Worker(Spidey.Engines.Interfaces.IEngine)
+  fullName: Spidey.Engines.Scheduler.Worker.Worker(Spidey.Engines.Interfaces.IEngine?)
   fullName.vb: Spidey.Engines.Scheduler.Worker.New(Spidey.Engines.Interfaces.IEngine)
-  nameWithType: Worker.Worker(IEngine)
+  nameWithType: Worker.Worker(IEngine?)
   nameWithType.vb: Worker.New(IEngine)
 - uid: Spidey.Engines.Scheduler.Worker.#ctor*
   name: Worker
@@ -687,13 +687,13 @@ references:
   fullName: Spidey.Engines.Scheduler.WorkerPool
   nameWithType: WorkerPool
 - uid: Spidey.Engines.Scheduler.WorkerPool.#ctor(System.Int32,Spidey.Engines.Interfaces.IEngine,System.Threading.CancellationToken)
-  name: WorkerPool(int, IEngine, CancellationToken)
+  name: WorkerPool(int, IEngine?, CancellationToken)
   href: api/Spidey.Engines.Scheduler.WorkerPool.html#Spidey_Engines_Scheduler_WorkerPool__ctor_System_Int32_Spidey_Engines_Interfaces_IEngine_System_Threading_CancellationToken_
   commentId: M:Spidey.Engines.Scheduler.WorkerPool.#ctor(System.Int32,Spidey.Engines.Interfaces.IEngine,System.Threading.CancellationToken)
   name.vb: New(Integer, IEngine, CancellationToken)
-  fullName: Spidey.Engines.Scheduler.WorkerPool.WorkerPool(int, Spidey.Engines.Interfaces.IEngine, System.Threading.CancellationToken)
+  fullName: Spidey.Engines.Scheduler.WorkerPool.WorkerPool(int, Spidey.Engines.Interfaces.IEngine?, System.Threading.CancellationToken)
   fullName.vb: Spidey.Engines.Scheduler.WorkerPool.New(Integer, Spidey.Engines.Interfaces.IEngine, System.Threading.CancellationToken)
-  nameWithType: WorkerPool.WorkerPool(int, IEngine, CancellationToken)
+  nameWithType: WorkerPool.WorkerPool(int, IEngine?, CancellationToken)
   nameWithType.vb: WorkerPool.New(Integer, IEngine, CancellationToken)
 - uid: Spidey.Engines.Scheduler.WorkerPool.#ctor*
   name: WorkerPool
