@@ -13,7 +13,7 @@ namespace Spidey.Tests
             TestObject = new Crawler();
         }
 
-        private IServiceProvider ServiceProvider
+        private IServiceProvider? ServiceProvider
         {
             get
             {
@@ -29,21 +29,23 @@ namespace Spidey.Tests
             }
         }
 
-        private IServiceProvider _Services;
+        private IServiceProvider? _Services;
         private object LockObj = new();
 
         [Fact]
         public async Task Crawl()
         {
-            ResultFile Result = null;
+            ResultFile? Result = null;
             var Options = new Options
             {
                 Allow = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },
                 StartLocations = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },
-                ItemFound = x => Result = x
+                ItemFound = x => Result = x,
             };
             var Crawler = new Crawler(Options);
-            var Results = await Crawler.StartCrawlAsync().ConfigureAwait(false);
+            var Results = await Crawler.StartCrawlAsync();
+            Assert.NotNull(Results);
+            Assert.NotNull(Result);
             Assert.Equal(88145, Result.Data.Content.Length);
             Assert.Equal("text/javascript; charset=UTF-8", Result.ContentType);
             Assert.Equal("jquery.min.js", Result.FileName);
@@ -55,16 +57,19 @@ namespace Spidey.Tests
         [Fact]
         public async Task CrawlWithResolve()
         {
-            ResultFile Result = null;
-            var Services = new ServiceCollection().AddCanisterModules().AddTransient(_ =>
+            ResultFile? Result = null;
+            var Services = new ServiceCollection().AddCanisterModules()?.AddTransient(_ =>
                 new Options
                 {
                     Allow = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },
                     StartLocations = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },
                     ItemFound = x => Result = x
                 }).BuildServiceProvider();
-            var Crawler = Services.GetService<Crawler>();
-            var Results = (await Crawler.StartCrawlAsync().ConfigureAwait(false));
+            var Crawler = Services?.GetService<Crawler>();
+            Assert.NotNull(Crawler);
+            var Results = await Crawler.StartCrawlAsync();
+            Assert.NotNull(Results);
+            Assert.NotNull(Result);
             Assert.Equal(88145, Result.Data.Content.Length);
             Assert.Equal("text/javascript; charset=UTF-8", Result.ContentType);
             Assert.Equal("jquery.min.js", Result.FileName);
@@ -76,7 +81,7 @@ namespace Spidey.Tests
         [Fact]
         public void Registration()
         {
-            var Result = ServiceProvider.GetService<Crawler>();
+            var Result = ServiceProvider?.GetService<Crawler>();
             Assert.NotNull(Result);
         }
     }

@@ -18,12 +18,12 @@ namespace Spidey.Engines.Scheduler
         /// <param name="workerCount">The worker count.</param>
         /// <param name="engine">The engine.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        public WorkerPool(int workerCount, IEngine engine, CancellationToken cancellationToken)
+        public WorkerPool(int workerCount, IEngine? engine, CancellationToken cancellationToken)
         {
             Workers = new Worker[workerCount];
-            for (int x = 0; x < workerCount; ++x)
+            for (int X = 0; X < workerCount; ++X)
             {
-                Workers[x] = new Worker(engine);
+                Workers[X] = new Worker(engine);
             }
             CancellationToken = cancellationToken;
         }

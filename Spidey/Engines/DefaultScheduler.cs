@@ -24,7 +24,7 @@ namespace Spidey.Engines
         {
             options = (options ?? Options.Default).Setup();
             Logger = logger;
-            var Engine = engines.FirstOrDefault(x => !(x is DefaultEngine)) ?? engines.FirstOrDefault(x => x is DefaultEngine);
+            var Engine = engines.FirstOrDefault(x => x is not DefaultEngine) ?? engines.FirstOrDefault(x => x is DefaultEngine);
             WorkerPool = new WorkerPool(options.NumberWorkers, Engine, new CancellationToken());
         }
 

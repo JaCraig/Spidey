@@ -29,7 +29,7 @@ namespace Spidey.Engines
     /// Default engine
     /// </summary>
     /// <seealso cref="IEngine"/>
-    public class DefaultEngine : IEngine
+    public partial class DefaultEngine : IEngine
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DefaultEngine"/> class.
@@ -80,7 +80,7 @@ namespace Spidey.Engines
         /// <summary>
         /// The file name regex
         /// </summary>
-        private static readonly Regex FileNameRegex = new(@"filename=[\""']?(?<FileName>[^\""\n\r']*)['\""\n\r]?$", RegexOptions.Compiled);
+        private static readonly Regex _FileNameRegex = GenerateFileNameRegex();
 
         /// <summary>
         /// Crawls the url.
@@ -91,7 +91,7 @@ namespace Spidey.Engines
         {
             if (Client is null || string.IsNullOrEmpty(url) || !Uri.TryCreate(url, UriKind.Absolute, out Uri? TempUrl))
                 return null;
-            Logger?.LogDebug($"Crawling {TempUrl}");
+            Logger?.LogDebug("Crawling {url}", TempUrl);
 
             try
             {
@@ -101,16 +101,16 @@ namespace Spidey.Engines
                 var FileName = GetFileName(Response);
                 return new UrlData(
                     await Response.Content.ReadAsByteArrayAsync().ConfigureAwait(false) ?? Array.Empty<byte>(),
-                    Response.Content.Headers.ContentType.ToString(),
+                    Response.Content.Headers.ContentType?.ToString() ?? "",
                     FileName,
-                    Response.Headers.Location?.ToString() ?? Response.RequestMessage.RequestUri?.ToString() ?? "",
+                    Response.Headers.Location?.ToString() ?? Response.RequestMessage?.RequestUri?.ToString() ?? "",
                     (int)Response.StatusCode,
                     url
                 );
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException E)
             {
-                Logger?.LogError(e, $"Error crawling {TempUrl}");
+                Logger?.LogError(E, "Error crawling {url}", TempUrl);
                 var FileName = url;
                 return new UrlData(
                     Array.Empty<byte>(),
@@ -136,30 +136,33 @@ namespace Spidey.Engines
         /// <summary>
         /// Gets the name of the file.
         /// </summary>
-        /// <param name="Response">The response.</param>
+        /// <param name="response">The response.</param>
         /// <returns>The file name.</returns>
-        private static string GetFileName(HttpResponseMessage? Response)
+        private static string GetFileName(HttpResponseMessage? response)
         {
-            if (Response is null)
+            if (response is null)
                 return "";
             var FileName = "";
-            if (!string.IsNullOrEmpty(Response.Content.Headers.ContentDisposition?.FileName))
+            if (!string.IsNullOrEmpty(response.Content.Headers.ContentDisposition?.FileName))
             {
-                FileName = Response.Content.Headers.ContentDisposition?.FileName ?? "";
+                FileName = response.Content.Headers.ContentDisposition?.FileName ?? "";
             }
             if (!string.IsNullOrEmpty(FileName))
             {
-                FileName = FileNameRegex.Match(FileName).Groups["FileName"].Value;
+                FileName = _FileNameRegex.Match(FileName).Groups["FileName"].Value;
             }
             if (string.IsNullOrEmpty(FileName))
             {
-                var ResultURI = Response.Headers.Location?.ToString() ?? Response.RequestMessage.RequestUri?.ToString() ?? "";
-                FileName = ResultURI.Right(ResultURI.Length - ResultURI.LastIndexOf("/", StringComparison.Ordinal) - 1);
+                var ResultURI = response.Headers.Location?.ToString() ?? response.RequestMessage?.RequestUri?.ToString() ?? "";
+                FileName = ResultURI.Right(ResultURI.Length - ResultURI.LastIndexOf('/') - 1);
                 if (FileName.Contains("?"))
-                    FileName = FileName.Left(FileName.IndexOf("?", StringComparison.Ordinal));
+                    FileName = FileName.Left(FileName.IndexOf('?'));
             }
 
             return FileName;
         }
+
+        [GeneratedRegex(@"filename=[\""']?(?<FileName>[^\""\n\r']*)['\""\n\r]?$", RegexOptions.Compiled)]
+        private static partial Regex GenerateFileNameRegex();
     }
 }

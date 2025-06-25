@@ -40,7 +40,7 @@ namespace Spidey.Engines
         public DefaultContentParser(Options? options, IEnumerable<ILinkDiscoverer> linkDiscoverers, RecyclableMemoryStreamManager recyclableMemoryStreamManager, ILogger<DefaultContentParser>? logger = null)
         {
             Options = (options ?? Options.Default).Setup();
-            LinkDiscoverer = linkDiscoverers.FirstOrDefault(x => !(x is DefaultLinkDiscoverer)) ?? linkDiscoverers.FirstOrDefault(x => x is DefaultLinkDiscoverer);
+            LinkDiscoverer = linkDiscoverers.FirstOrDefault(x => x is not DefaultLinkDiscoverer) ?? linkDiscoverers.FirstOrDefault(x => x is DefaultLinkDiscoverer);
             Logger = logger;
             RecyclableMemoryStreamManager = recyclableMemoryStreamManager;
         }

@@ -20,7 +20,8 @@ namespace Spidey.Tests.Engines
             {
                 Allow = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },
             });
-            var Result = await TestObject.CrawlAsync("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js").ConfigureAwait(false);
+            var Result = await TestObject.CrawlAsync("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js");
+            Assert.NotNull(Result);
             Assert.Equal(88145, Result.Content.Length);
             Assert.Equal("text/javascript; charset=UTF-8", Result.ContentType);
             Assert.Equal("jquery.min.js", Result.FileName);
@@ -37,7 +38,8 @@ namespace Spidey.Tests.Engines
             {
                 Allow = { "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" },
             });
-            var Result = await TestObject.CrawlAsync("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js?test").ConfigureAwait(false);
+            var Result = await TestObject.CrawlAsync("https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js?test");
+            Assert.NotNull(Result);
             Assert.Equal(88145, Result.Content.Length);
             Assert.Equal("text/javascript; charset=UTF-8", Result.ContentType);
             Assert.Equal("jquery.min.js", Result.FileName);

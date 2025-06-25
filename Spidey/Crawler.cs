@@ -36,7 +36,7 @@ namespace Spidey
         /// <param name="options">The options.</param>
         public Crawler(IEnumerable<IPipeline> pipelines, Options? options = null)
         {
-            Pipeline = pipelines.FirstOrDefault(x => !(x is DefaultPipeline)) ?? pipelines.FirstOrDefault(x => x is DefaultPipeline);
+            Pipeline = pipelines.FirstOrDefault(x => x is not DefaultPipeline) ?? pipelines.FirstOrDefault(x => x is DefaultPipeline);
         }
 
         /// <summary>
@@ -44,12 +44,12 @@ namespace Spidey
         /// </summary>
         /// <param name="options">The options.</param>
         public Crawler(Options? options = null)
-            : this(new[]{new DefaultPipeline(
-                new[] { new DefaultScheduler(options, new[] { new DefaultEngine(options) }) },
-                new[] { new DefaultProcessor(options) },
-                new[] { new DefaultContentParser(options, new[] { new DefaultLinkDiscoverer(options) }, new Microsoft.IO.RecyclableMemoryStreamManager()) },
-                new[] { new DefaultLinkDiscoverer(options) },
-                options) })
+            : this([new DefaultPipeline(
+                [new DefaultScheduler(options, [new DefaultEngine(options)])],
+                [new DefaultProcessor(options)],
+                [new DefaultContentParser(options, [new DefaultLinkDiscoverer(options)], new Microsoft.IO.RecyclableMemoryStreamManager())],
+                [new DefaultLinkDiscoverer(options)],
+                options) ])
         {
         }
 

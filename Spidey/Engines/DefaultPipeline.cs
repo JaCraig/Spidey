@@ -27,10 +27,10 @@ namespace Spidey.Engines
         /// <param name="logger">The logger.</param>
         public DefaultPipeline(IEnumerable<IScheduler> schedulers, IEnumerable<IProcessor> processors, IEnumerable<IContentParser> parsers, IEnumerable<ILinkDiscoverer> linkDiscoverers, Options? options, ILogger<DefaultPipeline>? logger = null)
         {
-            Scheduler = schedulers.FirstOrDefault(x => !(x is DefaultScheduler)) ?? schedulers.FirstOrDefault(x => x is DefaultScheduler);
-            Processor = processors.FirstOrDefault(x => !(x is DefaultProcessor)) ?? processors.FirstOrDefault(x => x is DefaultProcessor);
-            Parser = parsers.FirstOrDefault(x => !(x is DefaultContentParser)) ?? parsers.FirstOrDefault(x => x is DefaultContentParser);
-            LinkDiscoverer = linkDiscoverers.FirstOrDefault(x => !(x is DefaultLinkDiscoverer)) ?? linkDiscoverers.FirstOrDefault(x => x is DefaultLinkDiscoverer);
+            Scheduler = schedulers.FirstOrDefault(x => x is not DefaultScheduler) ?? schedulers.FirstOrDefault(x => x is DefaultScheduler);
+            Processor = processors.FirstOrDefault(x => x is not DefaultProcessor) ?? processors.FirstOrDefault(x => x is DefaultProcessor);
+            Parser = parsers.FirstOrDefault(x => x is not DefaultContentParser) ?? parsers.FirstOrDefault(x => x is DefaultContentParser);
+            LinkDiscoverer = linkDiscoverers.FirstOrDefault(x => x is not DefaultLinkDiscoverer) ?? linkDiscoverers.FirstOrDefault(x => x is DefaultLinkDiscoverer);
             Logger = logger;
             Options = (options ?? Options.Default).Setup();
         }

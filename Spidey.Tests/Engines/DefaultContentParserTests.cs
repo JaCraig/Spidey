@@ -28,8 +28,9 @@ namespace Spidey.Tests.Engines
             {
                 Allow = { "http://google.com/test.html" },
             };
-            ResultFile? Result = new DefaultContentParser(TempOptions, new[] { new DefaultLinkDiscoverer(TempOptions) }, new Microsoft.IO.RecyclableMemoryStreamManager()).Parse(TempData);
+            ResultFile? Result = new DefaultContentParser(TempOptions, [new DefaultLinkDiscoverer(TempOptions)], new Microsoft.IO.RecyclableMemoryStreamManager()).Parse(TempData);
 
+            Assert.NotNull(Result);
             Assert.Equal("TEXT/HTML", Result.ContentType);
             Assert.Equal(TempData, Result.Data);
             Assert.Equal("This is a test", Result.FileContent.Content);

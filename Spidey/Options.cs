@@ -156,8 +156,8 @@ namespace Spidey
             if (AllowCompiled == null)
                 Setup();
             return (AllowCompiled.Any(x => x.IsMatch(link))
-                || FollowOnlyCompiled.Any(x => x.IsMatch(link)))
-                && !IgnoreCompiled.Any(x => x.IsMatch(link));
+                    || FollowOnlyCompiled.Any(x => x.IsMatch(link)))
+                    && !IgnoreCompiled.Any(x => x.IsMatch(link));
         }
 
         /// <summary>

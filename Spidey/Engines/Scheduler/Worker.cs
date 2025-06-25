@@ -14,7 +14,7 @@ namespace Spidey.Engines.Scheduler
         /// Initializes a new instance of the <see cref="Worker"/> class.
         /// </summary>
         /// <param name="engine">The engine.</param>
-        public Worker(IEngine engine)
+        public Worker(IEngine? engine)
         {
             Engine = engine;
             CurrentTask = Task.CompletedTask;
