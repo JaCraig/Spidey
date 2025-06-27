@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.3"></a>
+## [6.0.3](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.3) (2025-06-27)
+
+### Bug Fixes
+
+* **dependabot:** correct formatting of patterns in configuration ([d292579](https://www.github.com/JaCraig/Spidey/commit/d292579081dbec931d489801b3d3b404003744ac))
+
+### Other
+
+* **README:** update documentation for clarity and completeness ([65b69c6](https://www.github.com/JaCraig/Spidey/commit/65b69c6153b870c4f9f5ad85b271cb9a7f688cb3))
+
 <a name="6.0.2"></a>
 ## [6.0.2](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.2) (2025-06-25)
 
