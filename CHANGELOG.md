@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.4"></a>
+## [6.0.4](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.4) (2025-07-16)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([44321aa](https://www.github.com/JaCraig/Spidey/commit/44321aa7de49726d490010865d206fbf5de00c5f))
+
+### Other
+
+* Merge pull request #355 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-f5ef2f2cd0 ([c23296c](https://www.github.com/JaCraig/Spidey/commit/c23296c6db78f14f3eb9dd4b2cc96fc9fd38c834))
+* Merge pull request #356 from JaCraig/dependabot/nuget/Spidey/dependencies-5f795a9e2b ([52ca7e3](https://www.github.com/JaCraig/Spidey/commit/52ca7e3061996285cdbfd34b87c44fe966bbde91))
+* Bump the dependencies group with 1 update ([8eb67de](https://www.github.com/JaCraig/Spidey/commit/8eb67de1e2cdd6ec3001748dc252f6b0a82c2c97))
+
 <a name="6.0.3"></a>
 ## [6.0.3](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.3) (2025-06-27)
 
