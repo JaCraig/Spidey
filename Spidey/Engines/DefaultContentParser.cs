@@ -86,7 +86,7 @@ namespace Spidey.Engines
                 data,
                 Stream.Parse(data.ContentType),
                 data.FileName,
-                LinkDiscoverer.FixUrl(CurrentDomain, data.FinalLocation, Options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()),
+                LinkDiscoverer.FixUrl(CurrentDomain, data.FinalLocation, data.URL, Options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()),
                 data.URL,
                 data.StatusCode);
         }

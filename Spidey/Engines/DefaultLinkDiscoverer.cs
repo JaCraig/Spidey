@@ -68,9 +68,10 @@ namespace Spidey.Engines
                 .DocumentNode
                 .SelectNodes("//a[@href]")
                 ?.SelectMany(x => (x?.Attributes))
+                .Where(x => string.Equals(x?.Name, "href", StringComparison.OrdinalIgnoreCase) || (x?.Value.StartsWith("http") ?? false))
                 .Select(x => (x?.Value))
                 .Where(x => !string.IsNullOrEmpty(x))
-                .Select(x => FixUrl(currentDomain, x, Options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()))
+                .Select(x => FixUrl(currentDomain, x, url, Options.UrlReplacementsCompiled ?? new Dictionary<Regex, string>()))
                 .ToArray()
                 ?? Array.Empty<string>();
         }
@@ -80,14 +81,17 @@ namespace Spidey.Engines
         /// </summary>
         /// <param name="currentDomain">The current domain.</param>
         /// <param name="link">The link.</param>
+        /// <param name="url">The URL.</param>
         /// <param name="replacements">The replacements.</param>
         /// <returns>The fixed URL</returns>
-        public string FixUrl(string currentDomain, string? link, Dictionary<Regex, string> replacements)
+        public string FixUrl(string currentDomain, string? link, string url, Dictionary<Regex, string> replacements)
         {
             if (string.IsNullOrEmpty(link))
                 return "";
             replacements ??= new Dictionary<Regex, string>();
             link = link.Replace("\\", "/").Trim();
+            if (link.StartsWith("#") || link.StartsWith("?"))
+                link = url.Split('#')[0].Split('?')[0] + link;
             if (link.StartsWith("/", StringComparison.OrdinalIgnoreCase))
                 link = currentDomain + link;
             else if (!SchemeRegex.IsMatch(link))

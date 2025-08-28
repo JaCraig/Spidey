@@ -26,7 +26,7 @@ namespace Spidey.Tests.Engines
         [Fact]
         public void FixUrl()
         {
-            var Result = new DefaultLinkDiscoverer(Options.Default).FixUrl("http://google.com", "/something-something/dark-side/", new Dictionary<Regex, string>
+            var Result = new DefaultLinkDiscoverer(Options.Default).FixUrl("http://google.com", "/something-something/dark-side/", "http://google.com", new Dictionary<Regex, string>
             {
                 [new Regex("something")] = "blah"
             });

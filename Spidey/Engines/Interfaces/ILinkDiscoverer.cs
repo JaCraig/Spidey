@@ -23,9 +23,10 @@ namespace Spidey.Engines.Interfaces
         /// </summary>
         /// <param name="currentDomain">The current domain.</param>
         /// <param name="link">The link.</param>
+        /// <param name="currentUrl">The current URL.</param>
         /// <param name="replacements">The replacements.</param>
         /// <returns>Fixed URL</returns>
-        string FixUrl(string currentDomain, string link, Dictionary<Regex, string> replacements);
+        string FixUrl(string currentDomain, string link, string currentUrl, Dictionary<Regex, string> replacements);
 
         /// <summary>
         /// Gets the domain.
