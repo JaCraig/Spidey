@@ -255,15 +255,15 @@ references:
   isSpec: "True"
   fullName: Spidey.Engines.DefaultLinkDiscoverer.DiscoverUrls
   nameWithType: DefaultLinkDiscoverer.DiscoverUrls
-- uid: Spidey.Engines.DefaultLinkDiscoverer.FixUrl(System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
-  name: FixUrl(string, string?, Dictionary<Regex, string>)
-  href: api/Spidey.Engines.DefaultLinkDiscoverer.html#Spidey_Engines_DefaultLinkDiscoverer_FixUrl_System_String_System_String_System_Collections_Generic_Dictionary_System_Text_RegularExpressions_Regex_System_String__
-  commentId: M:Spidey.Engines.DefaultLinkDiscoverer.FixUrl(System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
-  name.vb: FixUrl(String, String, Dictionary(Of Regex, String))
-  fullName: Spidey.Engines.DefaultLinkDiscoverer.FixUrl(string, string?, System.Collections.Generic.Dictionary<System.Text.RegularExpressions.Regex, string>)
-  fullName.vb: Spidey.Engines.DefaultLinkDiscoverer.FixUrl(String, String, System.Collections.Generic.Dictionary(Of System.Text.RegularExpressions.Regex, String))
-  nameWithType: DefaultLinkDiscoverer.FixUrl(string, string?, Dictionary<Regex, string>)
-  nameWithType.vb: DefaultLinkDiscoverer.FixUrl(String, String, Dictionary(Of Regex, String))
+- uid: Spidey.Engines.DefaultLinkDiscoverer.FixUrl(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
+  name: FixUrl(string, string?, string, Dictionary<Regex, string>)
+  href: api/Spidey.Engines.DefaultLinkDiscoverer.html#Spidey_Engines_DefaultLinkDiscoverer_FixUrl_System_String_System_String_System_String_System_Collections_Generic_Dictionary_System_Text_RegularExpressions_Regex_System_String__
+  commentId: M:Spidey.Engines.DefaultLinkDiscoverer.FixUrl(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
+  name.vb: FixUrl(String, String, String, Dictionary(Of Regex, String))
+  fullName: Spidey.Engines.DefaultLinkDiscoverer.FixUrl(string, string?, string, System.Collections.Generic.Dictionary<System.Text.RegularExpressions.Regex, string>)
+  fullName.vb: Spidey.Engines.DefaultLinkDiscoverer.FixUrl(String, String, String, System.Collections.Generic.Dictionary(Of System.Text.RegularExpressions.Regex, String))
+  nameWithType: DefaultLinkDiscoverer.FixUrl(string, string?, string, Dictionary<Regex, string>)
+  nameWithType.vb: DefaultLinkDiscoverer.FixUrl(String, String, String, Dictionary(Of Regex, String))
 - uid: Spidey.Engines.DefaultLinkDiscoverer.FixUrl*
   name: FixUrl
   href: api/Spidey.Engines.DefaultLinkDiscoverer.html#Spidey_Engines_DefaultLinkDiscoverer_FixUrl_
@@ -502,15 +502,15 @@ references:
   isSpec: "True"
   fullName: Spidey.Engines.Interfaces.ILinkDiscoverer.DiscoverUrls
   nameWithType: ILinkDiscoverer.DiscoverUrls
-- uid: Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
-  name: FixUrl(string, string, Dictionary<Regex, string>)
-  href: api/Spidey.Engines.Interfaces.ILinkDiscoverer.html#Spidey_Engines_Interfaces_ILinkDiscoverer_FixUrl_System_String_System_String_System_Collections_Generic_Dictionary_System_Text_RegularExpressions_Regex_System_String__
-  commentId: M:Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
-  name.vb: FixUrl(String, String, Dictionary(Of Regex, String))
-  fullName: Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(string, string, System.Collections.Generic.Dictionary<System.Text.RegularExpressions.Regex, string>)
-  fullName.vb: Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(String, String, System.Collections.Generic.Dictionary(Of System.Text.RegularExpressions.Regex, String))
-  nameWithType: ILinkDiscoverer.FixUrl(string, string, Dictionary<Regex, string>)
-  nameWithType.vb: ILinkDiscoverer.FixUrl(String, String, Dictionary(Of Regex, String))
+- uid: Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
+  name: FixUrl(string, string, string, Dictionary<Regex, string>)
+  href: api/Spidey.Engines.Interfaces.ILinkDiscoverer.html#Spidey_Engines_Interfaces_ILinkDiscoverer_FixUrl_System_String_System_String_System_String_System_Collections_Generic_Dictionary_System_Text_RegularExpressions_Regex_System_String__
+  commentId: M:Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})
+  name.vb: FixUrl(String, String, String, Dictionary(Of Regex, String))
+  fullName: Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(string, string, string, System.Collections.Generic.Dictionary<System.Text.RegularExpressions.Regex, string>)
+  fullName.vb: Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl(String, String, String, System.Collections.Generic.Dictionary(Of System.Text.RegularExpressions.Regex, String))
+  nameWithType: ILinkDiscoverer.FixUrl(string, string, string, Dictionary<Regex, string>)
+  nameWithType.vb: ILinkDiscoverer.FixUrl(String, String, String, Dictionary(Of Regex, String))
 - uid: Spidey.Engines.Interfaces.ILinkDiscoverer.FixUrl*
   name: FixUrl
   href: api/Spidey.Engines.Interfaces.ILinkDiscoverer.html#Spidey_Engines_Interfaces_ILinkDiscoverer_FixUrl_
