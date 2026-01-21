@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.10"></a>
+## [6.0.10](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.10) (2026-01-21)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([e3a6c59](https://www.github.com/JaCraig/Spidey/commit/e3a6c596687b072c453078d80fea0251450733d5))
+
+### Other
+
+* Merge pull request #377 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-1c1b2b187c ([7bfa058](https://www.github.com/JaCraig/Spidey/commit/7bfa058d35220ebed1a1ebb2ba620853d200c534))
+* Merge pull request #380 from JaCraig/dependabot/nuget/dot-config/dependencies-c712425253 ([6e66845](https://www.github.com/JaCraig/Spidey/commit/6e66845ef86f98f886b93994098d2c541cdb00c2))
+* Merge pull request #381 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-f078703165 ([a5c145d](https://www.github.com/JaCraig/Spidey/commit/a5c145da73d9f4c175ae2074097910c909f6b373))
+* Merge pull request #382 from JaCraig/dependabot/nuget/dot-config/dependencies-65b1f6bf83 ([b0c6d9e](https://www.github.com/JaCraig/Spidey/commit/b0c6d9ee9d14b60d95208de5c210d370bccd6e20))
+* Merge pull request #383 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-8c7b6e0b58 ([d7a5320](https://www.github.com/JaCraig/Spidey/commit/d7a53209ad94ed38e0cdbcfc355e9469a8709610))
+* Merge pull request #384 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-f4b6243359 ([3f1829b](https://www.github.com/JaCraig/Spidey/commit/3f1829b4afaa1e439d7c3cadc6efb6d47d3d0a69))
+* Merge pull request #385 from JaCraig/dependabot/nuget/Spidey/dependencies-b30b2030f9 ([3ccd69b](https://www.github.com/JaCraig/Spidey/commit/3ccd69bcc0ed1beafdec983062e1138c985cbf32))
+* Merge pull request #386 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-406f96db61 ([5ea9a2c](https://www.github.com/JaCraig/Spidey/commit/5ea9a2c16990bc1014653b8318f135f7eeb3190e))
+* Merge pull request #387 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-53fc25b41b ([670f809](https://www.github.com/JaCraig/Spidey/commit/670f8098882ffa74c3923eddf3a5c080440863ae))
+* Merge pull request #389 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-e101c4020f ([038f5f4](https://www.github.com/JaCraig/Spidey/commit/038f5f46e08e8d1446aa1843d1f5ee6263e3b9d7))
+* Merge pull request #390 from JaCraig/dependabot/nuget/Spidey/dependencies-2492a9e0da ([410b89e](https://www.github.com/JaCraig/Spidey/commit/410b89e8cb85bc718255f70ee021528ec5557399))
+* Merge pull request #391 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-52be539403 ([a774a34](https://www.github.com/JaCraig/Spidey/commit/a774a343fc585558abcdfd5a7b4225b16a4b9144))
+* Merge pull request #392 from JaCraig/dependabot/nuget/Spidey/dependencies-233c52e889 ([ad9d2f5](https://www.github.com/JaCraig/Spidey/commit/ad9d2f5078094236c993100ffc2d64925a3682c4))
+* Bump Microsoft.NET.Test.Sdk from 18.0.0 to 18.0.1 ([435d470](https://www.github.com/JaCraig/Spidey/commit/435d470c65241474bec1912deecb1705b6abb2d8))
+* Bump the dependencies group with 1 update ([66f6062](https://www.github.com/JaCraig/Spidey/commit/66f60627a075cb806394d43cf03e2beb7a7320f7))
+* Bump the dependencies group with 1 update ([c51279b](https://www.github.com/JaCraig/Spidey/commit/c51279b1ce47f2fe4e8520ebe18b627d4faaec48))
+* Bump the dependencies group with 1 update ([3e5a1c3](https://www.github.com/JaCraig/Spidey/commit/3e5a1c3ba7c958f611175dcb1a7b35343eb4b31f))
+* Bump the dependencies group with 1 update ([f23bac9](https://www.github.com/JaCraig/Spidey/commit/f23bac9cf65c99897ddc0c3602a3d98146b14ef9))
+* Bump the dependencies group with 1 update ([fb43ffa](https://www.github.com/JaCraig/Spidey/commit/fb43ffa79829f9369bea9895ca1e9a5d31683965))
+* Bump the dependencies group with 2 updates ([d7c42ad](https://www.github.com/JaCraig/Spidey/commit/d7c42ad4f56a0fb2bb15553231a1bcc4f05e76a8))
+* Bump the dependencies group with 2 updates ([c1556a1](https://www.github.com/JaCraig/Spidey/commit/c1556a1c227f2f6650be1bbbc62ce9c773aa0a29))
+* Bump the dependencies group with 2 updates ([45626f0](https://www.github.com/JaCraig/Spidey/commit/45626f03227b6967d826e0de32b16aab5930f470))
+* Bump the dependencies group with 2 updates ([43e1c67](https://www.github.com/JaCraig/Spidey/commit/43e1c671af22b5f705e2aadfcb4149c5156bc21e))
+* Bump the dependencies group with 2 updates ([a8bb07d](https://www.github.com/JaCraig/Spidey/commit/a8bb07d5f2beb1ae221d127456790c005434d4ed))
+* Bump the dependencies group with 3 updates ([380488e](https://www.github.com/JaCraig/Spidey/commit/380488eac40ce58c2e2bd03f5c0ff222b0262a43))
+* Specify languages for CodeQL analysis ([d8ae882](https://www.github.com/JaCraig/Spidey/commit/d8ae8827fcfd4789c9d9b315c1a0ef091a6c7c24))
+
 <a name="6.0.9"></a>
 ## [6.0.9](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.9) (2025-10-16)
 
