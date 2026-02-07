@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.11"></a>
+## [6.0.11](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.11) (2026-02-07)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([24b6fff](https://www.github.com/JaCraig/Spidey/commit/24b6fff60d4f6f1b4d9f436bc3995b6224435461))
+
+### Other
+
+* Merge pull request #394 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-aae94f43ff ([969bf7d](https://www.github.com/JaCraig/Spidey/commit/969bf7dd617045d10f4152a8fabdd79d4a832246))
+* Merge pull request #395 from JaCraig/dependabot/nuget/dot-config/dependencies-5dd2fc9133 ([6892ef6](https://www.github.com/JaCraig/Spidey/commit/6892ef65ffd3101babb9b4936a68692c72ca5960))
+* Merge pull request #397 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-00bc4e3454 ([d63348b](https://www.github.com/JaCraig/Spidey/commit/d63348b6bc79e024dbdb2d86a0dfe52f7be4b95b))
+* Merge pull request #398 from JaCraig/dependabot/nuget/Spidey/dependencies-6cb60da957 ([1201b33](https://www.github.com/JaCraig/Spidey/commit/1201b33e73260b9267d34a685c43909679d3a763))
+* Merge pull request #399 from JaCraig/dependabot/nuget/Spidey/dependencies-6cb60da957 ([ac1b599](https://www.github.com/JaCraig/Spidey/commit/ac1b599ee8d648c706beff8d8c22c99a82fd4e8a))
+* Bump the dependencies group with 1 update ([642a435](https://www.github.com/JaCraig/Spidey/commit/642a435f61976e475af07f9be80fef1aec601bcf))
+* Bump the dependencies group with 1 update ([d4fc898](https://www.github.com/JaCraig/Spidey/commit/d4fc898887c0724ee24e1aa0f7db087e3e9c8870))
+* Bump the dependencies group with 1 update ([cdde7c2](https://www.github.com/JaCraig/Spidey/commit/cdde7c256c0d6f41ef1d529f220fb9f306751366))
+* Bump the dependencies group with 2 updates ([8e7c68a](https://www.github.com/JaCraig/Spidey/commit/8e7c68ab6b4b57be782a32c195448d1c44bf2c04))
+
 <a name="6.0.10"></a>
 ## [6.0.10](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.10) (2026-01-21)
 
