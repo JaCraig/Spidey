@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.1.0"></a>
+## [6.1.0](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.0) (2026-02-09)
+
+### Features
+
+* **project:** add net10.0 to target frameworks ([d909fc8](https://www.github.com/JaCraig/Spidey/commit/d909fc8474e4387c8990ff0f8ed223274b149bd3))
+
+### Other
+
+* Merge pull request #400 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-0ab92a1bf0 ([754a509](https://www.github.com/JaCraig/Spidey/commit/754a5097eece5a5432018ec24e817972e80bfc88))
+* Bump the dependencies group with 1 update ([8578bdc](https://www.github.com/JaCraig/Spidey/commit/8578bdcf5aeaf985a196582d1b17d01b2015c7d4))
+* **creation:** update tests for jQuery 3.7.1 and CDN ([e69cbd3](https://www.github.com/JaCraig/Spidey/commit/e69cbd3f3964aca9af304984f785d1263858fc88))
+
 <a name="6.0.11"></a>
 ## [6.0.11](https://www.github.com/JaCraig/Spidey/releases/tag/v6.0.11) (2026-02-07)
 
