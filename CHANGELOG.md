@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.1.5"></a>
+## [6.1.5](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.5) (2026-03-12)
+
+### Bug Fixes
+
+* Bump the dependencies group with 2 updates ([01c4589](https://www.github.com/JaCraig/Spidey/commit/01c458917e36a2fbd8d788ee64c490281c898f33))
+
+### Other
+
+* Merge pull request #414 from JaCraig/dependabot/nuget/dot-config/dependencies-dde7f99838 ([b07de2c](https://www.github.com/JaCraig/Spidey/commit/b07de2c1509e0963719ee418f70eeeb82e7e4632))
+
 <a name="6.1.4"></a>
 ## [6.1.4](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.4) (2026-03-11)
 
