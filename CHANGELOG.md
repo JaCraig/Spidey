@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.1.7"></a>
+## [6.1.7](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.7) (2026-03-31)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([199a8b3](https://www.github.com/JaCraig/Spidey/commit/199a8b356e71bf8f6ed33d1346ba294cae247a13))
+
+### Other
+
+* Merge pull request #421 from JaCraig/dependabot/nuget/Spidey/dependencies-c08eb96ccd ([3c774bd](https://www.github.com/JaCraig/Spidey/commit/3c774bddbdabe05e6b695842fa1588e890f845ba))
+* Merge pull request #422 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-3fb2e4590f ([52b74e7](https://www.github.com/JaCraig/Spidey/commit/52b74e787746f8867c6f005acbb98f075adfe760))
+* Merge pull request #423 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-4bb5c90d9e ([dcb910d](https://www.github.com/JaCraig/Spidey/commit/dcb910de0efe9aa7760a9fab06f314473fe89e9e))
+* Merge pull request #424 from JaCraig/dependabot/nuget/Spidey/dependencies-9eba65b8f2 ([ec77678](https://www.github.com/JaCraig/Spidey/commit/ec776783f381855ff213af5e0fc1d77dbb3c5adc))
+* Bump the dependencies group with 1 update ([f6da0ab](https://www.github.com/JaCraig/Spidey/commit/f6da0ab642ee039650668ecc0067280941663c97))
+* Bump the dependencies group with 2 updates ([3e42f8f](https://www.github.com/JaCraig/Spidey/commit/3e42f8fd10d2b2dc98eb969c602e384026648e22))
+* Bump the dependencies group with 2 updates ([ae44654](https://www.github.com/JaCraig/Spidey/commit/ae44654b878298f4b09a6e1dfdb01fe157243463))
+* **dependabot:** update schedule from daily to weekly ([b375c74](https://www.github.com/JaCraig/Spidey/commit/b375c741086c5e7c8c5b562db5d82cd8c7c3628d))
+* **tests:** update Mecha.xUnit to v3.3.9 ([71f7ecf](https://www.github.com/JaCraig/Spidey/commit/71f7ecfd0f9990917e415f7c94de2c748da6a9f6))
+
 <a name="6.1.6"></a>
 ## [6.1.6](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.6) (2026-03-16)
 
