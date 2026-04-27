@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.1.14"></a>
+## [6.1.14](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.14) (2026-04-27)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([b35307e](https://www.github.com/JaCraig/Spidey/commit/b35307e2c7042a6fa97ca7ccb3ff0f203abad540))
+
+### Other
+
+* Merge pull request #435 from JaCraig/dependabot/nuget/Spidey/dependencies-d1a47363d7 ([5727d5f](https://www.github.com/JaCraig/Spidey/commit/5727d5fa3cf0d07417332b0b0a48bbedff3ea37d))
+* Merge pull request #436 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-0ca964f9d4 ([e0574bd](https://www.github.com/JaCraig/Spidey/commit/e0574bd24ff843208b19e0d54687f968bd344360))
+* Merge pull request #437 from JaCraig/dependabot/nuget/Spidey/dependencies-2396e854dc ([673c21e](https://www.github.com/JaCraig/Spidey/commit/673c21edc4daa5829301431c7e8f46cfee9d84e8))
+* Refactor commit linting script for better validation ([3690961](https://www.github.com/JaCraig/Spidey/commit/369096102f7768c3cd58de1feab98ce28c640b45))
+* Bump the dependencies group with 1 update ([3008ed7](https://www.github.com/JaCraig/Spidey/commit/3008ed748b4e27efe040f6de2bb5a6e25fba688e))
+* Bump the dependencies group with 4 updates ([0238839](https://www.github.com/JaCraig/Spidey/commit/0238839d352e1388420fa043a28bb5d37bc0c3c7))
+
 <a name="6.1.13"></a>
 ## [6.1.13](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.13) (2026-04-23)
 
