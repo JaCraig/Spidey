@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.1.19"></a>
+## [6.1.19](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.19) (2026-05-28)
+
+### Bug Fixes
+
+* **workflows:** remove PERSONAL_ACCESS_TOKEN from workflows ([366a83c](https://www.github.com/JaCraig/Spidey/commit/366a83cd0992f3041bb69492283864512d6be5fb))
+
+### Other
+
+* Merge pull request #446 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-4b47ae212b ([370fb46](https://www.github.com/JaCraig/Spidey/commit/370fb467c0c85f7e9e8934f449e4b8addcb3d030))
+* add Copilot instructions for commit messages ([69d60d5](https://www.github.com/JaCraig/Spidey/commit/69d60d5a6b5d88c2766369f7b792e809bb2ad433))
+* Bump the dependencies group with 3 updates ([1a90d48](https://www.github.com/JaCraig/Spidey/commit/1a90d48da1294fedcc62c2d2b438d8fadf08a674))
+
 <a name="6.1.18"></a>
 ## [6.1.18](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.18) (2026-05-18)
 
