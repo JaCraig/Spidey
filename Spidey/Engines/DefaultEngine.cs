@@ -56,7 +56,8 @@ namespace Spidey.Engines
             var Handler = new HttpClientHandler()
             {
                 Proxy = Options.Proxy,
-                AllowAutoRedirect = true
+                AllowAutoRedirect = true,
+                AutomaticDecompression = DecompressionMethods.All
             };
             if (!string.IsNullOrEmpty(Options.Credentials?.UserName) && !string.IsNullOrEmpty(Options.Credentials?.Password))
             {
