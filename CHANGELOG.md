@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.0"></a>
+## [6.2.0](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.0) (2026-07-01)
+
+### Features
+
+* **engine:** enable automatic decompression in handler ([e103081](https://www.github.com/JaCraig/Spidey/commit/e10308108fde79804db3f37877333d97470be214))
+
+### Other
+
+* merge ([a9bb090](https://www.github.com/JaCraig/Spidey/commit/a9bb090999e5d42c8da2a3b2c6cc7a1ce32450ec))
+
 <a name="6.1.20"></a>
 ## [6.1.20](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.20) (2026-07-01)
 
