@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.1.20"></a>
+## [6.1.20](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.20) (2026-07-01)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([5789959](https://www.github.com/JaCraig/Spidey/commit/57899591337a447368c553f5020a744d2c7d33ab))
+* Bump the dependencies group with 1 update ([590266b](https://www.github.com/JaCraig/Spidey/commit/590266b3a2789fa13d19e023fb737785d2ed64a1))
+* **requests:** add the ability to add request headers to calls ([db86543](https://www.github.com/JaCraig/Spidey/commit/db865438b80e84034cb98037384fad6336a71ca7))
+
+### Other
+
+* Merge pull request #447 from JaCraig/dependabot/nuget/Spidey/dependencies-6fb63528ec ([d687e22](https://www.github.com/JaCraig/Spidey/commit/d687e22d729221cb37e55e068cd95cde77157edd))
+* Merge pull request #448 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-89e6161468 ([9f5e484](https://www.github.com/JaCraig/Spidey/commit/9f5e484ff4c24226b045575fb14bf9e9e5aee59d))
+* Merge pull request #449 from JaCraig/dependabot/nuget/Spidey/dependencies-991ee26f7c ([d038abf](https://www.github.com/JaCraig/Spidey/commit/d038abf2d60ba3e69ce27a36c04757684c4f56ab))
+* Bump the dependencies group with 2 updates ([3601c35](https://www.github.com/JaCraig/Spidey/commit/3601c35ee80526c8a85981fe699c501e59bf3db4))
+
 <a name="6.1.19"></a>
 ## [6.1.19](https://www.github.com/JaCraig/Spidey/releases/tag/v6.1.19) (2026-05-28)
 
