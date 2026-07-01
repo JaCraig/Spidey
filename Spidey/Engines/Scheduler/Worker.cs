@@ -8,23 +8,18 @@ namespace Spidey.Engines.Scheduler
     /// Worker class
     /// </summary>
     /// <seealso cref="IDisposable"/>
-    public class Worker : IDisposable
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="Worker"/> class.
+    /// </remarks>
+    /// <param name="engine">The engine.</param>
+    public class Worker(IEngine? engine) : IDisposable
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Worker"/> class.
-        /// </summary>
-        /// <param name="engine">The engine.</param>
-        public Worker(IEngine? engine)
-        {
-            Engine = engine;
-            CurrentTask = Task.CompletedTask;
-        }
 
         /// <summary>
         /// Gets or sets the current task.
         /// </summary>
         /// <value>The current task.</value>
-        public Task CurrentTask { get; private set; }
+        public Task CurrentTask { get; private set; } = Task.CompletedTask;
 
         /// <summary>
         /// Gets a value indicating whether this <see cref="Worker"/> is done.
@@ -36,7 +31,7 @@ namespace Spidey.Engines.Scheduler
         /// Gets the engine.
         /// </summary>
         /// <value>The engine.</value>
-        private IEngine? Engine { get; set; }
+        private IEngine? Engine { get; set; } = engine;
 
         /// <summary>
         /// Crawls the url asynchronously.

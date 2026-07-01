@@ -22,69 +22,59 @@ namespace Spidey
     /// <summary>
     /// Result file
     /// </summary>
-    public class ResultFile
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="ResultFile"/> class.
+    /// </remarks>
+    /// <param name="contentType">Type of the content.</param>
+    /// <param name="data">The data.</param>
+    /// <param name="fileContent">Content of the file.</param>
+    /// <param name="fileName">Name of the file.</param>
+    /// <param name="finalLocation">The final location.</param>
+    /// <param name="location">The location.</param>
+    /// <param name="statusCode">The status code.</param>
+    public class ResultFile(string contentType, UrlData data, IGenericFile fileContent, string fileName, string finalLocation, string location, int statusCode)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ResultFile"/> class.
-        /// </summary>
-        /// <param name="contentType">Type of the content.</param>
-        /// <param name="data">The data.</param>
-        /// <param name="fileContent">Content of the file.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="finalLocation">The final location.</param>
-        /// <param name="location">The location.</param>
-        /// <param name="statusCode">The status code.</param>
-        public ResultFile(string contentType, UrlData data, IGenericFile fileContent, string fileName, string finalLocation, string location, int statusCode)
-        {
-            ContentType = contentType;
-            Data = data;
-            FileContent = fileContent;
-            FileName = fileName;
-            FinalLocation = finalLocation;
-            Location = location;
-            StatusCode = statusCode;
-        }
 
         /// <summary>
         /// Gets or sets the type of the content.
         /// </summary>
         /// <value>The type of the content.</value>
-        public string ContentType { get; set; }
+        public string ContentType { get; set; } = contentType;
 
         /// <summary>
         /// Gets or sets the data.
         /// </summary>
         /// <value>The data.</value>
-        public UrlData Data { get; set; }
+        public UrlData Data { get; set; } = data;
 
         /// <summary>
         /// Gets or sets the file.
         /// </summary>
         /// <value>The file.</value>
-        public IGenericFile FileContent { get; set; }
+        public IGenericFile FileContent { get; set; } = fileContent;
 
         /// <summary>
         /// Gets or sets the name of the file if this is something downloaded.
         /// </summary>
         /// <value>The name of the file if this is something downloaded.</value>
-        public string FileName { get; set; }
+        public string FileName { get; set; } = fileName;
 
         /// <summary>
         /// Gets or sets the final location (if page is redirected, this will be different than location).
         /// </summary>
         /// <value>The final location.</value>
-        public string FinalLocation { get; set; }
+        public string FinalLocation { get; set; } = finalLocation;
 
         /// <summary>
         /// Gets the file location.
         /// </summary>
         /// <value>The file location.</value>
-        public string Location { get; set; }
+        public string Location { get; set; } = location;
 
         /// <summary>
         /// Gets or sets the status code.
         /// </summary>
         /// <value>The status code.</value>
-        public int StatusCode { get; set; }
+        public int StatusCode { get; set; } = statusCode;
     }
 }

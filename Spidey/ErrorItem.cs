@@ -21,37 +21,31 @@ namespace Spidey
     /// <summary>
     /// Error item data holder.
     /// </summary>
-    public class ErrorItem
+    /// <remarks>
+    /// Initializes a new instance of the <see cref="ErrorItem"/> class.
+    /// </remarks>
+    /// <param name="error">The error.</param>
+    /// <param name="url">The URL.</param>
+    /// <param name="statusCode">The status code.</param>
+    public class ErrorItem(Exception error, string url, int statusCode)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorItem"/> class.
-        /// </summary>
-        /// <param name="error">The error.</param>
-        /// <param name="url">The URL.</param>
-        /// <param name="statusCode">The status code.</param>
-        public ErrorItem(Exception error, string url, int statusCode)
-        {
-            Error = error;
-            Url = url;
-            StatusCode = statusCode;
-        }
 
         /// <summary>
         /// Gets or sets the error.
         /// </summary>
         /// <value>The error.</value>
-        public Exception Error { get; set; }
+        public Exception Error { get; set; } = error;
 
         /// <summary>
         /// Gets or sets the status code.
         /// </summary>
         /// <value>The status code.</value>
-        public int StatusCode { get; set; }
+        public int StatusCode { get; set; } = statusCode;
 
         /// <summary>
         /// Gets or sets the URL.
         /// </summary>
         /// <value>The URL.</value>
-        public string Url { get; set; }
+        public string Url { get; set; } = url;
     }
 }

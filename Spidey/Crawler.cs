@@ -27,18 +27,11 @@ namespace Spidey
     /// Crawler class
     /// </summary>
     /// <seealso cref="IDisposable"/>
-    public class Crawler : IDisposable
+    /// <remarks>Initializes a new instance of the <see cref="Crawler"/> class.</remarks>
+    /// <param name="pipelines">The pipelines.</param>
+    /// <param name="options">The options.</param>
+    public class Crawler(IEnumerable<IPipeline> pipelines, Options? options = null) : IDisposable
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Crawler"/> class.
-        /// </summary>
-        /// <param name="pipelines">The pipelines.</param>
-        /// <param name="options">The options.</param>
-        public Crawler(IEnumerable<IPipeline> pipelines, Options? options = null)
-        {
-            Pipeline = pipelines.FirstOrDefault(x => x is not DefaultPipeline) ?? pipelines.FirstOrDefault(x => x is DefaultPipeline);
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Crawler"/> class.
         /// </summary>
@@ -57,7 +50,7 @@ namespace Spidey
         /// Gets the pipeline.
         /// </summary>
         /// <value>The pipeline.</value>
-        private IPipeline? Pipeline { get; set; }
+        private IPipeline? Pipeline { get; set; } = pipelines.FirstOrDefault(x => x is not DefaultPipeline) ?? pipelines.FirstOrDefault(x => x is DefaultPipeline);
 
         /// <summary>
         /// Disposes of the internal objects

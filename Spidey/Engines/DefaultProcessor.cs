@@ -4,43 +4,41 @@ using Spidey.Engines.Interfaces;
 namespace Spidey.Engines
 {
     /// <summary>
-    /// Default processor
+    /// Default <see cref="IProcessor"/> implementation used to forward discovered results to the
+    /// configured <see cref="Options.ItemFound"/> callback.
     /// </summary>
+    /// <remarks>
+    /// The processor is intentionally lightweight and stateless aside from the supplied options and
+    /// logger. A <paramref name="resultFile"/> value of <see langword="null"/> is ignored.
+    /// </remarks>
     /// <seealso cref="IProcessor"/>
-    public class DefaultProcessor : IProcessor
+    public class DefaultProcessor(Options? options, ILogger<DefaultProcessor>? logger = null) : IProcessor
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultProcessor"/> class.
+        /// Gets the logger used for diagnostic output.
         /// </summary>
-        /// <param name="options">The options.</param>
-        /// <param name="logger">The logger.</param>
-        public DefaultProcessor(Options? options, ILogger<DefaultProcessor>? logger = null)
-        {
-            Options = (options ?? Options.Default).Setup();
-            Logger = logger;
-        }
+        private ILogger<DefaultProcessor>? Logger { get; } = logger;
 
         /// <summary>
-        /// Gets the logger.
+        /// Gets the configured options, falling back to <see cref="Options.Default"/> when no
+        /// options instance is supplied.
         /// </summary>
-        /// <value>The logger.</value>
-        private ILogger<DefaultProcessor>? Logger { get; }
+        private Options Options { get; } = (options ?? Options.Default).Setup();
 
         /// <summary>
-        /// Gets the options.
+        /// Processes a discovered result by logging it and invoking the configured callback.
         /// </summary>
-        /// <value>The options.</value>
-        private Options Options { get; }
-
-        /// <summary>
-        /// Processes the item found.
-        /// </summary>
-        /// <param name="resultFile">The result file.</param>
+        /// <param name="resultFile">The discovered result to process. Null values are ignored.</param>
+        /// <remarks>
+        /// This method does not throw for <see langword="null"/> input. Any exception behavior from
+        /// <see cref="Options.ItemFound"/> is delegated to the configured callback.
+        /// </remarks>
         public void Process(ResultFile resultFile)
         {
             if (resultFile is null)
                 return;
-            Logger?.LogDebug($"Processing {resultFile.Location}");
+
+            Logger?.LogDebug("Processing {location}", resultFile.Location);
             Options.ItemFound(resultFile);
         }
     }

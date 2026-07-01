@@ -17,63 +17,57 @@ limitations under the License.
 namespace Spidey.Engines
 {
     /// <summary>
-    /// URL data passed back from the engine.
+    /// Represents the result of downloading or resolving a URL.
     /// </summary>
-    public class UrlData
+    /// <remarks>
+    /// This type is a simple data container populated by an engine and returned to callers.
+    /// Property values are initialized from the constructor arguments and remain publicly settable
+    /// so consumers can adjust them after creation if needed.
+    /// </remarks>
+    /// <param name="content">The retrieved content bytes.</param>
+    /// <param name="contentType">The response content type reported by the source.</param>
+    /// <param name="fileName">The suggested or resolved file name.</param>
+    /// <param name="finalLocation">The final location after redirects or resolution.</param>
+    /// <param name="statusCode">The HTTP or engine-specific status code.</param>
+    /// <param name="uRL">The original or effective URL associated with the result.</param>
+    public class UrlData(byte[] content, string contentType, string fileName, string finalLocation, int statusCode, string uRL)
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UrlData"/> class.
+        /// Gets or sets the retrieved content bytes.
         /// </summary>
-        /// <param name="content">The content.</param>
-        /// <param name="contentType">Type of the content.</param>
-        /// <param name="fileName">Name of the file.</param>
-        /// <param name="finalLocation">The final location.</param>
-        /// <param name="statusCode">The status code.</param>
-        /// <param name="uRL">The u rl.</param>
-        public UrlData(byte[] content, string contentType, string fileName, string finalLocation, int statusCode, string uRL)
-        {
-            Content = content;
-            ContentType = contentType;
-            FileName = fileName;
-            FinalLocation = finalLocation;
-            StatusCode = statusCode;
-            URL = uRL;
-        }
+        /// <value>
+        /// The raw payload returned by the engine. The array reference may be reassigned by consumers.
+        /// </value>
+        public byte[] Content { get; set; } = content;
 
         /// <summary>
-        /// Gets or sets the content.
+        /// Gets or sets the MIME type or content type of the retrieved payload.
         /// </summary>
-        /// <value>The content.</value>
-        public byte[] Content { get; set; }
+        /// <value>The response content type.</value>
+        public string ContentType { get; set; } = contentType;
 
         /// <summary>
-        /// Gets or sets the type of the content.
+        /// Gets or sets the file name associated with the result.
         /// </summary>
-        /// <value>The type of the content.</value>
-        public string ContentType { get; set; }
+        /// <value>The file name suggested by the source or derived by the engine.</value>
+        public string FileName { get; set; } = fileName;
 
         /// <summary>
-        /// Gets or sets the name of the file.
+        /// Gets or sets the final resolved location.
         /// </summary>
-        /// <value>The name of the file.</value>
-        public string FileName { get; set; }
+        /// <value>The final URL or path after any redirects or resolution steps.</value>
+        public string FinalLocation { get; set; } = finalLocation;
 
         /// <summary>
-        /// Gets or sets the final location.
+        /// Gets or sets the status code associated with the result.
         /// </summary>
-        /// <value>The final location.</value>
-        public string FinalLocation { get; set; }
+        /// <value>The HTTP status code or equivalent engine-specific status value.</value>
+        public int StatusCode { get; set; } = statusCode;
 
         /// <summary>
-        /// Gets or sets the status code.
+        /// Gets or sets the original or effective URL for the result.
         /// </summary>
-        /// <value>The status code.</value>
-        public int StatusCode { get; set; }
-
-        /// <summary>
-        /// Gets or sets the URL.
-        /// </summary>
-        /// <value>The URL.</value>
-        public string URL { get; set; }
+        /// <value>The URL used to obtain the content.</value>
+        public string URL { get; set; } = uRL;
     }
 }

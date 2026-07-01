@@ -12,18 +12,18 @@ namespace Spidey
         /// Gets or sets the completed urls.
         /// </summary>
         /// <value>The completed urls.</value>
-        public ConcurrentBag<string> CompletedURLs { get; } = new ConcurrentBag<string>();
+        public ConcurrentBag<string> CompletedURLs { get; } = [];
 
         /// <summary>
         /// Gets or sets the error ur ls.
         /// </summary>
         /// <value>The error ur ls.</value>
-        public ConcurrentBag<ErrorItem> ErrorURLs { get; } = new ConcurrentBag<ErrorItem>();
+        public ConcurrentBag<ErrorItem> ErrorURLs { get; } = [];
 
         /// <summary>
         /// Gets or sets the where found.
         /// </summary>
         /// <value>The where found.</value>
-        public ListMapping<string, string> WhereFound { get; } = new ListMapping<string, string>();
+        public ListMapping<string, string> WhereFound { get; } = [];
     }
 }
