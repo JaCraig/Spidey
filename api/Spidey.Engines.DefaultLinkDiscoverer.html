@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DefaultLinkDiscoverer | Spidey API Reference ">
       
-      <meta name="description" content="Default link engine">
+      <meta name="description" content="Discovers links from HTML documents and normalizes them into absolute, escaped URLs.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/JaCraig/Spidey/new/master/apiSpec/new?filename=Spidey_Engines_DefaultLinkDiscoverer.md&amp;value=---%0Auid%3A%20Spidey.Engines.DefaultLinkDiscoverer%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="Spidey_Engines_DefaultLinkDiscoverer" data-uid="Spidey.Engines.DefaultLinkDiscoverer" class="text-break">
-Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L30"><i class="bi bi-code-slash"></i></a>
+Class DefaultLinkDiscoverer  
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
   <dl><dt>Assembly</dt><dd>Spidey.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Default link engine</p>
+  <div class="markdown summary"><p>Discovers links from HTML documents and normalizes them into absolute, escaped URLs.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -153,6 +153,11 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 
 
 
+  <h2 id="Spidey_Engines_DefaultLinkDiscoverer_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Relative links are resolved against the supplied current domain or page URL, fragment-only
+and query-only links are expanded from the current page URL, and configured replacement rules
+are applied after normalization.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -166,7 +171,7 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
   <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Spidey.Engines.DefaultLinkDiscoverer.html">DefaultLinkDiscoverer</a> class.</p>
+  <div class="markdown level1 summary"><p>Discovers links from HTML documents and normalizes them into absolute, escaped URLs.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -177,7 +182,7 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>options</code> <a class="xref" href="Spidey.Options.html">Options</a></dt>
-    <dd><p>The options.</p>
+    <dd><p>Optional link discovery options; when <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, defaults are used.</p>
 </dd>
   </dl>
 
@@ -188,8 +193,19 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultLinkDiscoverer__ctor_Spidey_Options__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Relative links are resolved against the supplied current domain or page URL, fragment-only
+and query-only links are expanded from the current page URL, and configured replacement rules
+are applied after normalization.</p>
+</div>
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="Spidey.Engines.Interfaces.ILinkDiscoverer.html">ILinkDiscoverer</a></div>
+    </dd>
+  </dl>
 
 
   <h2 class="section" id="methods">Methods
@@ -203,7 +219,7 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
   <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Discovers the urls.</p>
+  <div class="markdown level1 summary"><p>Extracts and normalizes links from HTML content.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -214,23 +230,23 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>currentDomain</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The current domain.</p>
+    <dd><p>The current domain, used to resolve root-relative links.</p>
 </dd>
     <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The URL.</p>
+    <dd><p>The current page URL, used to resolve fragment-only and query-only links.</p>
 </dd>
     <dt><code>content</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
-    <dd><p>The content.</p>
+    <dd><p>The response body to inspect.</p>
 </dd>
     <dt><code>contentType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>Type of the content.</p>
+    <dd><p>The response content type. Only HTML content is processed; all other content types return no links.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
-    <dd><p>The links within the document.</p>
+    <dd><p>An array of normalized URLs discovered in the document; otherwise an empty array.</p>
 </dd>
   </dl>
 
@@ -240,6 +256,9 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultLinkDiscoverer_DiscoverUrls_System_String_System_String_System_Byte___System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The HTML is parsed using HtmlAgilityPack. Only anchor elements with an <code>href</code> attribute are considered.</p>
+</div>
 
 
 
@@ -248,10 +267,10 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 
   <h3 id="Spidey_Engines_DefaultLinkDiscoverer_FixUrl_System_String_System_String_System_String_System_Collections_Generic_Dictionary_System_Text_RegularExpressions_Regex_System_String__" data-uid="Spidey.Engines.DefaultLinkDiscoverer.FixUrl(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.Text.RegularExpressions.Regex,System.String})">
   FixUrl(string, string?, string, Dictionary&lt;Regex, string&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Fixes the URL.</p>
+  <div class="markdown level1 summary"><p>Normalizes a discovered link into an absolute, escaped URL.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -262,23 +281,23 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>currentDomain</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The current domain.</p>
+    <dd><p>The current domain, used when the link starts with <code>/</code>.</p>
 </dd>
     <dt><code>link</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The link.</p>
+    <dd><p>The candidate link to normalize.</p>
 </dd>
     <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The URL.</p>
+    <dd><p>The current page URL, used to expand fragment-only and query-only links.</p>
 </dd>
     <dt><code>replacements</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.regularexpressions.regex">Regex</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>The replacements.</p>
+    <dd><p>Optional regex replacement rules applied after normalization.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The fixed URL</p>
+    <dd><p>The normalized URL, or an empty string when <code class="paramref">link</code> is null or empty.</p>
 </dd>
   </dl>
 
@@ -288,6 +307,10 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultLinkDiscoverer_FixUrl_System_String_System_String_System_String_System_Collections_Generic_Dictionary_System_Text_RegularExpressions_Regex_System_String___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Normalization performs the following steps in order:</p>
+<ol><li>Replaces backslashes with forward slashes and trims whitespace.</li><li>Expands fragment-only and query-only links from the current page URL.</li><li>Prefixes root-relative links with the current domain.</li><li>Prefixes non-schemed links with <code>http://</code>.</li><li>Removes fragments, trims trailing slashes, unescapes, applies regex replacements, and escapes the final URI string.</li></ol>
+</div>
 
 
 
@@ -296,10 +319,10 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 
   <h3 id="Spidey_Engines_DefaultLinkDiscoverer_GetDomain_System_String_" data-uid="Spidey.Engines.DefaultLinkDiscoverer.GetDomain(System.String)">
   GetDomain(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the domain.</p>
+  <div class="markdown level1 summary"><p>Gets the scheme and authority portion of an absolute URL.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -310,14 +333,14 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The URL.</p>
+    <dd><p>The URL to inspect.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The domain of the url.</p>
+    <dd><p>The scheme, host, and non-default port for the URL; otherwise an empty string.</p>
 </dd>
   </dl>
 
@@ -327,6 +350,10 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultLinkDiscoverer_GetDomain_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Returns an empty string for invalid or non-absolute URLs. Port <code>80</code> is omitted to preserve the
+current implementation behavior.</p>
+</div>
 
 
 
@@ -339,7 +366,6 @@ Class DefaultLinkDiscoverer  <a class="header-action link-secondary" title="View
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultLinkDiscoverer.cs/#L30" class="edit-link">Edit this page</a>
         </div>
 
 

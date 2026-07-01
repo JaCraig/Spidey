@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DefaultProcessor | Spidey API Reference ">
       
-      <meta name="description" content="Default processor">
+      <meta name="description" content="Default  implementation used to forward discovered results to the configured  callback.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="Spidey_Engines_DefaultProcessor" data-uid="Spidey.Engines.DefaultProcessor" class="text-break">
-Class DefaultProcessor  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class DefaultProcessor  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
   <dl><dt>Assembly</dt><dd>Spidey.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Default processor</p>
+  <div class="markdown summary"><p>Default <a class="xref" href="Spidey.Engines.Interfaces.IProcessor.html">IProcessor</a> implementation used to forward discovered results to the
+configured <a class="xref" href="Spidey.Options.html#Spidey_Options_ItemFound">ItemFound</a> callback.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -153,6 +154,10 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h2 id="Spidey_Engines_DefaultProcessor_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The processor is intentionally lightweight and stateless aside from the supplied options and
+logger. A <code class="paramref">resultFile</code> value of <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> is ignored.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -163,10 +168,11 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
 
   <h3 id="Spidey_Engines_DefaultProcessor__ctor_Spidey_Options_Microsoft_Extensions_Logging_ILogger_Spidey_Engines_DefaultProcessor__" data-uid="Spidey.Engines.DefaultProcessor.#ctor(Spidey.Options,Microsoft.Extensions.Logging.ILogger{Spidey.Engines.DefaultProcessor})">
   DefaultProcessor(Options?, ILogger&lt;DefaultProcessor&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Spidey.Engines.DefaultProcessor.html">DefaultProcessor</a> class.</p>
+  <div class="markdown level1 summary"><p>Default <a class="xref" href="Spidey.Engines.Interfaces.IProcessor.html">IProcessor</a> implementation used to forward discovered results to the
+configured <a class="xref" href="Spidey.Options.html#Spidey_Options_ItemFound">ItemFound</a> callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -177,11 +183,9 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>options</code> <a class="xref" href="Spidey.Options.html">Options</a></dt>
-    <dd><p>The options.</p>
-</dd>
+    <dd></dd>
     <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="Spidey.Engines.DefaultProcessor.html">DefaultProcessor</a>&gt;</dt>
-    <dd><p>The logger.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -191,8 +195,18 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultProcessor__ctor_Spidey_Options_Microsoft_Extensions_Logging_ILogger_Spidey_Engines_DefaultProcessor___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The processor is intentionally lightweight and stateless aside from the supplied options and
+logger. A <code class="paramref">resultFile</code> value of <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> is ignored.</p>
+</div>
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="Spidey.Engines.Interfaces.IProcessor.html">IProcessor</a></div>
+    </dd>
+  </dl>
 
 
   <h2 class="section" id="methods">Methods
@@ -203,10 +217,10 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
 
   <h3 id="Spidey_Engines_DefaultProcessor_Process_Spidey_ResultFile_" data-uid="Spidey.Engines.DefaultProcessor.Process(Spidey.ResultFile)">
   Process(ResultFile)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L36"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Processes the item found.</p>
+  <div class="markdown level1 summary"><p>Processes a discovered result by logging it and invoking the configured callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -217,7 +231,7 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>resultFile</code> <a class="xref" href="Spidey.ResultFile.html">ResultFile</a></dt>
-    <dd><p>The result file.</p>
+    <dd><p>The discovered result to process. Null values are ignored.</p>
 </dd>
   </dl>
 
@@ -228,6 +242,10 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultProcessor_Process_Spidey_ResultFile__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>This method does not throw for <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> input. Any exception behavior from
+<a class="xref" href="Spidey.Options.html#Spidey_Options_ItemFound">ItemFound</a> is delegated to the configured callback.</p>
+</div>
 
 
 
@@ -240,7 +258,7 @@ Class DefaultProcessor  <a class="header-action link-secondary" title="View sour
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultProcessor.cs/#L15" class="edit-link">Edit this page</a>
         </div>
 
 

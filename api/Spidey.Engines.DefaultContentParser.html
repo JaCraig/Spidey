@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DefaultContentParser | Spidey API Reference ">
       
-      <meta name="description" content="Default content parser">
+      <meta name="description" content="Parses fetched content into a  using the configured parser options and the first available non-default link discoverer.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="Spidey_Engines_DefaultContentParser" data-uid="Spidey.Engines.DefaultContentParser" class="text-break">
-Class DefaultContentParser  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L31"><i class="bi bi-code-slash"></i></a>
+Class DefaultContentParser  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,8 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
   <dl><dt>Assembly</dt><dd>Spidey.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Default content parser</p>
+  <div class="markdown summary"><p>Parses fetched content into a <a class="xref" href="Spidey.ResultFile.html">ResultFile</a> using the configured parser options
+and the first available non-default link discoverer.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -153,6 +154,10 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
 
 
 
+  <h2 id="Spidey_Engines_DefaultContentParser_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The parser is designed for single-call use per request. It does not mutate shared state, but
+its behavior depends on the injected options, discoverers, and content stream manager.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -163,10 +168,11 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
 
   <h3 id="Spidey_Engines_DefaultContentParser__ctor_Spidey_Options_System_Collections_Generic_IEnumerable_Spidey_Engines_Interfaces_ILinkDiscoverer__Microsoft_IO_RecyclableMemoryStreamManager_Microsoft_Extensions_Logging_ILogger_Spidey_Engines_DefaultContentParser__" data-uid="Spidey.Engines.DefaultContentParser.#ctor(Spidey.Options,System.Collections.Generic.IEnumerable{Spidey.Engines.Interfaces.ILinkDiscoverer},Microsoft.IO.RecyclableMemoryStreamManager,Microsoft.Extensions.Logging.ILogger{Spidey.Engines.DefaultContentParser})">
   DefaultContentParser(Options?, IEnumerable&lt;ILinkDiscoverer&gt;, RecyclableMemoryStreamManager, ILogger&lt;DefaultContentParser&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Spidey.Engines.DefaultContentParser.html">DefaultContentParser</a> class.</p>
+  <div class="markdown level1 summary"><p>Parses fetched content into a <a class="xref" href="Spidey.ResultFile.html">ResultFile</a> using the configured parser options
+and the first available non-default link discoverer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -177,16 +183,17 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>options</code> <a class="xref" href="Spidey.Options.html">Options</a></dt>
-    <dd><p>The options.</p>
+    <dd><p>Parser configuration. When <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, <a class="xref" href="Spidey.Options.html#Spidey_Options_Default">Default</a> is used.</p>
 </dd>
     <dt><code>linkDiscoverers</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Spidey.Engines.Interfaces.ILinkDiscoverer.html">ILinkDiscoverer</a>&gt;</dt>
-    <dd><p>The link discoverers.</p>
+    <dd><p>Available link discoverers. The parser prefers the first non- <a class="xref" href="Spidey.Engines.DefaultLinkDiscoverer.html">DefaultLinkDiscoverer</a>, falling back to the first default discoverer when no
+specialized implementation is present.</p>
 </dd>
     <dt><code>recyclableMemoryStreamManager</code> <span class="xref">RecyclableMemoryStreamManager</span></dt>
-    <dd><p>The recyclable memory stream manager.</p>
+    <dd><p>Stream factory used to create a recyclable in-memory stream for parsing the response content.</p>
 </dd>
     <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="Spidey.Engines.DefaultContentParser.html">DefaultContentParser</a>&gt;</dt>
-    <dd><p>The logger.</p>
+    <dd><p>Optional logger used to trace parse attempts.</p>
 </dd>
   </dl>
 
@@ -197,8 +204,18 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultContentParser__ctor_Spidey_Options_System_Collections_Generic_IEnumerable_Spidey_Engines_Interfaces_ILinkDiscoverer__Microsoft_IO_RecyclableMemoryStreamManager_Microsoft_Extensions_Logging_ILogger_Spidey_Engines_DefaultContentParser___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The parser is designed for single-call use per request. It does not mutate shared state, but
+its behavior depends on the injected options, discoverers, and content stream manager.</p>
+</div>
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="Spidey.Engines.Interfaces.IContentParser.html">IContentParser</a></div>
+    </dd>
+  </dl>
 
 
   <h2 class="section" id="methods">Methods
@@ -209,10 +226,10 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
 
   <h3 id="Spidey_Engines_DefaultContentParser_Parse_Spidey_Engines_UrlData_" data-uid="Spidey.Engines.DefaultContentParser.Parse(Spidey.Engines.UrlData)">
   Parse(UrlData?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L87"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Parses the specified options.</p>
+  <div class="markdown level1 summary"><p>Parses the supplied URL data into a result file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -223,14 +240,14 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>data</code> <a class="xref" href="Spidey.Engines.UrlData.html">UrlData</a></dt>
-    <dd><p>The data.</p>
+    <dd><p>The URL payload to parse.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="Spidey.ResultFile.html">ResultFile</a></dt>
-    <dd><p>Result file</p>
+    <dd><p>A populated <a class="xref" href="Spidey.ResultFile.html">ResultFile</a> when the input can be parsed; otherwise <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
 </dd>
   </dl>
 
@@ -240,6 +257,10 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultContentParser_Parse_Spidey_Engines_UrlData__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Parsing is skipped when the input is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, the URL is excluded by the
+configured options, or no suitable link discoverer was injected.</p>
+</div>
 
 
 
@@ -252,7 +273,7 @@ Class DefaultContentParser  <a class="header-action link-secondary" title="View 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L31" class="edit-link">Edit this page</a>
+          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultContentParser.cs/#L47" class="edit-link">Edit this page</a>
         </div>
 
 

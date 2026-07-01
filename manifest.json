@@ -64,7 +64,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Engines.DefaultContentParser",
-      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultContentParser.yml\" sourcestartlinenumber=\"1\">Default content parser</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultContentParser.yml\" sourcestartlinenumber=\"1\">Parses fetched content into a <xref href=\"Spidey.ResultFile\" data-throw-if-not-resolved=\"false\"></xref> using the configured parser options\nand the first available non-default link discoverer.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +78,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Engines.DefaultEngine",
-      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultEngine.yml\" sourcestartlinenumber=\"1\">Default engine</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultEngine.yml\" sourcestartlinenumber=\"1\">Default engine implementation for crawling absolute URLs with <xref href=\"System.Net.Http.HttpClient\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -92,7 +92,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Engines.DefaultLinkDiscoverer",
-      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultLinkDiscoverer.yml\" sourcestartlinenumber=\"1\">Default link engine</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultLinkDiscoverer.yml\" sourcestartlinenumber=\"1\">Discovers links from HTML documents and normalizes them into absolute, escaped URLs.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -106,7 +106,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Engines.DefaultPipeline",
-      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultPipeline.yml\" sourcestartlinenumber=\"1\">Default pipeline</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultPipeline.yml\" sourcestartlinenumber=\"1\">Default implementation of <xref href=\"Spidey.Engines.Interfaces.IPipeline\" data-throw-if-not-resolved=\"false\"></xref> that coordinates crawling, parsing,\nprocessing, and link discovery.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -120,7 +120,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Engines.DefaultProcessor",
-      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultProcessor.yml\" sourcestartlinenumber=\"1\">Default processor</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultProcessor.yml\" sourcestartlinenumber=\"1\">Default <xref href=\"Spidey.Engines.Interfaces.IProcessor\" data-throw-if-not-resolved=\"false\"></xref> implementation used to forward discovered results to the\nconfigured <xref href=\"Spidey.Options.ItemFound\" data-throw-if-not-resolved=\"false\"></xref> callback.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -134,7 +134,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Engines.DefaultScheduler",
-      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultScheduler.yml\" sourcestartlinenumber=\"1\">Default scheduler</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.DefaultScheduler.yml\" sourcestartlinenumber=\"1\">Default <xref href=\"Spidey.Engines.Interfaces.IScheduler\" data-throw-if-not-resolved=\"false\"></xref> implementation that selects an engine and forwards crawl\nrequests to a worker pool.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -288,7 +288,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Engines.UrlData",
-      "Summary": "<p sourcefile=\"api/Spidey.Engines.UrlData.yml\" sourcestartlinenumber=\"1\">URL data passed back from the engine.</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Engines.UrlData.yml\" sourcestartlinenumber=\"1\">Represents the result of downloading or resolving a URL.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -358,7 +358,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "Spidey.Options",
-      "Summary": "<p sourcefile=\"api/Spidey.Options.yml\" sourcestartlinenumber=\"1\">Basic options class</p>\n"
+      "Summary": "<p sourcefile=\"api/Spidey.Options.yml\" sourcestartlinenumber=\"1\">Configures crawling behavior, request options, and link filtering for a crawl run.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -416,11 +416,11 @@
       "type": "Toc",
       "source_relative_path": "api/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "api/toc.json"
-        },
         ".html": {
           "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
         }
       },
       "version": ""
@@ -439,11 +439,11 @@
       "type": "Toc",
       "source_relative_path": "articles/toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "articles/toc.json"
-        },
         ".html": {
           "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
         }
       },
       "version": ""
@@ -472,11 +472,11 @@
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {
-        ".json": {
-          "relative_path": "toc.json"
-        },
         ".html": {
           "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
         }
       },
       "version": ""

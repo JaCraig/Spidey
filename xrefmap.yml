@@ -1104,6 +1104,19 @@ references:
   isSpec: "True"
   fullName: Spidey.Options.Proxy
   nameWithType: Options.Proxy
+- uid: Spidey.Options.RequestHeaders
+  name: RequestHeaders
+  href: api/Spidey.Options.html#Spidey_Options_RequestHeaders
+  commentId: P:Spidey.Options.RequestHeaders
+  fullName: Spidey.Options.RequestHeaders
+  nameWithType: Options.RequestHeaders
+- uid: Spidey.Options.RequestHeaders*
+  name: RequestHeaders
+  href: api/Spidey.Options.html#Spidey_Options_RequestHeaders_
+  commentId: Overload:Spidey.Options.RequestHeaders
+  isSpec: "True"
+  fullName: Spidey.Options.RequestHeaders
+  nameWithType: Options.RequestHeaders
 - uid: Spidey.Options.StartLocations
   name: StartLocations
   href: api/Spidey.Options.html#Spidey_Options_StartLocations

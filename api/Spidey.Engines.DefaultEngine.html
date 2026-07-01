@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class DefaultEngine | Spidey API Reference ">
       
-      <meta name="description" content="Default engine">
+      <meta name="description" content="Default engine implementation for crawling absolute URLs with .">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -97,7 +97,7 @@ Class DefaultEngine
   <dl><dt>Assembly</dt><dd>Spidey.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Default engine</p>
+  <div class="markdown summary"><p>Default engine implementation for crawling absolute URLs with <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -154,6 +154,11 @@ Class DefaultEngine
 
 
 
+  <h2 id="Spidey_Engines_DefaultEngine_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>The instance owns the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> and must be disposed when no
+longer needed. Request headers, proxy settings, credentials, and default credentials
+behavior are configured from <span class="xref">Spidey.Engines.DefaultEngine.Options</span>.</p>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -164,7 +169,7 @@ Class DefaultEngine
 
   <h3 id="Spidey_Engines_DefaultEngine__ctor_Spidey_Options_Microsoft_Extensions_Logging_ILogger_Spidey_Engines_DefaultEngine__" data-uid="Spidey.Engines.DefaultEngine.#ctor(Spidey.Options,Microsoft.Extensions.Logging.ILogger{Spidey.Engines.DefaultEngine})">
   DefaultEngine(Options?, ILogger&lt;DefaultEngine&gt;?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultEngine.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultEngine.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Spidey.Engines.DefaultEngine.html">DefaultEngine</a> class.</p>
@@ -178,10 +183,10 @@ Class DefaultEngine
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>options</code> <a class="xref" href="Spidey.Options.html">Options</a></dt>
-    <dd><p>The options.</p>
+    <dd><p>Engine configuration. When <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>, <a class="xref" href="Spidey.Options.html#Spidey_Options_Default">Default</a> is used.</p>
 </dd>
     <dt><code>logger</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.ilogger-1">ILogger</a>&lt;<a class="xref" href="Spidey.Engines.DefaultEngine.html">DefaultEngine</a>&gt;</dt>
-    <dd><p>The logger.</p>
+    <dd><p>Optional logger used for crawl diagnostics and failures.</p>
 </dd>
   </dl>
 
@@ -204,10 +209,10 @@ Class DefaultEngine
 
   <h3 id="Spidey_Engines_DefaultEngine_CrawlAsync_System_String_" data-uid="Spidey.Engines.DefaultEngine.CrawlAsync(System.String)">
   CrawlAsync(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultEngine.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultEngine.cs/#L113"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Crawls the url.</p>
+  <div class="markdown level1 summary"><p>Crawls the specified absolute URL and returns the response payload and metadata.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -218,14 +223,15 @@ Class DefaultEngine
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>url</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The URL.</p>
+    <dd><p>Absolute URL to request.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Spidey.Engines.UrlData.html">UrlData</a>&gt;</dt>
-    <dd><p>The data from the URL.</p>
+    <dd><p>A populated <a class="xref" href="Spidey.Engines.UrlData.html">UrlData</a> instance when the request can be issued; otherwise
+<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a> when the URL is invalid or the client has been disposed.</p>
 </dd>
   </dl>
 
@@ -235,6 +241,12 @@ Class DefaultEngine
 
 
 
+  <h4 class="section" id="Spidey_Engines_DefaultEngine_CrawlAsync_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Redirects are followed by the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclienthandler">HttpClientHandler</a>. On successful
+responses, the returned file name is derived from the response headers or final URL. On
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httprequestexception">HttpRequestException</a>, the method logs the failure and returns an
+error-shaped <a class="xref" href="Spidey.Engines.UrlData.html">UrlData</a> with an empty payload and a 503 status code.</p>
+</div>
 
 
 
@@ -243,11 +255,10 @@ Class DefaultEngine
 
   <h3 id="Spidey_Engines_DefaultEngine_Dispose" data-uid="Spidey.Engines.DefaultEngine.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultEngine.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Engines/DefaultEngine.cs/#L152"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting
-unmanaged resources.</p>
+  <div class="markdown level1 summary"><p>Releases the underlying <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a> instance and clears the engine's client reference.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

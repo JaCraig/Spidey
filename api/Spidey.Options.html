@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class Options | Spidey API Reference ">
       
-      <meta name="description" content="Basic options class">
+      <meta name="description" content="Configures crawling behavior, request options, and link filtering for a crawl run.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="Spidey_Options" data-uid="Spidey.Options" class="text-break">
-Class Options  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L28"><i class="bi bi-code-slash"></i></a>
+Class Options  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,7 +97,7 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <dl><dt>Assembly</dt><dd>Spidey.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Basic options class</p>
+  <div class="markdown summary"><p>Configures crawling behavior, request options, and link filtering for a crawl run.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -147,6 +147,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
 
 
+  <h2 id="Spidey_Options_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>Instances are mutable and are intended to be configured before crawling begins. Internal
+compiled regex caches are populated on first use by <span class="xref">Spidey.Options.Setup()</span>.</p>
+</div>
 
 
   <h2 class="section" id="properties">Properties
@@ -157,10 +161,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_Allow" data-uid="Spidey.Options.Allow">
   Allow
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the allowed items.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the allowed link patterns.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -175,13 +179,15 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>The allowed items.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_Allow_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>A link must match at least one allowed pattern to be parsed or followed.</p>
+</div>
 
 
 
@@ -190,10 +196,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_Credentials" data-uid="Spidey.Options.Credentials">
   Credentials
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the credentials.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the network credentials used for requests.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -208,13 +214,15 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.networkcredential">NetworkCredential</a></dt>
-    <dd><p>The credentials.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_Credentials_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>When set, these credentials are used explicitly rather than the default credentials.</p>
+</div>
 
 
 
@@ -223,10 +231,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_Default" data-uid="Spidey.Options.Default">
   Default
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the default.</p>
+  <div class="markdown level1 summary"><p>Gets a new options instance with default values.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -241,8 +249,7 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="Spidey.Options.html">Options</a></dt>
-    <dd><p>The default.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -256,10 +263,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_FollowOnly" data-uid="Spidey.Options.FollowOnly">
   FollowOnly
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L60"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the follow only list.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the additional patterns that are eligible to be followed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -274,13 +281,16 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>The follow only list.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_FollowOnly_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>These patterns expand the follow set without affecting parsing unless the link also
+matches <a class="xref" href="Spidey.Options.html#Spidey_Options_Allow">Allow</a>.</p>
+</div>
 
 
 
@@ -289,10 +299,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_Ignore" data-uid="Spidey.Options.Ignore">
   Ignore
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L66"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the ignore list.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the patterns that are excluded from crawling.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -307,13 +317,15 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>The ignore list.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_Ignore_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Ignore rules always take precedence over allow and follow rules.</p>
+</div>
 
 
 
@@ -322,10 +334,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_ItemFound" data-uid="Spidey.Options.ItemFound">
   ItemFound
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L75"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the item found.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the callback invoked when a result file is discovered.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -340,13 +352,15 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="Spidey.ResultFile.html">ResultFile</a>&gt;</dt>
-    <dd><p>The item found.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_ItemFound_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The callback is initialized to a no-op and is guaranteed to be non-null after <span class="xref">Spidey.Options.Setup()</span> completes.</p>
+</div>
 
 
 
@@ -355,10 +369,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_MaxDelay" data-uid="Spidey.Options.MaxDelay">
   MaxDelay
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L81"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the maximum delay.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the maximum crawl delay in milliseconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -373,13 +387,15 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The maximum delay.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_MaxDelay_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Negative values are normalized to zero in <span class="xref">Spidey.Options.Setup()</span>.</p>
+</div>
 
 
 
@@ -388,10 +404,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_MinDelay" data-uid="Spidey.Options.MinDelay">
   MinDelay
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the minimum delay.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the minimum crawl delay in milliseconds.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -406,13 +422,16 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The minimum delay.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_MinDelay_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Negative values are normalized to zero in <span class="xref">Spidey.Options.Setup()</span>. If this value exceeds
+<a class="xref" href="Spidey.Options.html#Spidey_Options_MaxDelay">MaxDelay</a>, the two values are swapped.</p>
+</div>
 
 
 
@@ -421,10 +440,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_NumberWorkers" data-uid="Spidey.Options.NumberWorkers">
   NumberWorkers
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the number workers.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the number of worker threads used by the crawler.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -439,13 +458,15 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd><p>The number workers.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_NumberWorkers_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Values less than or equal to zero are normalized to one in <span class="xref">Spidey.Options.Setup()</span>.</p>
+</div>
 
 
 
@@ -454,10 +475,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_Proxy" data-uid="Spidey.Options.Proxy">
   Proxy
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the proxy.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the proxy used for requests.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -472,8 +493,7 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.iwebproxy">IWebProxy</a></dt>
-    <dd><p>The proxy.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -483,14 +503,49 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
 
 
+  <a id="Spidey_Options_RequestHeaders_" data-uid="Spidey.Options.RequestHeaders*"></a>
+
+  <h3 id="Spidey_Options_RequestHeaders" data-uid="Spidey.Options.RequestHeaders">
+  RequestHeaders
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the HTTP request headers applied to outgoing requests.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, string&gt; RequestHeaders { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+  <h4 class="section" id="Spidey_Options_RequestHeaders_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The key is the header name and the value is the header value.</p>
+</div>
+
+
+
+
   <a id="Spidey_Options_StartLocations_" data-uid="Spidey.Options.StartLocations*"></a>
 
   <h3 id="Spidey_Options_StartLocations" data-uid="Spidey.Options.StartLocations">
   StartLocations
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the start locations.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the initial URLs used to start crawling.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -505,8 +560,7 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>The start locations.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -520,11 +574,10 @@ Class Options  <a class="header-action link-secondary" title="View source" href=
 
   <h3 id="Spidey_Options_UrlReplacements" data-uid="Spidey.Options.UrlReplacements">
   UrlReplacements
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L101"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets a list of replacements for URL parts. Key is the url part that you may
-find, value is the replacement for it.</p>
+  <div class="markdown level1 summary"><p>Gets or sets replacements applied to URL text before matching or following.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -539,13 +592,15 @@ find, value is the replacement for it.</p>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd><p>The domain replacements.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
 
 
+  <h4 class="section" id="Spidey_Options_UrlReplacements_remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Keys are regular expressions; values are replacement strings.</p>
+</div>
 
 
 
@@ -554,10 +609,10 @@ find, value is the replacement for it.</p>
 
   <h3 id="Spidey_Options_UseDefaultCredentials" data-uid="Spidey.Options.UseDefaultCredentials">
   UseDefaultCredentials
-  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether [use default credentials].</p>
+  <div class="markdown level1 summary"><p>Gets or sets a value indicating whether default credentials should be used for requests.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -572,8 +627,7 @@ find, value is the replacement for it.</p>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p><code>true</code> if [use default credentials]; otherwise, <code>false</code>.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -587,7 +641,7 @@ find, value is the replacement for it.</p>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L28" class="edit-link">Edit this page</a>
+          <a href="https://github.com/JaCraig/Spidey/blob/master/Spidey/Options.cs/#L32" class="edit-link">Edit this page</a>
         </div>
 
 

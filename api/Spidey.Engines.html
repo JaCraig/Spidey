@@ -96,37 +96,41 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="Spidey.Engines.DefaultContentParser.html">DefaultContentParser</a></dt>
-      <dd><p>Default content parser</p>
+      <dd><p>Parses fetched content into a <a class="xref" href="Spidey.ResultFile.html">ResultFile</a> using the configured parser options
+and the first available non-default link discoverer.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Spidey.Engines.DefaultEngine.html">DefaultEngine</a></dt>
-      <dd><p>Default engine</p>
+      <dd><p>Default engine implementation for crawling absolute URLs with <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.http.httpclient">HttpClient</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Spidey.Engines.DefaultLinkDiscoverer.html">DefaultLinkDiscoverer</a></dt>
-      <dd><p>Default link engine</p>
+      <dd><p>Discovers links from HTML documents and normalizes them into absolute, escaped URLs.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Spidey.Engines.DefaultPipeline.html">DefaultPipeline</a></dt>
-      <dd><p>Default pipeline</p>
+      <dd><p>Default implementation of <a class="xref" href="Spidey.Engines.Interfaces.IPipeline.html">IPipeline</a> that coordinates crawling, parsing,
+processing, and link discovery.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Spidey.Engines.DefaultProcessor.html">DefaultProcessor</a></dt>
-      <dd><p>Default processor</p>
+      <dd><p>Default <a class="xref" href="Spidey.Engines.Interfaces.IProcessor.html">IProcessor</a> implementation used to forward discovered results to the
+configured <a class="xref" href="Spidey.Options.html#Spidey_Options_ItemFound">ItemFound</a> callback.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Spidey.Engines.DefaultScheduler.html">DefaultScheduler</a></dt>
-      <dd><p>Default scheduler</p>
+      <dd><p>Default <a class="xref" href="Spidey.Engines.Interfaces.IScheduler.html">IScheduler</a> implementation that selects an engine and forwards crawl
+requests to a worker pool.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Spidey.Engines.UrlData.html">UrlData</a></dt>
-      <dd><p>URL data passed back from the engine.</p>
+      <dd><p>Represents the result of downloading or resolving a URL.</p>
 </dd>
     </dl>
 
