@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.1"></a>
+## [6.2.1](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.1) (2026-08-21)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([469694e](https://www.github.com/JaCraig/Spidey/commit/469694e7a70d9b4ab37b8cc1009dc4ecab0ff561))
+* Bump the dependencies group with 1 update ([67ce669](https://www.github.com/JaCraig/Spidey/commit/67ce6692b1705f6e8ea8d62844678f06fcafee6f))
+* Bump the dependencies group with 2 updates ([1232dab](https://www.github.com/JaCraig/Spidey/commit/1232dab7ba4e5257e529f7bb8d2b14b9c973863e))
+* Bump the dependencies group with 2 updates ([a587e65](https://www.github.com/JaCraig/Spidey/commit/a587e6590fe2706a0fbdc7fcee519f2d638e8192))
+
+### Other
+
+* Merge pull request #450 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-407341980e ([9141378](https://www.github.com/JaCraig/Spidey/commit/9141378fc5d267554e4cf7eab8088a4511a38f60))
+* Merge pull request #451 from JaCraig/dependabot/nuget/Spidey/dependencies-5c1cd76f7e ([cfa28a6](https://www.github.com/JaCraig/Spidey/commit/cfa28a61e961098af13cf0ea7b9369cac404e9c3))
+* Merge pull request #452 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-7071a909e4 ([d8605a7](https://www.github.com/JaCraig/Spidey/commit/d8605a72cf18efe35e6d0802138b845d4fe2d5ee))
+* Merge pull request #453 from JaCraig/dependabot/nuget/dot-config/dependencies-d580172a4f ([960bb39](https://www.github.com/JaCraig/Spidey/commit/960bb39c9835633a822e74225e1aabd1b3426b3b))
+* Merge pull request #454 from JaCraig/dependabot/nuget/Spidey/dependencies-637020aa5a ([2336f97](https://www.github.com/JaCraig/Spidey/commit/2336f97939c6de83b30b39ada7639aca423107d1))
+* Merge pull request #455 from JaCraig/dependabot/nuget/Spidey/dependencies-7d3e3ddd24 ([1f669c7](https://www.github.com/JaCraig/Spidey/commit/1f669c75397ea18b562c87d1eb9dc79e5162bde8))
+* Merge pull request #456 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-b18f94246c ([17e6505](https://www.github.com/JaCraig/Spidey/commit/17e6505c1267f144cb07b50425fa769febb93f62))
+* Bump the dependencies group with 1 update ([0d6781c](https://www.github.com/JaCraig/Spidey/commit/0d6781c419b4bcd4dcfc8ff3f8212ecbf84154c7))
+* Bump the dependencies group with 2 updates ([2f10253](https://www.github.com/JaCraig/Spidey/commit/2f10253d25627698903c43678592570ab9d83afb))
+* Bump the dependencies group with 3 updates ([878e27c](https://www.github.com/JaCraig/Spidey/commit/878e27cea48734f3294fbaa828b0755a33fcc27a))
+
 <a name="6.2.0"></a>
 ## [6.2.0](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.0) (2026-07-01)
 
