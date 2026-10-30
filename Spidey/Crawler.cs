@@ -73,8 +73,8 @@ namespace Spidey
         /// <summary>
         /// Disposes the internal objects
         /// </summary>
-        /// <param name="Value"></param>
-        protected virtual void Dispose(bool Value)
+        /// <param name="value"></param>
+        protected virtual void Dispose(bool value)
         {
             Pipeline?.Dispose();
             Pipeline = null;
