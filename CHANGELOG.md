@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.2"></a>
+## [6.2.2](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.2) (2026-10-30)
+
+### Bug Fixes
+
+* Bump the dependencies group with 2 updates ([6fad7f1](https://www.github.com/JaCraig/Spidey/commit/6fad7f1a8ed56aa2b816912215c8dae0b61ec164))
+* Bump the dependencies group with 2 updates ([13bcaf2](https://www.github.com/JaCraig/Spidey/commit/13bcaf26d442a02aa534ac2f271eff0c8726d7d5))
+* Bump the dependencies group with 2 updates ([87060d5](https://www.github.com/JaCraig/Spidey/commit/87060d51756cf7eb866b4416f2be1e7d5e820524))
+
+### Other
+
+* Merge pull request #457 from JaCraig/dependabot/nuget/dot-config/dependencies-87dec4854d ([aeec0ad](https://www.github.com/JaCraig/Spidey/commit/aeec0ad24a05c30a8bf58b493f56f537aa2072bd))
+* Merge pull request #458 from JaCraig/dependabot/nuget/Spidey/dependencies-39d8d9731f ([5c7f891](https://www.github.com/JaCraig/Spidey/commit/5c7f8911ec09e06679f86037afe8ca9907c9e2fd))
+* Merge pull request #459 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-3e8ca8d6b6 ([4399a91](https://www.github.com/JaCraig/Spidey/commit/4399a911090627b811cc5492a83300798eff69b2))
+* Merge pull request #460 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-8af17d2a0f ([3fce6c9](https://www.github.com/JaCraig/Spidey/commit/3fce6c92885a9f020866c46d075ab4e945563cc5))
+* Merge pull request #461 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-1aaad36d12 ([74dcc90](https://www.github.com/JaCraig/Spidey/commit/74dcc909b10cf23c50a4f6ea50fac3895cc2400d))
+* Merge pull request #462 from JaCraig/dependabot/nuget/Spidey/dependencies-c1ede9f7c1 ([ec5cbce](https://www.github.com/JaCraig/Spidey/commit/ec5cbce3d79b427d38f480f6f7848237bc5e635f))
+* Merge pull request #463 from JaCraig/dependabot/nuget/Spidey.Tests/dependencies-ed859a41c4 ([8c84f74](https://www.github.com/JaCraig/Spidey/commit/8c84f744167fdc171b717b929fe73f97e2b4af2d))
+* Merge pull request #464 from JaCraig/dependabot/nuget/Spidey/dependencies-f4803d6dd8 ([bbc8a8a](https://www.github.com/JaCraig/Spidey/commit/bbc8a8a9937a0002b97a5c44b1c97ca527dd51d1))
+* Bump the dependencies group with 1 update ([c18151c](https://www.github.com/JaCraig/Spidey/commit/c18151c1efdb01a9f8b7a837e2bd6f5544836768))
+* Bump the dependencies group with 1 update ([e11669f](https://www.github.com/JaCraig/Spidey/commit/e11669f1e2a0c26f63614fe59516ef7a978698a5))
+* Bump the dependencies group with 1 update ([da3e882](https://www.github.com/JaCraig/Spidey/commit/da3e882ad3b927578ba990ab6a86bf4090688906))
+* Bump the dependencies group with 2 updates ([dafb773](https://www.github.com/JaCraig/Spidey/commit/dafb7736faf1f9c22ab2f03064105fbb1262ca63))
+* Bump the dependencies group with 2 updates ([47319a4](https://www.github.com/JaCraig/Spidey/commit/47319a4252b4310aac5cec6f2230f234691b6f56))
+* **dependencies:** upgrade recyclable memory stream ([fd10561](https://www.github.com/JaCraig/Spidey/commit/fd10561d4de628f532298356756bacd93b72d8d5))
+
 <a name="6.2.1"></a>
 ## [6.2.1](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.1) (2026-08-21)
 
