@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.3"></a>
+## [6.2.3](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.3) (2026-10-30)
+
+### Bug Fixes
+
+* cleanup ([28e60b2](https://www.github.com/JaCraig/Spidey/commit/28e60b22d9f09c4df8ea3355e8c084ba6e80bede))
+
+### Other
+
+* merge ([dad519f](https://www.github.com/JaCraig/Spidey/commit/dad519f87ca50638c7585277854e4f1acd5a109f))
+
 <a name="6.2.2"></a>
 ## [6.2.2](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.2) (2026-10-30)
 
