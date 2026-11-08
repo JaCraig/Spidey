@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.2.4"></a>
+## [6.2.4](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.4) (2026-11-08)
+
+### Bug Fixes
+
+* **workflow:** update permissions and enhance publish steps ([15be562](https://www.github.com/JaCraig/Spidey/commit/15be5623e4b9eecf631098975d5523817513f90a))
+
 <a name="6.2.3"></a>
 ## [6.2.3](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.3) (2026-10-30)
 
