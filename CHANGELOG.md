@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="7.0.0"></a>
+## [7.0.0](https://www.github.com/JaCraig/Spidey/releases/tag/v7.0.0) (2026-11-14)
+
+### Features
+
+* **framework:** target .NET 10 and 11 ([4eecfad](https://www.github.com/JaCraig/Spidey/commit/4eecfad21d4a694dc4f45ac6d1a5276ef312eef1))
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([a7f5c8a](https://www.github.com/JaCraig/Spidey/commit/a7f5c8a772a3a89348bc8fad44ba671657cd8abf))
+
+### Breaking Changes
+
+* **framework:** target .NET 10 and 11 ([4eecfad](https://www.github.com/JaCraig/Spidey/commit/4eecfad21d4a694dc4f45ac6d1a5276ef312eef1))
+
+### Other
+
+* Merge pull request #466 from JaCraig/dependabot/nuget/Spidey/dependencies-200e55c364 ([801cc50](https://www.github.com/JaCraig/Spidey/commit/801cc50c80c4ecddc09ebdd7bf6cb640eb9d437b))
+
 <a name="6.2.4"></a>
 ## [6.2.4](https://www.github.com/JaCraig/Spidey/releases/tag/v6.2.4) (2026-11-08)
 
