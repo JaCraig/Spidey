@@ -55,7 +55,7 @@ namespace Microsoft.Extensions.DependencyInjection
                     ?.AddAllTransient<IProcessor>()
                     ?.AddAllTransient<IPipeline>()
                     ?.AddAllTransient<IScheduler>()
-                    ?.AddTransient(_ => Options.Default)
+                    ?.AddTransient(_ => Spidey.Options.Default)
                     ?.AddSingleton<RecyclableMemoryStreamManager>()
                     ?.RegisterFileCurator()
                     ?.RegisterBigBookOfDataTypes();
